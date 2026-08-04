@@ -1,0 +1,19 @@
+# Environment variables
+.env
+
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Cursor / VS Code
+.vscode/
+
+# Downloaded supermarket data
+data/raw/
+data/processed/

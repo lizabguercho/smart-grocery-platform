@@ -1,0 +1,187 @@
+# 🛒 Smart Grocery Platform
+
+## Overview
+
+Smart Grocery Platform is an end-to-end data engineering and analytics project that collects supermarket price data from Israeli retailers, stores it in a PostgreSQL database, and enables price comparison and market analysis.
+
+The project demonstrates the complete data pipeline, from data extraction to database design and analysis, following software engineering and data engineering best practices.
+
+---
+
+## Project Goals
+
+- Build an automated ETL pipeline for Israeli supermarket price data.
+- Design a normalized PostgreSQL database.
+- Compare product prices across stores and over time.
+- Perform data quality validation.
+- Build analytical dashboards and insights.
+- Develop a user interface for searching and comparing products (future phase).
+
+---
+
+## Current Features
+
+- Download official Shufersal price files.
+- Parse XML price files.
+- Store product information in a normalized PostgreSQL database.
+- Maintain historical product prices.
+- Automated data quality checks.
+- Environment-based database configuration.
+- SQL scripts for database creation and maintenance.
+
+---
+
+## Project Structure
+
+```
+Smart-Grocery-Platform/
+│
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   └── external/
+│
+├── database/
+│   ├── backups/
+│   └── erd/
+│
+├── docs/
+│
+├── notebooks/
+│
+├── scripts/
+│
+├── sql/
+│   ├── 01_create_schema.sql
+│   ├── 02_create_tables.sql
+│   ├── 03_load_products.sql
+│   ├── 04_load_product_prices.sql
+│   ├── 05_indexes.sql
+│   ├── 06_views.sql
+│   ├── 07_data_quality_checks.sql
+│   └── inspection_queries.sql
+│
+├── src/
+│   ├── analysis/
+│   ├── data_extraction/
+│   ├── database/
+│   └── utils/
+│
+├── pyproject.toml
+└── README.md
+```
+
+---
+
+## Database Design
+
+The project uses a normalized PostgreSQL database.
+
+### Tables
+
+### products
+
+Stores static product information.
+
+Examples:
+
+- Product name
+- Manufacturer
+- Unit of measure
+- Package size
+
+Each product appears only once.
+
+---
+
+### product_prices
+
+Stores historical prices.
+
+Each row represents:
+
+- Product
+- Store
+- Extraction date
+- Price
+
+This allows price comparison across stores and tracking price changes over time.
+
+---
+
+### shufersal_products_staging
+
+Temporary staging table used during the ETL process before loading data into the production tables.
+
+---
+
+## Technologies
+
+- Python 3.11
+- PostgreSQL
+- SQL
+- psycopg
+- python-dotenv
+- Requests
+- BeautifulSoup
+- lxml
+- Pandas
+- Git
+
+---
+
+## ETL Pipeline
+
+Current workflow:
+
+```
+Download Price Files
+        ↓
+Parse XML Files
+        ↓
+Load into PostgreSQL
+        ↓
+Run Data Quality Checks
+```
+
+Future versions will automate the complete pipeline.
+
+---
+
+## Data Quality
+
+The project validates:
+
+- Duplicate products
+- Duplicate price records
+- Missing required values
+- Referential integrity
+- Row counts
+
+---
+
+## Future Improvements
+
+- Support multiple supermarket chains
+- Scheduled automatic updates
+- Product search API
+- Interactive dashboard
+- Price history visualizations
+- Shopping basket optimization
+- Web application
+
+---
+
+## Author
+
+Liza Rabkina
+
+This project was developed as part of my data analytics portfolio to demonstrate practical skills in:
+
+- Python
+- SQL
+- PostgreSQL
+- ETL pipelines
+- Data modeling
+- Data quality
+- Analytics engineering
