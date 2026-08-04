@@ -19,6 +19,32 @@ The project demonstrates the complete data pipeline, from data extraction to dat
 
 ---
 
+## Getting Started
+
+This project uses **uv** for Python environments and **PostgreSQL** for storage.
+
+```bash
+# Install dependencies into .venv (Python 3.11 via .python-version)
+uv sync
+
+# Configure database credentials
+cp .env.example .env
+# edit .env with your local PostgreSQL settings
+
+# Create database + schema/tables/indexes
+./install.sh
+
+# Verify connection
+uv run python -m src.database.test_connection
+
+# Run Shufersal extraction (from repo root)
+uv run python src/data_extraction/process_shufersal.py
+```
+
+Full setup details (prerequisites, PostgreSQL, ETL order, troubleshooting): **[docs/getting-started.md](docs/getting-started.md)**.
+
+---
+
 ## Current Features
 
 - Download official Shufersal price files.
