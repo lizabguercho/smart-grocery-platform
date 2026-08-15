@@ -167,7 +167,7 @@ uv run python scripts/inspect_price_files.py
 
 ### Load into PostgreSQL (after staging is populated)
 
-Once raw data has been loaded into `grocery.shufersal_products_staging`:
+Once raw data has been loaded into `grocery.products_staging`:
 
 ```bash
 psql -h localhost -U postgres -d smart_grocery -f sql/03_load_products.sql

@@ -25,7 +25,7 @@ SELECT DISTINCT ON (item_code)
     is_weighted,
     qty_in_package,
     item_type
-FROM grocery.shufersal_products_staging
+FROM grocery.products_staging
 WHERE item_code IS NOT NULL
 ORDER BY item_code, extraction_date DESC
 ON CONFLICT (item_code) DO NOTHING;
