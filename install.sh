@@ -151,4 +151,4 @@ for script in "${SQL_SCRIPTS[@]}"; do
 done
 
 echo "Database installation complete."
-echo "Verify with: uv run python -m src.database.test_connection"
+echo "Verify with: uv run python scripts/check_db_connection.py"

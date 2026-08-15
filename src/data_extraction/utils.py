@@ -14,7 +14,9 @@ def _drop_empty_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def save_to_csv(products, chain_name: str) -> None:
-    rows = [asdict(product) if is_dataclass(product) else product for product in products]
+    rows = [
+        asdict(product) if is_dataclass(product) else product for product in products
+    ]
 
     df = pd.DataFrame(rows)
     output_dir = Path("data/processed")

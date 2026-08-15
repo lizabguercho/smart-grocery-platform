@@ -68,7 +68,7 @@ source .venv/bin/activate
 
 ## 3. Configure environment variables
 
-Database credentials are loaded from a `.env` file in the project root (see `src/database/connection.py`).
+Database credentials are loaded from a `.env` file in the project root (see `src/database_loader/connection.py`).
 
 Copy the example file and edit values to match your local PostgreSQL setup:
 
@@ -129,10 +129,16 @@ What each file does:
 ### Test the database connection
 
 ```bash
-uv run python -m src.database.test_connection
+uv run python scripts/check_db_connection.py
 ```
 
 Expected output includes a successful connection message and the connected database name.
+
+### Run unit tests
+
+```bash
+uv run pytest
+```
 
 ### Quick Python check
 
@@ -185,7 +191,7 @@ psql -h localhost -U postgres -d smart_grocery -f sql/07_data_quality_checks.sql
 cd smart-grocery-platform
 uv sync                          # refresh deps after pull (if lock changed)
 # edit .env if DB settings change
-uv run python -m src.database.test_connection
+uv run python scripts/check_db_connection.py
 uv run python src/data_extraction/process_shufersal.py
 ```
 

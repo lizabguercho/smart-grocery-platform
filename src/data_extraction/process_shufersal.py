@@ -1,43 +1,57 @@
+from pathlib import Path
+from urllib.parse import urljoin, urlparse
+
 import requests
 from bs4 import BeautifulSoup
-from pathlib import Path
+
+from src.database_loader.loader import (
+    clear_staging,
+    load_product_prices,
+    load_products,
+    load_products_to_staging,
+)
+from src.database_loader.validation import validate_product_prices, validate_staging
+
+from . import utils
 from .data_extraction_config import (
     RAW_DATA_DIR,
     SHUFERSAL_CATEGORY_URL,
+    SHUFERSAL_CHAIN_NAME,
     SKIP_EXISTING_DOWNLOADS,
     ShufersalPriceCategory,
-    SHUFERSAL_CHAIN_NAME,
 )
-from urllib.parse import urljoin
-from urllib.parse import urlparse
-from . import utils
 from .models import PriceFullProduct
 from .price_full_parser import parse_price_full_files
-from src.database_loader.loader import (
-    load_products_to_staging,
-    load_products,
-    load_product_prices,
-    clear_staging,
-)
-from src.database_loader.validation import validate_staging, validate_product_prices
-
-
 
 
 # downloads the webpage and returns the HTML as a string.
-def get_page(category_id: ShufersalPriceCategory = ShufersalPriceCategory.PRICES_FULL, store_id: int = 0, page: int = 1):
-    response = requests.get(SHUFERSAL_CATEGORY_URL, params={"catID":category_id.value, "storeId":store_id,"page":page,}, timeout=30)
+def get_page(
+    category_id: ShufersalPriceCategory = ShufersalPriceCategory.PRICES_FULL,
+    store_id: int = 0,
+    page: int = 1,
+):
+    response = requests.get(
+        SHUFERSAL_CATEGORY_URL,
+        params={
+            "catID": category_id.value,
+            "storeId": store_id,
+            "page": page,
+        },
+        timeout=30,
+    )
     response.raise_for_status()
     return response.text
 
+
 # parses that HTML and extracts the download URLs, which it returns as a list of strings.
-def extract_download_prices_full_links(html:str)->list[str]:    
+def extract_download_prices_full_links(html: str) -> list[str]:
     soup = BeautifulSoup(html, "html.parser")
     return [
         urljoin(SHUFERSAL_CATEGORY_URL, link["href"])
         for link in soup.find_all("a", href=True)
         if "pricefull" in link["href"].lower()
-]
+    ]
+
 
 def get_all_price_full_links(max_pages: int | None = None) -> list[str]:
     """Collect PriceFull download links from Shufersal listing pages.
@@ -131,8 +145,7 @@ def _select_latest_daily_snapshots(links: list[str]) -> list[str]:
     # Step 2: Find the latest date available across all PriceFull files.
     latest_date = parsed_files[0]["date"]
     for file_info in parsed_files:
-        if file_info["date"] > latest_date:
-            latest_date = file_info["date"]
+        latest_date = max(latest_date, file_info["date"])
 
     # Step 3: Keep only files from that latest date.
     same_day_files = []
@@ -250,7 +263,7 @@ def main(
     print("4. Saving CSV...", flush=True)
     utils.save_to_csv(products, SHUFERSAL_CHAIN_NAME)
     print("CSV saved successfully.", flush=True)
-    
+
     print("5. Loading data into staging...", flush=True)
     load_products_to_staging(products)
 
@@ -262,7 +275,7 @@ def main(
 
     print("8. Loading product prices...", flush=True)
     load_product_prices()
-   
+
     print("9. Validating product prices...", flush=True)
     validate_product_prices()
     print("10. Clearing staging...", flush=True)
@@ -271,4 +284,3 @@ def main(
 
 if __name__ == "__main__":
     main()
-

@@ -35,7 +35,7 @@ cp .env.example .env
 ./install.sh
 
 # Verify connection
-uv run python -m src.database.test_connection
+uv run python scripts/check_db_connection.py
 
 # Run Shufersal extraction (from repo root)
 uv run python src/data_extraction/process_shufersal.py
@@ -77,6 +77,9 @@ Smart-Grocery-Platform/
 │
 ├── scripts/
 │
+├── test/
+│   └── unit/
+│
 ├── sql/
 │   ├── 01_create_schema.sql
 │   ├── 02_create_tables.sql
@@ -88,10 +91,8 @@ Smart-Grocery-Platform/
 │   └── inspection_queries.sql
 │
 ├── src/
-│   ├── analysis/
 │   ├── data_extraction/
-│   ├── database/
-│   └── utils/
+│   └── database_loader/
 │
 ├── pyproject.toml
 └── README.md
