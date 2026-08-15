@@ -1,20 +1,21 @@
 from pathlib import Path
 
+from src.database_loader.loader import (
+    clear_staging,
+    load_product_prices,
+    load_products,
+    load_products_to_staging,
+)
+from src.database_loader.validation import validate_product_prices, validate_staging
+
+from . import utils
 from .data_extraction_config import (
     VICTORY_CHAIN_NAME,
     VICTORY_RAW_DATA_DIR,
 )
-from . import utils
 from .models import PriceFullProduct
 from .price_full_parser import parse_price_full_files
 from .victory.download import download_price_full_files
-from src.database_loader.loader import (
-    load_products_to_staging,
-    load_products,
-    load_product_prices,
-    clear_staging,
-)
-from src.database_loader.validation import validate_staging, validate_product_prices
 
 
 def get_local_price_files() -> list[Path]:

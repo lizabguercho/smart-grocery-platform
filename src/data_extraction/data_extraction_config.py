@@ -1,6 +1,7 @@
 from enum import Enum
 from pathlib import Path
 
+
 class ShufersalPriceCategory(Enum):
     ALL = 0
     PRICES = 1
@@ -8,9 +9,11 @@ class ShufersalPriceCategory(Enum):
     PROMOS = 3
     PROMOS_FULL = 4
     STORES = 5
+
+
 # Shufersal identification
 SHUFERSAL_CHAIN_NAME = "shufersal"
-    
+
 # URL constants for the Shufersal data extraction
 SHUFERSAL_BASE_URL = "https://prices.shufersal.co.il"
 SHUFERSAL_CATEGORY_URL = f"{SHUFERSAL_BASE_URL}/FileObject/UpdateCategory"
@@ -32,4 +35,3 @@ VICTORY_CHAIN_NAME = "victory"
 VICTORY_RAW_DATA_DIR = Path("data/raw/victory")
 VICTORY_BASE_URL = "https://laibcatalog.co.il"
 VICTORY_CHAIN_ID = "7290696200003"
-

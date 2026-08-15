@@ -1,5 +1,5 @@
-from dataclasses import dataclass
 import xml.etree.ElementTree as ET
+from dataclasses import dataclass
 
 
 @dataclass
@@ -9,6 +9,7 @@ class FileMetadata:
     sub_chain_id: str | None
     extraction_date: str
     source_file: str
+
 
 def normalize_int_text(value: str | None) -> str | None:
     if value is None:
@@ -20,7 +21,6 @@ def normalize_int_text(value: str | None) -> str | None:
         return None
 
     return value
-
 
 
 @dataclass
@@ -49,7 +49,9 @@ class PriceFullProduct:
     extraction_date: str
 
     @classmethod
-    def from_xml(cls, item: ET.Element, file_metadata: FileMetadata) -> "PriceFullProduct":
+    def from_xml(
+        cls, item: ET.Element, file_metadata: FileMetadata
+    ) -> "PriceFullProduct":
         fields = {child.tag: child.text for child in item}
 
         return cls(

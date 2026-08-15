@@ -21,7 +21,9 @@ from src.data_extraction.process_shufersal import main
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run the Shufersal pipeline in dev mode.")
+    parser = argparse.ArgumentParser(
+        description="Run the Shufersal pipeline in dev mode."
+    )
     parser.add_argument(
         "--download",
         action="store_true",

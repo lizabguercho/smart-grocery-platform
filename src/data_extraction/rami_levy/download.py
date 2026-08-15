@@ -66,8 +66,7 @@ def _select_latest_daily_snapshots(remote_names: list[str]) -> list[str]:
     # Step 2: Find the latest date available across all PriceFull files.
     latest_date = parsed_files[0]["date"]
     for file_info in parsed_files:
-        if file_info["date"] > latest_date:
-            latest_date = file_info["date"]
+        latest_date = max(latest_date, file_info["date"])
 
     # Step 3: Keep only files from that latest date.
     same_day_files = []
@@ -80,7 +79,6 @@ def _select_latest_daily_snapshots(remote_names: list[str]) -> list[str]:
     for file_info in same_day_files:
         store_id = file_info["store_id"]
         time = file_info["time"]
-    
 
         if store_id not in latest_file_by_store:
             latest_file_by_store[store_id] = file_info
@@ -124,7 +122,9 @@ def download_price_full_files(
         if max_files is not None:
             price_full_files = price_full_files[:max_files]
 
-        print(f"Found {len(price_full_files)} PriceFull file(s) to download.", flush=True)
+        print(
+            f"Found {len(price_full_files)} PriceFull file(s) to download.", flush=True
+        )
 
         downloaded_files: list[Path] = []
 

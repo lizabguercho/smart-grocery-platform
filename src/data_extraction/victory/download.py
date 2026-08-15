@@ -63,8 +63,7 @@ def _select_latest_daily_snapshots(price_full_files: list[dict]) -> list[dict]:
     # Step 2: Find the latest date available across all PriceFull files.
     latest_date = parsed_files[0]["date"]
     for file_info in parsed_files:
-        if file_info["date"] > latest_date:
-            latest_date = file_info["date"]
+        latest_date = max(latest_date, file_info["date"])
 
     # Step 3: Keep only files from that latest date.
     same_day_files = []

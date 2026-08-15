@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import gzip
 import xml.etree.ElementTree as ET
-from datetime import datetime
+from datetime import date
 from pathlib import Path
 
 from .models import FileMetadata, PriceFullProduct
@@ -21,8 +21,14 @@ def extract_date_from_filename(file_path: Path) -> str:
     date_text = parts[-2]
 
     try:
-        extraction_date = datetime.strptime(date_text, "%Y%m%d").date()
-    except ValueError:
+        if len(date_text) != 8:
+            raise ValueError
+        extraction_date = date(
+            int(date_text[0:4]),
+            int(date_text[4:6]),
+            int(date_text[6:8]),
+        )
+    except (TypeError, ValueError):
         raise ValueError(f"Invalid date '{date_text}' in filename: {file_path.name}")
 
     return extraction_date.isoformat()
