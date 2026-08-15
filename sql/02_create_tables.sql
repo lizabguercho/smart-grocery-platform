@@ -34,13 +34,16 @@ CREATE TABLE IF NOT EXISTS grocery.product_prices (
     item_price NUMERIC(10,2),
     unit_of_measure_price NUMERIC(10,2),
     price_update_time TIMESTAMP,
+    last_sale_date_time TIMESTAMP,
     item_status INTEGER,
     allow_discount BOOLEAN,
+    chain_id BIGINT NOT NULL,
+    sub_chain_id INTEGER,
     source_file TEXT,
     extraction_date DATE NOT NULL,
 
     CONSTRAINT product_prices_pk
-        PRIMARY KEY (store_id, item_code, extraction_date),
+        PRIMARY KEY (chain_id, store_id, item_code, extraction_date),
 
     CONSTRAINT product_prices_product_fk
         FOREIGN KEY (item_code)
@@ -53,10 +56,7 @@ CREATE TABLE IF NOT EXISTS grocery.product_prices (
 -- XML files before cleaning and normalization
 -- ==========================================
 
-CREATE TABLE IF NOT EXISTS grocery.shufersal_products_staging (
-    chain_id INTEGER,
-    sub_chain_id INTEGER,
-    store_id INTEGER,
+CREATE TABLE IF NOT EXISTS grocery.products_staging (
     item_code BIGINT,
     item_name TEXT,
     manufacture_name TEXT,
@@ -69,10 +69,14 @@ CREATE TABLE IF NOT EXISTS grocery.shufersal_products_staging (
     qty_in_package INTEGER,
     item_price NUMERIC(10,2),
     unit_of_measure_price NUMERIC(10,2),
-    item_status INTEGER,
     allow_discount BOOLEAN,
+    item_status INTEGER,
     price_update_time TIMESTAMP,
-    extraction_date DATE,
+    last_sale_date_time TIMESTAMP,
+    item_type INTEGER,
+    store_id INTEGER,
+    chain_id BIGINT,
+    sub_chain_id INTEGER,
     source_file TEXT,
-    item_type INTEGER
+    extraction_date DATE
 );

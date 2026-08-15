@@ -135,7 +135,7 @@ This allows price comparison across stores and tracking price changes over time.
 
 ---
 
-### shufersal_products_staging
+### products_staging
 
 Temporary staging table used during the ETL process before loading data into the production tables.
 

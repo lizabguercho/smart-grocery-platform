@@ -1,4 +1,4 @@
-from src.database.connection import get_connection
+from src.database_loader.connection import get_connection
 
 
 def main():
