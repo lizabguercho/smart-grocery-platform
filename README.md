@@ -37,8 +37,8 @@ cp .env.example .env
 # Verify connection
 uv run python scripts/check_db_connection.py
 
-# Run Shufersal extraction (from repo root)
-uv run python src/data_extraction/process_shufersal.py
+# Run Shufersal PriceFull ETL (from repo root)
+uv run python -m src.etl --chain shufersal --extract prices_full --max-pages 2 --max-files 3
 ```
 
 Full setup details (prerequisites, PostgreSQL, ETL order, troubleshooting): **[docs/getting-started.md](docs/getting-started.md)**.
@@ -47,8 +47,9 @@ Full setup details (prerequisites, PostgreSQL, ETL order, troubleshooting): **[d
 
 ## Current Features
 
-- Download official Shufersal price files.
-- Parse XML price files.
+- Unified ETL CLI (`python -m src.etl`) for Shufersal, Rami Levy, and Victory.
+- Download official PriceFull files per chain.
+- Parse XML price files into `PriceFullProduct` records.
 - Store product information in a normalized PostgreSQL database.
 - Maintain historical product prices.
 - Automated data quality checks.
@@ -72,6 +73,7 @@ Smart-Grocery-Platform/
 │   └── erd/
 │
 ├── docs/
+│   └── adr/
 │
 ├── notebooks/
 │
@@ -91,9 +93,11 @@ Smart-Grocery-Platform/
 │   └── inspection_queries.sql
 │
 ├── src/
+│   ├── etl/
 │   ├── data_extraction/
 │   └── database_loader/
 │
+├── CONTRIBUTING.md
 ├── pyproject.toml
 └── README.md
 ```
@@ -162,16 +166,17 @@ Temporary staging table used during the ETL process before loading data into the
 Current workflow:
 
 ```
-Download Price Files
+python -m src.etl --chain <chain> --extract prices_full
         ↓
-Parse XML Files
+Extract (chain-specific download)
         ↓
-Load into PostgreSQL
+Parse (shared PriceFull XML)
         ↓
-Run Data Quality Checks
+Load into PostgreSQL (staging → products → product_prices)
 ```
 
-Future versions will automate the complete pipeline.
+See **[docs/etl_pipeline.md](docs/etl_pipeline.md)** and
+**[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
 ---
 
@@ -189,7 +194,7 @@ The project validates:
 
 ## Future Improvements
 
-- Support multiple supermarket chains
+- Implement Stores extraction (`--extract stores`).
 - Scheduled automatic updates
 - Product search API
 - Interactive dashboard

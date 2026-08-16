@@ -150,20 +150,30 @@ uv run python -c "import pandas, psycopg, requests; print('OK')"
 
 ## 6. Run the data extraction pipeline
 
-Scripts expect to be run from the **repository root** so paths like `data/raw/shufersal` resolve correctly.
+Commands expect to be run from the **repository root** so paths like `data/raw/shufersal` resolve correctly.
 
-### Download and parse Shufersal PriceFull files
+The ETL is one CLI. It always runs extract → parse → load. Choose a chain
+and an extract type (`prices_full` is implemented; `stores` is reserved).
+
+### Download, parse, and load PriceFull files
 
 ```bash
-uv run python src/data_extraction/process_shufersal.py
+uv run python -m src.etl --chain shufersal --extract prices_full --max-pages 2 --max-files 3
+uv run python -m src.etl --chain rami_levy --extract prices_full --max-files 3
+uv run python -m src.etl --chain victory --extract prices_full --max-files 3
 ```
 
 This will:
 
-1. Fetch the Shufersal prices page
-2. Download PriceFull `.gz` files into `data/raw/shufersal/`
-3. Parse products from the XML
-4. Write a CSV to `data/processed/shufersal_products.csv`
+1. Extract PriceFull `.gz` files into `data/raw/<chain>/`
+2. Parse products from the XML
+3. Load staging, products, and product prices in PostgreSQL
+
+Development defaults cap Shufersal pagination (`--max-pages 2`) and the
+number of files (`--max-files 3`). Use `--full` for an unlimited run, or
+`--no-download` to parse files already on disk.
+
+See **[docs/etl_pipeline.md](etl_pipeline.md)** for flags and architecture.
 
 ### List downloaded price files
 
@@ -171,17 +181,16 @@ This will:
 uv run python scripts/inspect_price_files.py
 ```
 
-### Load into PostgreSQL (after staging is populated)
+### Reload from staging with SQL (optional)
 
-Once raw data has been loaded into `grocery.products_staging`:
+The Python loader already writes staging → products → product prices.
+The SQL scripts remain available for manual re-runs:
 
 ```bash
 psql -h localhost -U postgres -d smart_grocery -f sql/03_load_products.sql
 psql -h localhost -U postgres -d smart_grocery -f sql/04_load_product_prices.sql
 psql -h localhost -U postgres -d smart_grocery -f sql/07_data_quality_checks.sql
 ```
-
-> Note: Automating the CSV → staging load is part of the planned pipeline work. Today, create/load staging via SQL/`COPY` as needed for your workflow.
 
 ---
 
@@ -192,7 +201,7 @@ cd smart-grocery-platform
 uv sync                          # refresh deps after pull (if lock changed)
 # edit .env if DB settings change
 uv run python scripts/check_db_connection.py
-uv run python src/data_extraction/process_shufersal.py
+uv run python -m src.etl --chain shufersal --extract prices_full --max-pages 2 --max-files 3
 ```
 
 ---
@@ -205,7 +214,7 @@ uv run python src/data_extraction/process_shufersal.py
 | `ModuleNotFoundError` | Run commands with `uv run` from the repo root, or `source .venv/bin/activate` |
 | Connection failed | Confirm PostgreSQL is running, `.env` values match, and the database exists |
 | Missing `data/raw/` paths | Create dirs or run extraction from the repo root (scripts create folders as needed) |
-| Import errors in extraction scripts | Run from repo root; those modules currently use local imports within `src/data_extraction/` |
+| Import errors in extraction scripts | Run from repo root with `uv run python -m src.etl ...` |
 
 ---
 

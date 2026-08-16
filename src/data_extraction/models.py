@@ -78,3 +78,17 @@ class PriceFullProduct:
             source_file=file_metadata.source_file,
             extraction_date=file_metadata.extraction_date,
         )
+
+
+@dataclass
+class Store:
+    """Placeholder store record for the reserved Stores extract type."""
+
+    store_id: str | None = None
+    chain_id: str | None = None
+    sub_chain_id: str | None = None
+    store_name: str | None = None
+    address: str | None = None
+    city: str | None = None
+    zip_code: str | None = None
+    source_file: str | None = None
