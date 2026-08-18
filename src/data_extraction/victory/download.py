@@ -1,4 +1,4 @@
-"""Victory PriceFull file downloader via laibcatalog HTTP API."""
+"""Victory PriceFull, Stores, and PromoFull file downloader via laibcatalog HTTP API."""
 
 from __future__ import annotations
 
@@ -8,7 +8,10 @@ import requests
 
 from src.data_extraction.data_extraction_config import (
     DOWNLOAD_CHUNK_SIZE_BYTES,
+    PRICE_FULL_FILE_LABEL,
+    PROMO_FULL_FILE_LABEL,
     SKIP_EXISTING_DOWNLOADS,
+    STORES_FILE_LABEL,
     VICTORY_API_TIMEOUT_SECONDS,
     VICTORY_BASE_URL,
     VICTORY_BRANCH_NUMBER_KEY,
@@ -21,14 +24,18 @@ from src.data_extraction.data_extraction_config import (
     VICTORY_FILE_TYPE_KEY,
     VICTORY_FILES_API_PATH,
     VICTORY_PRICE_FULL_FILE_TYPE,
-    VICTORY_RAW_DATA_DIR,
+    VICTORY_PRICE_FULL_RAW_DATA_DIR,
+    VICTORY_PROMO_FULL_FILE_TYPE,
+    VICTORY_PROMO_FULL_RAW_DATA_DIR,
+    VICTORY_STORES_FILE_TYPE,
+    VICTORY_STORES_RAW_DATA_DIR,
 )
 from src.data_extraction.snapshots import DailySnapshot, select_latest_daily_snapshots
 from src.etl.constants import DEFAULT_MAX_FILES
 
 
-def list_price_full_files() -> list[dict]:
-    """Return all PriceFull file entries from the Victory API."""
+def _list_files_by_type(file_type: str) -> list[dict]:
+    """Return Victory API entries whose ``fileType`` matches ``file_type``."""
     response = requests.get(
         f"{VICTORY_BASE_URL}{VICTORY_FILES_API_PATH}",
         params={VICTORY_EDI_PARAM: VICTORY_CHAIN_ID},
@@ -37,21 +44,35 @@ def list_price_full_files() -> list[dict]:
     response.raise_for_status()
 
     files = response.json()
-
-    price_full_files = []
+    matched_files = []
     for entry in files:
-        file_type = str(entry.get(VICTORY_FILE_TYPE_KEY, "")).lower()
-        if file_type == VICTORY_PRICE_FULL_FILE_TYPE:
-            price_full_files.append(entry)
+        entry_type = str(entry.get(VICTORY_FILE_TYPE_KEY, "")).lower()
+        if entry_type == file_type:
+            matched_files.append(entry)
 
-    return price_full_files
+    return matched_files
+
+
+def list_price_full_files() -> list[dict]:
+    """Return all PriceFull file entries from the Victory API."""
+    return _list_files_by_type(VICTORY_PRICE_FULL_FILE_TYPE)
+
+
+def list_store_files() -> list[dict]:
+    """Return all Stores file entries from the Victory API."""
+    return _list_files_by_type(VICTORY_STORES_FILE_TYPE)
+
+
+def list_promo_full_files() -> list[dict]:
+    """Return all PromoFull file entries from the Victory API."""
+    return _list_files_by_type(VICTORY_PROMO_FULL_FILE_TYPE)
 
 
 def _snapshots_from_entries(
-    price_full_files: list[dict],
+    entries: list[dict],
 ) -> list[DailySnapshot[dict]]:
     snapshots: list[DailySnapshot[dict]] = []
-    for entry in price_full_files:
+    for entry in entries:
         file_date = entry.get(VICTORY_FILE_DATE_KEY) or ""
         if " " not in file_date:
             continue
@@ -73,33 +94,31 @@ def _snapshots_from_entries(
 
 
 def select_latest_daily_snapshot_entries(
-    price_full_files: list[dict],
+    entries: list[dict],
 ) -> list[dict]:
-    """Keep the latest PriceFull file per store for the latest available date."""
-    selected = select_latest_daily_snapshots(_snapshots_from_entries(price_full_files))
+    """Keep the latest file per store for the latest available date."""
+    selected = select_latest_daily_snapshots(_snapshots_from_entries(entries))
     return [snapshot.payload for snapshot in selected]
 
 
-def download_price_full_files(
+def _download_selected_files(
     *,
-    max_files: int | None = DEFAULT_MAX_FILES,
-    skip_existing: bool = SKIP_EXISTING_DOWNLOADS,
+    entries: list[dict],
+    output_dir: Path,
+    file_label: str,
+    max_files: int | None,
+    skip_existing: bool,
 ) -> list[Path]:
-    """Download PriceFull `.gz` files into ``data/raw/victory``.
-
-    Selects the latest snapshot per store for the latest available date.
-    ``max_files`` limits how many stores are downloaded (development use).
-    """
-    output_dir = VICTORY_RAW_DATA_DIR
     output_dir.mkdir(parents=True, exist_ok=True)
-
-    price_full_files = list_price_full_files()
-    selected_files = select_latest_daily_snapshot_entries(price_full_files)
+    selected_files = select_latest_daily_snapshot_entries(entries)
 
     if max_files is not None:
         selected_files = selected_files[:max_files]
 
-    print(f"Found {len(selected_files)} PriceFull file(s) to download.", flush=True)
+    print(
+        f"Found {len(selected_files)} {file_label} file(s) to download.",
+        flush=True,
+    )
 
     downloaded_files: list[Path] = []
 
@@ -134,3 +153,60 @@ def download_price_full_files(
         downloaded_files.append(output_path)
 
     return downloaded_files
+
+
+def download_price_full_files(
+    *,
+    max_files: int | None = DEFAULT_MAX_FILES,
+    skip_existing: bool = SKIP_EXISTING_DOWNLOADS,
+) -> list[Path]:
+    """Download PriceFull `.gz` files into ``data/raw/price_full/victory``.
+
+    Selects the latest snapshot per store for the latest available date.
+    ``max_files`` limits how many stores are downloaded (development use).
+    """
+    return _download_selected_files(
+        entries=list_price_full_files(),
+        output_dir=VICTORY_PRICE_FULL_RAW_DATA_DIR,
+        file_label=PRICE_FULL_FILE_LABEL,
+        max_files=max_files,
+        skip_existing=skip_existing,
+    )
+
+
+def download_store_files(
+    *,
+    max_files: int | None = DEFAULT_MAX_FILES,
+    skip_existing: bool = SKIP_EXISTING_DOWNLOADS,
+) -> list[Path]:
+    """Download Stores `.gz` files into ``data/raw/stores/victory``.
+
+    Selects the latest snapshot per store for the latest available date.
+    ``max_files`` limits how many files are downloaded (development use).
+    """
+    return _download_selected_files(
+        entries=list_store_files(),
+        output_dir=VICTORY_STORES_RAW_DATA_DIR,
+        file_label=STORES_FILE_LABEL,
+        max_files=max_files,
+        skip_existing=skip_existing,
+    )
+
+
+def download_promo_full_files(
+    *,
+    max_files: int | None = DEFAULT_MAX_FILES,
+    skip_existing: bool = SKIP_EXISTING_DOWNLOADS,
+) -> list[Path]:
+    """Download PromoFull `.gz` files into ``data/raw/promo_full/victory``.
+
+    Selects the latest snapshot per store for the latest available date.
+    ``max_files`` limits how many stores are downloaded (development use).
+    """
+    return _download_selected_files(
+        entries=list_promo_full_files(),
+        output_dir=VICTORY_PROMO_FULL_RAW_DATA_DIR,
+        file_label=PROMO_FULL_FILE_LABEL,
+        max_files=max_files,
+        skip_existing=skip_existing,
+    )

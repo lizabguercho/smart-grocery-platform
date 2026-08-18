@@ -46,6 +46,14 @@ def test_parse_args_accepts_extract_type_max_pages_and_no_download() -> None:
     assert args.download is False
 
 
+def test_parse_args_accepts_promo_full() -> None:
+    args = parse_args(["--chain", "victory", "--extract", "promo_full", "--full"])
+
+    assert args.chain == Chain.VICTORY.value
+    assert args.extract == ExtractType.PROMO_FULL.value
+    assert args.full is True
+
+
 def test_options_from_args_full_clears_limits() -> None:
     args = parse_args(
         [

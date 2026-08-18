@@ -63,7 +63,8 @@ Do not pass anonymous dicts through parsers, loaders, or the pipeline.
 
 Use **dataclasses** for internal records the application already trusts:
 
-- `PriceFullProduct`, `FileMetadata`, `Store`
+- `PriceFullProduct`, `FileMetadata`, `Store`, `Promotion`,
+  `PromotionGroup`, `PromotionItem`
 - `PipelineOptions`, `DailySnapshot`
 
 Use **Pydantic** only at untrusted or external boundaries (incoming HTTP
@@ -80,12 +81,15 @@ fixed vocabulary.
 
 ## Running the pipeline
 
+From Cursor, use **Run and Debug → ETL Pipeline** and pick the chain and
+dataset from the dropdowns.
+
 From the repository root:
 
 ```bash
 uv run python -m src.etl --chain shufersal --extract prices_full --max-pages 2 --max-files 3
 ```
 
-`--extract stores` is a reserved strategy and raises
-`NotImplementedError` until Stores download, parse, and load are
-implemented.
+`--extract stores` and `--extract promo_full` are implemented for Shufersal,
+Rami Levy, and Victory (extract, parse, and load). Rami Levy store 039 is
+skipped for PromoFull.

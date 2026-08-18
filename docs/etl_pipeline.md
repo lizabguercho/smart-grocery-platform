@@ -12,10 +12,8 @@ extract → parse → load
 ```
 
 Callers choose a **chain** (`shufersal`, `rami_levy`, `victory`) and an
-**extract type** (`prices_full` or `stores`). PriceFull is fully
-implemented. Stores is a reserved strategy that raises
-`NotImplementedError` until a follow-up implements download, parse, and
-load.
+**extract type** (`prices_full`, `stores`, or `promo_full`). PriceFull,
+Stores, and PromoFull are fully implemented for all three chains.
 
 High-level PriceFull flow:
 
@@ -50,6 +48,9 @@ The orchestration decision is recorded in
 
 ## How to run
 
+From Cursor, use **Run and Debug → ETL Pipeline**. Dropdowns ask for
+chain, dataset, and whether to download or reuse local files.
+
 From the repository root:
 
 ```bash
@@ -57,29 +58,33 @@ uv run python -m src.etl --chain shufersal --extract prices_full --max-pages 2 -
 uv run python -m src.etl --chain rami_levy --extract prices_full --max-files 3
 uv run python -m src.etl --chain victory --extract prices_full --no-download
 uv run python -m src.etl --chain shufersal --extract stores
+uv run python -m src.etl --chain victory --extract stores --max-files 3
+uv run python -m src.etl --chain shufersal --extract promo_full --full
+uv run python -m src.etl --chain rami_levy --extract promo_full --full
+uv run python -m src.etl --chain victory --extract promo_full --full
 ```
 
 | Flag | Meaning |
 |------|---------|
 | `--chain` | `shufersal`, `rami_levy`, or `victory` |
-| `--extract` | `prices_full` (default) or `stores` |
+| `--extract` | `prices_full` (default), `stores`, or `promo_full` |
 | `--max-files` | Download cap after latest-per-store selection (default `3`) |
 | `--max-pages` | Shufersal listing-page cap (default `2`; ignored by other chains) |
 | `--full` | No `max-files` or `max-pages` limit |
-| `--download` / `--no-download` | Download sources, or use files already in `data/raw/<chain>/` |
+| `--download` / `--no-download` | Download sources, or use files already in `data/raw/price_full/<chain>/`, `data/raw/stores/<chain>/`, or `data/raw/promo_full/<chain>/` |
 
 
 ## Chain Extraction Methods
 
-| Chain | Access method | Source | Raw directory |
-|-------|---------------|--------|---------------|
-| Shufersal | HTTP (HTML category pages → file links) | `prices.shufersal.co.il` | `data/raw/shufersal` |
-| Rami Levy | FTP (Cerberus published prices) | `url.retail.publishedprices.co.il` | `data/raw/rami_levy` |
-| Victory | HTTP JSON API + file download | `laibcatalog.co.il` | `data/raw/victory` |
+| Chain | Access method | Source | PriceFull directory | Stores directory | PromoFull directory |
+|-------|---------------|--------|---------------------|------------------|---------------------|
+| Shufersal | HTTP (HTML category pages → file links) | `prices.shufersal.co.il` | `data/raw/price_full/shufersal` | `data/raw/stores/shufersal` | `data/raw/promo_full/shufersal` |
+| Rami Levy | FTP (Cerberus published prices) | `url.retail.publishedprices.co.il` | `data/raw/price_full/rami_levy` | `data/raw/stores/rami_levy` | `data/raw/promo_full/rami_levy` |
+| Victory | HTTP JSON API + file download | `laibcatalog.co.il` | `data/raw/price_full/victory` | `data/raw/stores/victory` | `data/raw/promo_full/victory` |
 
-Each chain stores downloaded PriceFull `.gz` files in its own raw
-directory. Existing local files can be skipped on re-download. Downloaders
-keep one latest snapshot per store for the latest available date.
+Each extract type has its own raw directory. Existing local files can be skipped
+on re-download. Downloaders keep one latest snapshot per store for the latest
+available date.
 
 
 ## Shared Transform
@@ -109,9 +114,9 @@ flowchart TD
     Extract --> R[Rami Levy FTP]
     Extract --> V[Victory API]
 
-    S --> RS[data/raw/shufersal]
-    R --> RR[data/raw/rami_levy]
-    V --> RV[data/raw/victory]
+    S --> RS[data/raw/price_full/shufersal]
+    R --> RR[data/raw/price_full/rami_levy]
+    V --> RV[data/raw/price_full/victory]
 
     RS --> Parse
     RR --> Parse
@@ -130,12 +135,13 @@ The `Pipeline` object always performs these three steps.
 ### 1. Extract
 
 A chain `Extractor` downloads or locates files for the selected extract
-type and returns local paths under `data/raw/<chain>/`.
+type and returns local paths under `data/raw/price_full/<chain>/`,
+`data/raw/stores/<chain>/`, or `data/raw/promo_full/<chain>/`.
 
 ### 2. Parse
 
 A shared `Parser` for that extract type turns files into domain records
-(`PriceFullProduct` today; `Store` when Stores is implemented).
+(`PriceFullProduct`, `Store`, or `Promotion`).
 
 ### 3. Load
 
@@ -234,6 +240,30 @@ Primary key:
 
 `(chain_id, store_id, item_code, extraction_date)`
 
+### `grocery.promotions`
+
+One promotion in one store on one extraction date.
+
+Primary key:
+
+`(chain_id, store_id, promotion_id, extraction_date)`
+
+### `grocery.promotion_groups`
+
+Groups inside a promotion (`MinPurchaseAmount`, `DiscountType`).
+
+Primary key:
+
+`(chain_id, store_id, promotion_id, group_id, extraction_date)`
+
+### `grocery.promotion_items`
+
+Products mapped to a promotion group.
+
+Primary key:
+
+`(chain_id, store_id, promotion_id, group_id, item_code, extraction_date)`
+
 
 ## Validation
 
@@ -258,8 +288,6 @@ Primary key:
 
 ## Future Improvements
 
-- Implement the Stores extract type (download, parse, `grocery.stores`,
-  load).
 - Regenerate `images/etl_pipeline.png` for the multi-chain Pipeline
   architecture.
 - Create cross-chain product matching and normalization.

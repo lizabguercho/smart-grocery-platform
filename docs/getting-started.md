@@ -150,10 +150,21 @@ uv run python -c "import pandas, psycopg, requests; print('OK')"
 
 ## 6. Run the data extraction pipeline
 
-Commands expect to be run from the **repository root** so paths like `data/raw/shufersal` resolve correctly.
+Commands expect to be run from the **repository root** so paths like `data/raw/price_full/shufersal` resolve correctly.
 
 The ETL is one CLI. It always runs extract → parse → load. Choose a chain
-and an extract type (`prices_full` is implemented; `stores` is reserved).
+and an extract type (`prices_full`, `stores`, and `promo_full` are
+implemented for all three chains).
+
+### Run from Cursor (dropdowns)
+
+1. Open the **Run and Debug** view (or press `F5`).
+2. Select **ETL Pipeline**.
+3. Choose the **chain**, then the **dataset**, then whether to download
+   or reuse local files.
+
+That uses the same `python -m src.etl` command as the terminal. Select
+the project `.venv` interpreter if Cursor asks.
 
 ### Download, parse, and load PriceFull files
 
@@ -165,7 +176,7 @@ uv run python -m src.etl --chain victory --extract prices_full --max-files 3
 
 This will:
 
-1. Extract PriceFull `.gz` files into `data/raw/<chain>/`
+1. Extract PriceFull `.gz` files into `data/raw/price_full/<chain>/`
 2. Parse products from the XML
 3. Load staging, products, and product prices in PostgreSQL
 
@@ -174,6 +185,17 @@ number of files (`--max-files 3`). Use `--full` for an unlimited run, or
 `--no-download` to parse files already on disk.
 
 See **[docs/etl_pipeline.md](etl_pipeline.md)** for flags and architecture.
+
+### Download, parse, and load PromoFull files
+
+```bash
+uv run python -m src.etl --chain shufersal --extract promo_full --max-pages 2 --max-files 3
+uv run python -m src.etl --chain rami_levy --extract promo_full --max-files 3
+uv run python -m src.etl --chain victory --extract promo_full --max-files 3
+```
+
+PromoFull files land in `data/raw/promo_full/<chain>/`. Rami Levy store
+`039` is skipped.
 
 ### List downloaded price files
 

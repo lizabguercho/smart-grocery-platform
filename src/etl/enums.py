@@ -10,3 +10,4 @@ class Chain(str, Enum):
 class ExtractType(str, Enum):
     PRICES_FULL = "prices_full"
     STORES = "stores"
+    PROMO_FULL = "promo_full"

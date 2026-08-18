@@ -1,10 +1,12 @@
 from src.data_extraction.chain_extractor import ChainExtractor
 from src.data_extraction.parsers.price_full import PriceFullParser
+from src.data_extraction.parsers.promo_full import PromoFullParser
 from src.data_extraction.parsers.stores import StoresParser
 from src.data_extraction.rami_levy.extractor import RamiLevyExtractor
 from src.data_extraction.shufersal.extractor import ShufersalExtractor
 from src.data_extraction.victory.extractor import VictoryExtractor
 from src.database_loader.price_full_loader import PriceFullLoader
+from src.database_loader.promotions_loader import PromoFullLoader
 from src.database_loader.stores_loader import StoresLoader
 from src.etl.enums import Chain, ExtractType
 from src.etl.options import PipelineOptions
@@ -48,6 +50,8 @@ def _build_parser(extract_type: ExtractType) -> Parser:
         return PriceFullParser()
     if extract_type is ExtractType.STORES:
         return StoresParser()
+    if extract_type is ExtractType.PROMO_FULL:
+        return PromoFullParser()
     raise ValueError(f"Unsupported extract type: {extract_type}")
 
 
@@ -56,4 +60,6 @@ def _build_loader(extract_type: ExtractType) -> Loader:
         return PriceFullLoader()
     if extract_type is ExtractType.STORES:
         return StoresLoader()
+    if extract_type is ExtractType.PROMO_FULL:
+        return PromoFullLoader()
     raise ValueError(f"Unsupported extract type: {extract_type}")

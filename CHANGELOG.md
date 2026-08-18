@@ -9,10 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added Stores and PromoFull ETL for Shufersal, Rami Levy, and Victory
+
 - Added a unified ETL `Pipeline` with Strategy + Factory composition (`python -m src.etl`)
 - Added ADR 0001 for pipeline orchestration
 - Added `CONTRIBUTING.md` with object-oriented and modeling conventions
 - Added review skills, ETL unit tests, and a database connection check
+- Added Shufersal Stores extract, parse, and `grocery.stores` load
+- Added Rami Levy Stores extract via Cerberus FTP
+- Added Victory Stores extract via the laibcatalog HTTP API
+- Added a Cursor/VS Code **ETL Pipeline** launcher with chain and extract dropdowns
+- Added PromoFull extract, parse, and load for Shufersal, Rami Levy, and Victory
 
 ### Changed
 

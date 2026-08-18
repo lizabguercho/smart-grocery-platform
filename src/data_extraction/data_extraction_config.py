@@ -1,6 +1,8 @@
 from enum import Enum
 from pathlib import Path
 
+from src.etl.enums import Chain
+
 
 class ShufersalPriceCategory(Enum):
     ALL = 0
@@ -11,21 +13,32 @@ class ShufersalPriceCategory(Enum):
     STORES = 5
 
 
-# Shufersal identification
-SHUFERSAL_CHAIN_NAME = "shufersal"
-
 # URL constants for the Shufersal data extraction
 SHUFERSAL_BASE_URL = "https://prices.shufersal.co.il"
 SHUFERSAL_CATEGORY_URL = f"{SHUFERSAL_BASE_URL}/FileObject/UpdateCategory"
 
 # Download settings
-RAW_DATA_DIR = Path("data/raw/shufersal")
+PRICE_FULL_RAW_DATA_DIR = Path("data/raw/price_full")
+STORES_RAW_BASE_DIR = Path("data/raw/stores")
+PROMO_FULL_RAW_BASE_DIR = Path("data/raw/promo_full")
+SHUFERSAL_PRICE_FULL_RAW_DATA_DIR = PRICE_FULL_RAW_DATA_DIR / Chain.SHUFERSAL
+SHUFERSAL_STORES_RAW_DATA_DIR = STORES_RAW_BASE_DIR / Chain.SHUFERSAL
+SHUFERSAL_PROMO_FULL_RAW_DATA_DIR = PROMO_FULL_RAW_BASE_DIR / Chain.SHUFERSAL
 SKIP_EXISTING_DOWNLOADS = True
 PRICE_FULL_FILE_GLOB = "*PriceFull*"
 PRICE_FULL_FILE_LABEL = "PriceFull"
 PRICE_FULL_FILENAME_PREFIX = "pricefull"
+STORES_FILE_GLOB = "*Stores*"
+STORES_FILE_LABEL = "Stores"
+STORES_FILENAME_PREFIX = "stores"
+PROMO_FULL_FILE_GLOB = "*PromoFull*"
+PROMO_FULL_FILE_LABEL = "PromoFull"
+PROMO_FULL_FILENAME_PREFIX = "promofull"
 GZIP_EXTENSION = ".gz"
+XML_EXTENSION = ".xml"
 PRICE_FULL_FILENAME_MIN_PARTS = 5
+STORES_FILENAME_MIN_PARTS = 4
+PROMO_FULL_FILENAME_MIN_PARTS = 5
 DOWNLOAD_CHUNK_SIZE_BYTES = 8192
 
 # Shufersal HTTP
@@ -38,8 +51,11 @@ SHUFERSAL_PARAM_PAGE = "page"
 HTML_PARSER = "html.parser"
 
 # Rami Levy identification / FTP source (Cerberus published prices)
-RAMI_LEVY_CHAIN_NAME = "rami_levy"
-RAMI_LEVY_RAW_DATA_DIR = Path("data/raw/rami_levy")
+RAMI_LEVY_CHAIN_ID = "7290058140886"
+RAMI_LEVY_UNSUPPORTED_STORE_ID = "039"
+RAMI_LEVY_PRICE_FULL_RAW_DATA_DIR = PRICE_FULL_RAW_DATA_DIR / Chain.RAMI_LEVY
+RAMI_LEVY_STORES_RAW_DATA_DIR = STORES_RAW_BASE_DIR / Chain.RAMI_LEVY
+RAMI_LEVY_PROMO_FULL_RAW_DATA_DIR = PROMO_FULL_RAW_BASE_DIR / Chain.RAMI_LEVY
 RAMI_LEVY_FTP_HOST = "url.retail.publishedprices.co.il"
 RAMI_LEVY_FTP_USERNAME = "RamiLevi"
 RAMI_LEVY_FTP_PASSWORD = ""
@@ -47,8 +63,9 @@ RAMI_LEVY_FTP_TIMEOUT_SECONDS = 60
 RAMI_LEVY_FTP_PORT = 21
 
 # Victory identification / HTTP API source (laibcatalog)
-VICTORY_CHAIN_NAME = "victory"
-VICTORY_RAW_DATA_DIR = Path("data/raw/victory")
+VICTORY_PRICE_FULL_RAW_DATA_DIR = PRICE_FULL_RAW_DATA_DIR / Chain.VICTORY
+VICTORY_STORES_RAW_DATA_DIR = STORES_RAW_BASE_DIR / Chain.VICTORY
+VICTORY_PROMO_FULL_RAW_DATA_DIR = PROMO_FULL_RAW_BASE_DIR / Chain.VICTORY
 VICTORY_BASE_URL = "https://laibcatalog.co.il"
 VICTORY_CHAIN_ID = "7290696200003"
 VICTORY_FILES_API_PATH = "/webapi/api/getfiles"
@@ -61,3 +78,5 @@ VICTORY_FILE_DATE_KEY = "fileDate"
 VICTORY_FILE_NAME_KEY = "fileName"
 VICTORY_BRANCH_NUMBER_KEY = "branchNumber"
 VICTORY_PRICE_FULL_FILE_TYPE = "pricefull"
+VICTORY_STORES_FILE_TYPE = "stores"
+VICTORY_PROMO_FULL_FILE_TYPE = "promofull"

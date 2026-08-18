@@ -7,6 +7,13 @@ from src.data_extraction.data_extraction_config import (
     GZIP_EXTENSION,
     PRICE_FULL_FILENAME_MIN_PARTS,
     PRICE_FULL_FILENAME_PREFIX,
+    PROMO_FULL_FILENAME_MIN_PARTS,
+    PROMO_FULL_FILENAME_PREFIX,
+    RAMI_LEVY_CHAIN_ID,
+    RAMI_LEVY_UNSUPPORTED_STORE_ID,
+    STORES_FILENAME_MIN_PARTS,
+    STORES_FILENAME_PREFIX,
+    XML_EXTENSION,
 )
 from src.etl.constants import SNAPSHOT_SELECTION_MESSAGE
 
@@ -21,24 +28,66 @@ class DailySnapshot(Generic[T]):
     payload: T
 
 
-def parse_price_full_filename(name: str) -> tuple[str, str, str] | None:
-    """Return (store_id, date, time) from a PriceFull filename, or None."""
-    # Expected: PriceFull{chain}-{sub}-{store}-{YYYYMMDD}-{HHMMSS}.gz
+def parse_snapshot_filename(
+    name: str,
+    prefix: str,
+    min_parts: int = PRICE_FULL_FILENAME_MIN_PARTS,
+    suffixes: tuple[str, ...] = (GZIP_EXTENSION,),
+) -> tuple[str, str, str] | None:
+    """Return (store_id, date, time) from a snapshot filename, or None."""
     lowered = name.lower()
-    if not lowered.startswith(PRICE_FULL_FILENAME_PREFIX) or not lowered.endswith(
-        GZIP_EXTENSION
-    ):
+    if not lowered.startswith(prefix):
         return None
-
-    stem = name[: -len(GZIP_EXTENSION)]
+    suffix = next((item for item in suffixes if lowered.endswith(item)), None)
+    if suffix is None:
+        return None
+    stem = name[: -len(suffix)]
     parts = stem.split("-")
-    if len(parts) < PRICE_FULL_FILENAME_MIN_PARTS:
+    if len(parts) < min_parts:
         return None
-
     store_id = parts[-3]
     date = parts[-2]
     time = parts[-1]
     return store_id, date, time
+
+
+def parse_price_full_filename(name: str) -> tuple[str, str, str] | None:
+    return parse_snapshot_filename(name, PRICE_FULL_FILENAME_PREFIX)
+
+
+def parse_stores_filename(name: str) -> tuple[str, str, str] | None:
+    return parse_snapshot_filename(
+        name,
+        STORES_FILENAME_PREFIX,
+        min_parts=STORES_FILENAME_MIN_PARTS,
+        suffixes=(GZIP_EXTENSION, XML_EXTENSION),
+    )
+
+
+def parse_promo_full_filename(name: str) -> tuple[str, str, str] | None:
+    return parse_snapshot_filename(
+        name,
+        PROMO_FULL_FILENAME_PREFIX,
+        min_parts=PROMO_FULL_FILENAME_MIN_PARTS,
+    )
+
+
+def is_unsupported_rami_levy_store_id(store_id: str | None) -> bool:
+    if store_id is None:
+        return False
+    unsupported = RAMI_LEVY_UNSUPPORTED_STORE_ID.strip().lstrip("0")
+    return store_id.strip().lstrip("0") == unsupported
+
+
+def is_unsupported_rami_levy_promo_filename(name: str) -> bool:
+    lowered = name.lower()
+    if not lowered.startswith(PROMO_FULL_FILENAME_PREFIX + RAMI_LEVY_CHAIN_ID):
+        return False
+    parsed = parse_promo_full_filename(name)
+    if parsed is None:
+        return False
+    store_id, _, _ = parsed
+    return is_unsupported_rami_levy_store_id(store_id)
 
 
 def select_latest_daily_snapshots(

@@ -1,19 +1,25 @@
 from __future__ import annotations
 
 from pathlib import Path
+from unittest.mock import patch
 
-import pytest
-
+from src.data_extraction.models import Store
 from src.data_extraction.parsers.stores import StoresParser
 from src.database_loader.stores_loader import StoresLoader
-from src.etl.constants import STORES_NOT_IMPLEMENTED_MESSAGE
 
 
-def test_stores_parser_raises_not_implemented() -> None:
-    with pytest.raises(NotImplementedError, match=STORES_NOT_IMPLEMENTED_MESSAGE):
-        StoresParser().parse([Path("Stores7290027600007-000-000-20260722-030000.gz")])
+def test_stores_parser_delegates_to_parse_store_files(tmp_path: Path) -> None:
+    with patch(
+        "src.data_extraction.parsers.stores.parse_store_files",
+        return_value=[],
+    ) as parse_files:
+        StoresParser().parse([tmp_path / "Stores.gz"])
+
+    parse_files.assert_called_once()
 
 
-def test_stores_loader_raises_not_implemented() -> None:
-    with pytest.raises(NotImplementedError, match=STORES_NOT_IMPLEMENTED_MESSAGE):
-        StoresLoader().load([])
+def test_stores_loader_delegates_to_load_stores(store: Store) -> None:
+    with patch("src.database_loader.stores_loader.load_stores") as load:
+        StoresLoader().load([store])
+
+    load.assert_called_once_with([store])
