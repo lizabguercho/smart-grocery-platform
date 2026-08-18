@@ -1,0 +1,83 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ETL Pipeline",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "src.etl",
+      "args": [
+        "--chain",
+        "${input:chain}",
+        "--extract",
+        "${input:extract}",
+        "${input:source}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ],
+  "inputs": [
+    {
+      "id": "chain",
+      "type": "pickString",
+      "description": "Which supermarket chain?",
+      "options": [
+        {
+          "label": "Shufersal",
+          "value": "shufersal"
+        },
+        {
+          "label": "Rami Levy",
+          "value": "rami_levy"
+        },
+        {
+          "label": "Victory",
+          "value": "victory"
+        }
+      ],
+      "default": "shufersal"
+    },
+    {
+      "id": "extract",
+      "type": "pickString",
+      "description": "Which dataset?",
+      "options": [
+        {
+          "label": "PriceFull",
+          "value": "prices_full"
+        },
+        {
+          "label": "Stores",
+          "value": "stores"
+        },
+        {
+          "label": "PromoFull",
+          "value": "promo_full"
+        }
+      ],
+      "default": "prices_full"
+    },
+    {
+      "id": "source",
+      "type": "pickString",
+      "description": "Where should files come from?",
+      "options": [
+        {
+          "label": "Download (dev caps)",
+          "value": "--download"
+        },
+        {
+          "label": "Full download",
+          "value": "--full"
+        },
+        {
+          "label": "Use local files",
+          "value": "--no-download"
+        }
+      ],
+      "default": "--download"
+    }
+  ]
+}
