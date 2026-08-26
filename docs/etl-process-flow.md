@@ -309,8 +309,13 @@ nested `PromotionGroup` and `PromotionItem` objects. Load upserts:
 - `grocery.promotion_groups`
 - `grocery.promotion_items`
 
+Table meaning, keys, and load rules are in
+[etl_pipeline.md](etl_pipeline.md#grocerypromotions).
+
 Rami Levy store `039` is skipped. Incremental `Promo` files are not
-implemented.
+implemented. PromoFull item codes are not guaranteed to exist in
+PriceFull (765 unmatched codes in the current dataset, primarily Rami
+Levy). See [etl_pipeline.md](etl_pipeline.md#grocerypromotion_items).
 
 | File | Job |
 |---|---|

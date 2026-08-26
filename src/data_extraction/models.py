@@ -11,13 +11,15 @@ class FileMetadata:
     source_file: str
 
 
+UNKNOWN_TEXT_VALUES = frozenset({"", "*", "לא ידוע"})
+
+
 def normalize_int_text(value: str | None) -> str | None:
     if value is None:
         return None
 
     value = value.strip()
-
-    if value in {"", "לא ידוע"}:
+    if value in UNKNOWN_TEXT_VALUES:
         return None
 
     return value
@@ -28,7 +30,7 @@ def optional_text(value: str | None) -> str | None:
         return None
 
     value = value.strip()
-    if value == "":
+    if value in UNKNOWN_TEXT_VALUES:
         return None
 
     return value
