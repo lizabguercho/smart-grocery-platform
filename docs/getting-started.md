@@ -195,7 +195,9 @@ uv run python -m src.etl --chain victory --extract promo_full --max-files 3
 ```
 
 PromoFull files land in `data/raw/promo_full/<chain>/`. Rami Levy store
-`039` is skipped.
+`039` is skipped. Rows land in `grocery.promotions`,
+`grocery.promotion_groups`, and `grocery.promotion_items` (see
+**[docs/etl_pipeline.md](etl_pipeline.md#grocerypromotions)**).
 
 ### List downloaded price files
 

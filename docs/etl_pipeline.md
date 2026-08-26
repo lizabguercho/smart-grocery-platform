@@ -26,6 +26,17 @@ Chain sources
 → grocery.product_prices
 ```
 
+High-level PromoFull flow:
+
+```text
+Chain sources
+→ chain-specific extract
+→ shared XML parse (Promotion → PromotionGroup → PromotionItem)
+→ grocery.promotions
+→ grocery.promotion_groups
+→ grocery.promotion_items
+```
+
 ![ETL Pipeline Architecture](images/etl_pipeline.png)
 
 > Note: the image above is still Shufersal-era. Prefer the architecture
@@ -208,6 +219,53 @@ so prices can be analyzed over time.
 `validate_product_prices()` checks that every price row references an
 existing product (`item_code` foreign key relationship).
 
+### PromoFull loader internals
+
+`PromoFullLoader` upserts the three promotion tables directly. There is
+no staging table and no separate validation step.
+
+1. Skip promotions missing `chain_id`, `store_id`, or `promotion_id`
+2. Upsert `grocery.promotions`
+3. Upsert `grocery.promotion_groups` (skip a group with no `group_id`)
+4. Upsert `grocery.promotion_items` (skip an item with no `item_code`)
+
+XML shape (simplified):
+
+```text
+Root
+  ChainID, SubChainID, StoreID, BikoretNo
+  Promotions
+    Promotion
+      PromotionID, description, dates, club, restrictions, ...
+      Groups
+        Group
+          GroupID, MinPurchaseAmount, DiscountType
+          PromotionItems
+            PromotionItem
+              ItemCode, qty, discounted price, discount rate, ...
+```
+
+Each `<Promotion>` becomes one `grocery.promotions` row. Nested
+`<Group>` and `<PromotionItem>` rows keep the parent promotion's
+`chain_id`, `store_id`, `promotion_id`, and `extraction_date`.
+
+**Promotions decision:**  
+Unlike `grocery.stores` (latest-known metadata), promotions keep
+history. `extraction_date` is part of every primary key, so a later
+day inserts new rows instead of overwriting yesterday.
+
+If the same promotion is loaded again for the same store and date,
+`ON CONFLICT` updates the existing rows.
+
+`promotion_items` has no foreign key to `grocery.products`. PromoFull
+item codes are not guaranteed to exist in PriceFull, so the loader
+keeps those rows instead of rejecting them.
+
+**Known gap:** in the current dataset, 765 distinct promotion item
+codes have no corresponding `grocery.products` row, primarily from
+Rami Levy. Joins from `promotion_items` to `products` will drop those
+codes unless the query treats the product side as optional.
+
 
 ## Data Flow
 
@@ -217,6 +275,12 @@ grocery.products_staging
         +----> grocery.products
         |
         +----> grocery.product_prices
+
+grocery.promotions
+        |
+        +----> grocery.promotion_groups
+                    |
+                    +----> grocery.promotion_items
 ```
 
 
@@ -240,9 +304,22 @@ Primary key:
 
 `(chain_id, store_id, item_code, extraction_date)`
 
+### `grocery.stores`
+
+Latest known metadata for one store in one chain. Re-runs update the
+existing row. There is no store history table.
+
+Primary key:
+
+`(chain_id, store_id)`
+
 ### `grocery.promotions`
 
-One promotion in one store on one extraction date.
+One promotion in one store on one extraction date. Holds description,
+start/end times, club, coupon flags, remarks, and `source_file`.
+
+Create the tables with `sql/02_create_tables.sql` before the first
+PromoFull load.
 
 Primary key:
 
@@ -250,19 +327,36 @@ Primary key:
 
 ### `grocery.promotion_groups`
 
-Groups inside a promotion (`MinPurchaseAmount`, `DiscountType`).
+One group inside a promotion. A promotion can require more than one
+group (for example buy-from-A and get-from-B). Group-level fields
+`min_purchase_amount` and `discount_type` live here.
 
 Primary key:
 
 `(chain_id, store_id, promotion_id, group_id, extraction_date)`
 
+Foreign key to `grocery.promotions` on
+`(chain_id, store_id, promotion_id, extraction_date)`.
+
 ### `grocery.promotion_items`
 
-Products mapped to a promotion group.
+Products mapped to a promotion group. Item-level reward fields live
+here: `item_type`, `is_weighted`, `reward_type`, `min_qty`, `max_qty`,
+`discounted_price`, `discounted_price_per_mida`, and `discount_rate`.
 
 Primary key:
 
 `(chain_id, store_id, promotion_id, group_id, item_code, extraction_date)`
+
+Foreign key to `grocery.promotion_groups` on
+`(chain_id, store_id, promotion_id, group_id, extraction_date)`.
+
+There is no foreign key to `grocery.products`. PromoFull item codes
+are not guaranteed to appear in PriceFull (765 unmatched codes in the
+current dataset, primarily Rami Levy).
+
+Indexes in `sql/05_indexes.sql` cover `promotions.store_id`,
+`promotions.extraction_date`, and `promotion_items.item_code`.
 
 
 ## Validation
@@ -280,6 +374,9 @@ Primary key:
 - `chain_id` cannot be NULL for price records.
 - `extraction_date` cannot be NULL for price records.
 - Every price record must reference an existing product.
+- Promotion `item_code` values are not required to exist in
+  `grocery.products`. In the current dataset, 765 distinct promotion
+  item codes have no product row, primarily from Rami Levy.
 - Duplicate `(chain_id, store_id, item_code, extraction_date)` records are
   prevented by the database primary key.
 - Same-day duplicate snapshots are reduced to one row during load

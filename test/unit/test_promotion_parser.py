@@ -132,6 +132,29 @@ def test_parse_promo_full_files_builds_promotion_group_item_hierarchy(
     assert item.discounted_price == "5.90"
 
 
+def test_parse_promo_full_files_treats_star_numeric_sentinel_as_none(
+    tmp_path: Path,
+) -> None:
+    xml = VALID_XML.replace(
+        "<DiscountRate>10</DiscountRate>",
+        "<DiscountRate>*</DiscountRate>",
+    ).replace(
+        "<MinQty>1</MinQty>",
+        "<MinQty>*</MinQty>",
+    )
+    path = _write_gzip_xml(
+        tmp_path,
+        "PromoFull7290027600007-001-001-20260816-030000.gz",
+        xml,
+    )
+
+    promotions = parse_promo_full_files([path])
+
+    item = promotions[0].groups[0].items[0]
+    assert item.discount_rate is None
+    assert item.min_qty is None
+
+
 def test_parse_promo_full_files_treats_blank_optional_tags_as_none(
     tmp_path: Path,
 ) -> None:

@@ -4,6 +4,7 @@ from src.data_extraction.models import (
     FileMetadata,
     PriceFullProduct,
     normalize_int_text,
+    optional_text,
 )
 
 
@@ -11,11 +12,18 @@ def test_normalize_int_text_returns_none_for_blank_and_unknown() -> None:
     assert normalize_int_text(None) is None
     assert normalize_int_text("") is None
     assert normalize_int_text("   ") is None
+    assert normalize_int_text("*") is None
     assert normalize_int_text("לא ידוע") is None
 
 
 def test_normalize_int_text_strips_valid_values() -> None:
     assert normalize_int_text("  12  ") == "12"
+
+
+def test_optional_text_returns_none_for_star_sentinel() -> None:
+    assert optional_text("*") is None
+    assert optional_text("  *  ") is None
+    assert optional_text("10") == "10"
 
 
 def test_from_xml_maps_item_fields_and_file_metadata() -> None:
