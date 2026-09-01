@@ -220,18 +220,4 @@ CREATE TABLE IF NOT EXISTS grocery.promotion_items (
         )
 );
 
--- Stores product categories used for analysis.
--- Each product is assigned a category and subcategory, marked as included
--- or excluded from the analysis, and records how confidently it was classified.
-CREATE TABLE grocery.product_classification (
-    item_code BIGINT PRIMARY KEY,
-    category VARCHAR(100),
-    subcategory VARCHAR(100),
-    include_in_analysis BOOLEAN,
-    classification_method VARCHAR(50),
-    classification_confidence NUMERIC(4,3),
 
-    CONSTRAINT fk_product_classification_product
-        FOREIGN KEY (item_code)
-        REFERENCES grocery.products(item_code)
-);
