@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added a documentation map (`docs/README.md`) and expanded guides for
+  the current SuperCompare labeling phase, local vs remote `.env`
+  variables, and ADR reading order
 - Added Stores and PromoFull ETL for Shufersal, Rami Levy, and Victory
-
 - Added a unified ETL `Pipeline` with Strategy + Factory composition (`python -m src.etl`)
 - Added ADR 0001 for pipeline orchestration
 - Added `CONTRIBUTING.md` with object-oriented and modeling conventions

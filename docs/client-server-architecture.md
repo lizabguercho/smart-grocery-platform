@@ -1,5 +1,9 @@
 # Database Connection Architecture
 
+Related: [Documentation map](README.md) ·
+[Remote database](remote_database_architecture.md) ·
+[Getting started](getting-started.md)
+
 ## Overview
 
 The Smart Grocery Platform uses a client-server architecture to connect the Python application to a PostgreSQL database.
@@ -52,10 +56,22 @@ It then opens a connection to the PostgreSQL server.
 In this project, the connection logic is stored in:
 
 ```text
-src/database/connection.py
+src/database_loader/connection.py
 ```
 
+That module exposes two functions:
+
+| Function | Environment variables | Database |
+|---|---|---|
+| `get_connection()` | `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD` | Local ETL PostgreSQL |
+| `get_remote_connection()` | `REMOTE_DB_HOST`, `REMOTE_DB_PORT`, `REMOTE_DB_NAME`, `REMOTE_DB_USER`, `REMOTE_DB_PASSWORD` | Shared Supabase analytical PostgreSQL |
+
 Keeping the connection logic in one module makes the code easier to maintain and prevents database credentials and connection code from being repeated throughout the project.
+
+The ETL pipeline must use `get_connection()` (local). Classification and
+shared analysis should use `get_remote_connection()`. Pointing the ETL at
+the remote contributor database would try to write historical and staging
+tables that do not belong there.
 
 ### PostgreSQL Server
 
@@ -98,7 +114,16 @@ DB_PORT=5432
 DB_NAME=smart_grocery
 DB_USER=postgres
 DB_PASSWORD=your_password
+
+REMOTE_DB_HOST=
+REMOTE_DB_PORT=5432
+REMOTE_DB_NAME=postgres
+REMOTE_DB_USER=
+REMOTE_DB_PASSWORD=
 ```
+
+`DB_*` is the local source-of-truth database. `REMOTE_DB_*` is the hosted
+analytical copy. Leave the remote variables empty if you only work locally.
 
 The `.env` file is included in `.gitignore` so that sensitive credentials are not uploaded to GitHub.
 
@@ -138,7 +163,7 @@ def get_connection() -> psycopg.Connection:
 Other modules can import and use this function:
 
 ```python
-from database.connection import get_connection
+from src.database_loader.connection import get_connection
 
 
 with get_connection() as connection:

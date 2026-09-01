@@ -1,5 +1,10 @@
 # ETL Pipeline
 
+Related: [Documentation map](README.md) ·
+[Process flow](etl-process-flow.md) ·
+[ADR 0001](adr/0001-etl-pipeline-orchestration.md) ·
+[ADR 0002](adr/0002-three-chains-and-extraction.md)
+
 ## Overview
 
 The Smart Grocery Platform ETL downloads official supermarket files,
@@ -44,6 +49,8 @@ Chain sources
 
 The orchestration decision is recorded in
 [ADR 0001](adr/0001-etl-pipeline-orchestration.md).
+Why these three chains, and how files are extracted, is recorded in
+[ADR 0002](adr/0002-three-chains-and-extraction.md).
 
 
 ## Architecture Principles
@@ -383,10 +390,20 @@ Indexes in `sql/05_indexes.sql` cover `promotions.store_id`,
   (`DISTINCT ON` + `source_file DESC`).
 
 
+## What this pipeline does not do
+
+- It does not assign product categories. That is SuperCompare +
+  `grocery.product_classification`
+  ([supercompare_labeling.md](supercompare_labeling.md)).
+- It does not write the remote analytical database. Rebuild
+  `chain_prices` / `price_comparison` locally, then sync
+  ([remote_database_architecture.md](remote_database_architecture.md)).
+- It does not scrape chain storefronts. Only official published files
+  ([ADR 0002](adr/0002-three-chains-and-extraction.md)).
+
 ## Future Improvements
 
 - Regenerate `images/etl_pipeline.png` for the multi-chain Pipeline
   architecture.
-- Create cross-chain product matching and normalization.
-- Add English/Russian product names for dashboard use.
+- Add English/Russian product names for dashboard use if needed.
 - Improve bulk-loading performance if necessary.

@@ -1,5 +1,10 @@
 # Remote Database Architecture
 
+Related: [Documentation map](README.md) ·
+[ADR 0003](adr/0003-remote-analytical-database.md) ·
+[Getting started](getting-started.md) ·
+[Client–server](client-server-architecture.md)
+
 ## Overview
 
 The Smart Grocery Platform uses two database layers:
@@ -10,6 +15,9 @@ The Smart Grocery Platform uses two database layers:
 The full local database is approximately **4.1 GB**, while the tables required for collaborative analysis are only approximately **25 MB**.
 
 Instead of uploading the entire database, only the tables needed for **price analysis, product categorization, and future dashboard development** will be stored remotely.
+
+The decision to use a small hosted analytical database (Supabase) is
+recorded in [ADR 0003](adr/0003-remote-analytical-database.md).
 
 ---
 
@@ -68,27 +76,38 @@ The three chains currently included in the project are:
 
 ### `product_classification`
 
-**Currently 0 rows**
+**Currently 0 rows** (local SuperCompare CSV exists; it has not been
+promoted into this table yet).
 
-Stores product categories created during the product-classification stage.
+Stores product categories used for analysis. One row per barcode
+(`item_code` is the primary key — a product can have only one accepted
+category path here).
 
-The planned workflow is:
+Columns (see `sql/02_create_tables.sql`):
+
+- `category`, `subcategory`
+- `include_in_analysis`
+- `classification_method`
+- `classification_confidence`
+
+Raw SuperCompare memberships are silver labels. They must be reviewed
+before they become rows in this table. A barcode that appears in more
+than one SuperCompare endpoint cannot be copied blindly because this
+primary key allows only one label.
+
+The planned remaining workflow is:
 
 ```text
-products
-    ↓
-manually labeled sample
-    ↓
-train classification model
-    ↓
-evaluate model
-    ↓
-predict categories for remaining products
-    ↓
-product_classification
+supercompare_products.csv  (silver labels, local)
+        ↓
+join to price_comparison.item_code  (~14.8k comparable products)
+        ↓
+review coverage, weak slices, quality sample
+        ↓
+grocery.product_classification  (remote, shared)
+        ↓
+optional model for products still unlabeled
 ```
-
-This table is included in the remote database so that contributors can work on product categorization without downloading the complete local database.
 
 ---
 
@@ -296,27 +315,33 @@ The initial remote database contains:
 - [x] Create `price_comparison`
 - [x] Implement cheapest-chain and tie logic
 - [x] Define which tables should be shared remotely
-- [ ] Create remote PostgreSQL database
-- [ ] Upload shared tables
-- [ ] Configure secure database credentials
-- [ ] Give contributor database access
-- [ ] Test remote connection from the project
-- [ ] Start ML product categorization
+- [x] Create remote PostgreSQL database (Supabase)
+- [x] Upload shared tables
+- [x] Configure secure database credentials (`REMOTE_DB_*` in `.env`)
+- [x] Give contributor database access
+- [x] Test remote connection from the project
+- [x] Crawl SuperCompare taxonomy into `supercompare_products.csv`
+- [ ] Join silver labels to comparable products and review quality
+- [ ] Load accepted labels into remote `grocery.product_classification`
+- [ ] Classify remaining products that have no reliable external label
 
 ---
 
 ## Security
 
-Remote database credentials must **never be committed to Git**.
+Remote database credentials must **never** be committed to Git.
 
-Credentials should be stored using environment variables or a local `.env` file:
+Python reads these names from `.env`:
 
 ```text
-DATABASE_HOST=
-DATABASE_PORT=
-DATABASE_NAME=
-DATABASE_USER=
-DATABASE_PASSWORD=
+REMOTE_DB_HOST=
+REMOTE_DB_PORT=
+REMOTE_DB_NAME=
+REMOTE_DB_USER=
+REMOTE_DB_PASSWORD=
 ```
+
+`DB_*` is the local ETL database. Do not reuse those names for Supabase
+if you also run ETL on the same machine.
 
 The `.env` file must remain in `.gitignore`.

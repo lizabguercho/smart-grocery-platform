@@ -21,8 +21,9 @@ A new chain should add an extractor. A new extract type should add a
 parser and a loader (and extractor behavior for that file type). Do not
 copy the three pipeline steps into another script.
 
-Durable architecture choices belong in an ADR under `docs/adr/`. See
-[0001. ETL pipeline orchestration](docs/adr/0001-etl-pipeline-orchestration.md).
+Durable architecture choices belong in an ADR under `docs/adr/`. The
+index of every markdown file is [docs/README.md](docs/README.md). Start
+with [0001. ETL pipeline orchestration](docs/adr/0001-etl-pipeline-orchestration.md).
 
 ### No hardcoded strings or values in logic
 
@@ -93,3 +94,12 @@ uv run python -m src.etl --chain shufersal --extract prices_full --max-pages 2 -
 `--extract stores` and `--extract promo_full` are implemented for Shufersal,
 Rami Levy, and Victory (extract, parse, and load). Rami Levy store 039 is
 skipped for PromoFull.
+
+SuperCompare labeling is a separate package:
+
+```bash
+uv run python -m src.product_classification.supercompare
+```
+
+See [docs/supercompare_labeling.md](docs/supercompare_labeling.md). Do not
+fold that crawler into `src.etl`; it is not an official chain file.

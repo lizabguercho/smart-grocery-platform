@@ -79,3 +79,10 @@ CSV export is not a pipeline step.
   `NotImplementedError` until that strategy is implemented.
 - Adding a chain should not copy parse or load logic.
 - Adding an extract type should not copy chain download transport.
+
+## Later update
+
+Stores and PromoFull are implemented for all three chains. The original
+“reserved type raises `NotImplementedError`” consequence no longer
+applies. The Pipeline / Strategy / Factory decision is unchanged. See
+[etl_pipeline.md](../etl_pipeline.md).

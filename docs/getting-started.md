@@ -1,6 +1,8 @@
 # Getting Started
 
-This guide covers setting up a local development environment for Smart Grocery Platform using **uv**, **Python 3.11**, and **PostgreSQL**.
+This guide covers setting up a local development environment for Smart Grocery Platform using **uv**, **Python 3.11**, and **PostgreSQL**. Contributors who only need the shared analytical dataset can connect to the remote database instead of installing a full local copy.
+
+All other markdown files are indexed in **[docs/README.md](README.md)**.
 
 ## Prerequisites
 
@@ -79,14 +81,27 @@ cp .env.example .env
 Example contents:
 
 ```env
+# Local ETL database (source of truth for supermarket files)
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=smart_grocery
 DB_USER=postgres
 DB_PASSWORD=your_password_here
+
+# Shared analytical database (Supabase). Leave blank if you only work locally.
+REMOTE_DB_HOST=
+REMOTE_DB_PORT=5432
+REMOTE_DB_NAME=postgres
+REMOTE_DB_USER=
+REMOTE_DB_PASSWORD=
 ```
 
 `.env` is gitignored — never commit real credentials.
+
+Python uses `get_connection()` for `DB_*` and `get_remote_connection()`
+for `REMOTE_DB_*` (`src/database_loader/connection.py`). Keep them
+separate: the ETL writes staging and history that do not belong on the
+remote contributor database.
 
 ---
 
@@ -115,12 +130,108 @@ What each file does:
 | Script | Purpose |
 |--------|---------|
 | `01_create_schema.sql` | Creates the `grocery` schema |
-| `02_create_tables.sql` | Creates `products`, `product_prices`, and staging tables |
+| `02_create_tables.sql` | Products, prices, staging, stores, promotions, classification |
 | `03_load_products.sql` | Loads products from staging (after you load staging data) |
 | `04_load_product_prices.sql` | Loads prices from staging |
-| `05_indexes.sql` | Creates indexes on `product_prices` |
+| `05_indexes.sql` | Indexes on prices and promotions |
+| `06_views.sql` | Analytical views |
 | `07_data_quality_checks.sql` | Validation queries |
 | `inspection_queries.sql` | Ad-hoc inspection queries |
+| `sql/analysis/` | Builds `chain_prices` and `price_comparison` |
+| `sql/remote/` | Remote schema, grants, and data helpers |
+
+---
+
+## Remote Database Access
+
+The project uses a shared Supabase PostgreSQL database for collaborative
+analysis. See
+**[docs/remote_database_architecture.md](remote_database_architecture.md)**
+for which tables are shared and why.
+
+Contributors should connect using the dedicated PostgreSQL `contributor`
+role, not the main Supabase `postgres` administrator account.
+
+### Connection details
+
+Use the Supabase **Session Pooler** connection:
+
+```text
+Host: aws-0-eu-west-2.pooler.supabase.com
+Port: 5432
+Database: postgres
+Username: contributor.oauiogqillkqiypkthyc
+Password: provided privately by the project owner
+```
+
+Put these values in the **`REMOTE_DB_*`** variables, not in `DB_*`:
+
+```env
+REMOTE_DB_HOST=aws-0-eu-west-2.pooler.supabase.com
+REMOTE_DB_PORT=5432
+REMOTE_DB_NAME=postgres
+REMOTE_DB_USER=contributor.oauiogqillkqiypkthyc
+REMOTE_DB_PASSWORD=<password provided by the project owner>
+```
+
+Leave `DB_*` pointing at your local `smart_grocery` database if you run
+ETL on this machine.
+
+Or connect with `psql`:
+
+```bash
+psql "host=aws-0-eu-west-2.pooler.supabase.com port=5432 dbname=postgres user=contributor.oauiogqillkqiypkthyc"
+```
+
+The password is never stored in Git. Ask the project owner for it.
+
+### Connect with pgAdmin
+
+Register a new server only if you have not already registered this remote database.
+
+The server **Name** is a local label in pgAdmin. It can be anything, for example `Smart Grocery Platform - Remote`.
+
+On the connection tab, enter the Host, Port, Database, Username, and privately provided password from **Connection details** above.
+
+### Shared tables
+
+In pgAdmin, the shared tables are under:
+
+```text
+Databases → postgres → Schemas → grocery → Tables
+```
+
+The shared tables are:
+
+- `products`
+- `stores`
+- `product_classification`
+- `chain_prices`
+- `price_comparison`
+
+### Verify the connection
+
+After connecting, run:
+
+```sql
+SELECT current_user;
+```
+
+This should return `contributor`.
+
+Then confirm you can read the shared data:
+
+```sql
+SELECT COUNT(*)
+FROM grocery.products;
+```
+
+### Security
+
+- Never commit the database password to Git.
+- Never put the password in source code, SQL files, or documentation.
+- Application credentials should be stored in environment variables or a local `.env` file.
+- The `.env` file must be ignored by Git.
 
 ---
 
@@ -185,6 +296,18 @@ number of files (`--max-files 3`). Use `--full` for an unlimited run, or
 `--no-download` to parse files already on disk.
 
 See **[docs/etl_pipeline.md](etl_pipeline.md)** for flags and architecture.
+
+### SuperCompare category crawl (optional)
+
+This is **not** supermarket ETL. It downloads external category labels
+used for product classification.
+
+```bash
+uv run python -m src.product_classification.supercompare
+```
+
+Output: `data/processed/supercompare_products.csv`. Resume is on by
+default. Details: **[docs/supercompare_labeling.md](supercompare_labeling.md)**.
 
 ### Download, parse, and load PromoFull files
 
