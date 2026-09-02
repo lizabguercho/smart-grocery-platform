@@ -588,6 +588,23 @@ xychart-beta
 Examples with no SuperCompare barcode: KitKat, Kinder Surprise, Werther’s.
 They are still snacks — SuperCompare simply did not cover that barcode.
 
+### Manufacturer completeness (classifier feature check)
+
+Use `grocery.products.manufacture_name`, not SuperCompare’s manufacturer
+column. SuperCompare manufacturer is filled for **95.3%** of the 5,718
+labeled rows and is empty for unlabeled rows by construction, so it
+cannot be a model feature for the 9,098.
+
+| Population | n | Manufacturer present | Missing / empty |
+|---|---:|---:|---:|
+| Labeled comparable | 5,718 | 5,222 (**91.3%**) | 496 (8.7%) |
+| Unlabeled comparable | 9,098 | 8,000 (**87.9%**) | 1,098 (12.1%) |
+
+Gap: **−3.4 percentage points**. Completeness is similar enough to keep
+manufacturer as a classifier input. Handle missing values (do not drop
+rows or require the field). Do not train on SuperCompare manufacturer
+and then score unlabeled products that never have it.
+
 ## 9d. SuperCompare barcodes that did not map to `price_comparison`
 
 This is the **opposite** unmatched set from section 9c.
