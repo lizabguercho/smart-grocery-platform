@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from collections.abc import Iterator
-from typing import Self
+from dataclasses import dataclass, field
+from typing import Any, Self
 from unittest.mock import patch
 
 import pytest
@@ -13,6 +14,69 @@ from src.data_extraction.models import (
     PromotionItem,
     Store,
 )
+
+ANYIO_BACKEND = "asyncio"
+
+
+@pytest.fixture
+def anyio_backend() -> str:
+    """Run `@pytest.mark.anyio` tests on asyncio only.
+
+    anyio's pytest plugin ships with the project already, so async tests need
+    no extra dependency.
+    """
+
+    return ANYIO_BACKEND
+
+
+@dataclass
+class FakeGroceryDatabase:
+    """Stands in for `AsyncGroceryDatabase` without a live database.
+
+    `rows` is keyed by a recognizable fragment of each SQL statement, so a
+    test states which query it is answering without embedding the whole
+    statement.
+    """
+
+    rows: dict[str, list[tuple[Any, ...]]] = field(default_factory=dict)
+    executed: list[tuple[str, tuple[Any, ...]]] = field(default_factory=list)
+    opened: bool = False
+
+    async def open(self) -> None:
+        self.opened = True
+
+    async def close(self) -> None:
+        self.opened = False
+
+    async def fetch_all(
+        self, sql: str, params: tuple[Any, ...] = ()
+    ) -> list[tuple[Any, ...]]:
+        self.executed.append((sql, tuple(params)))
+        for fragment, rows in self.rows.items():
+            if fragment in sql:
+                return rows
+        return []
+
+    async def fetch_one(
+        self, sql: str, params: tuple[Any, ...] = ()
+    ) -> tuple[Any, ...] | None:
+        rows = await self.fetch_all(sql, params)
+        return rows[0] if rows else None
+
+    def params_for(self, fragment: str) -> tuple[Any, ...]:
+        """Return the parameters passed to the query matching `fragment`."""
+
+        for sql, params in self.executed:
+            if fragment in sql:
+                return params
+        raise AssertionError(f"No executed query contained {fragment!r}.")
+
+
+@dataclass
+class StubRunContext:
+    """The only part of `RunContext` the grocery tools use."""
+
+    deps: Any
 
 
 class FakeCursor:

@@ -51,14 +51,25 @@ def mismatch_reasons(row: dict[str, str]) -> list[str]:
 
     if any(marker in text for marker in TOBACCO_MARKERS):
         reasons.append("tobacco_not_a_grocery_class")
-    if any(marker in text for marker in PET_MARKERS) and subcategory != "Pet Food & Supplies":
+    if (
+        any(marker in text for marker in PET_MARKERS)
+        and subcategory != "Pet Food & Supplies"
+    ):
         reasons.append("pet_food_wrong_class")
-    if any(marker in text for marker in LITTER_MARKERS) and subcategory != "Pet Food & Supplies":
+    if (
+        any(marker in text for marker in LITTER_MARKERS)
+        and subcategory != "Pet Food & Supplies"
+    ):
         reasons.append("pet_litter_wrong_class")
-    if any(marker in text for marker in TOILET_MARKERS) and category == "Personal Care & Hygiene":
+    if (
+        any(marker in text for marker in TOILET_MARKERS)
+        and category == "Personal Care & Hygiene"
+    ):
         reasons.append("toilet_cleaner_in_personal_care")
-    if subcategory == "Eggs" and "ביצ" not in text and (
-        "קפה" in text or "קפאין" in text
+    if (
+        subcategory == "Eggs"
+        and "ביצ" not in text
+        and ("קפה" in text or "קפאין" in text)
     ):
         reasons.append("coffee_labeled_as_eggs")
     if "מדיח" in text and subcategory == "Laundry":

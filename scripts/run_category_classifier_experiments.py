@@ -26,9 +26,9 @@ from src.product_classification.category_classifier import (
     stratified_train_val_test,
 )
 from src.product_classification.comparable_labels import (
+    effective_main_category,
     join_to_comparable,
     load_unique_products,
-    effective_main_category,
 )
 from src.product_classification.supercompare.config import DEFAULT_PRODUCTS_PATH
 
@@ -54,7 +54,9 @@ def load_labeled_comparable_products() -> tuple:
         flush=True,
     )
 
-    print("Loading comparable products and manufacture_name from local DB...", flush=True)
+    print(
+        "Loading comparable products and manufacture_name from local DB...", flush=True
+    )
     connection = get_connection()
     try:
         with connection.cursor() as cursor:
