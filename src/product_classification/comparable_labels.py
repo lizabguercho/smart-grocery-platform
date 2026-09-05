@@ -275,9 +275,7 @@ COMBINED_CSV_FIELDS = (
 DEFAULT_COMBINED_CSV_PATH = Path(
     "data/processed/comparable_products_with_categories.csv"
 )
-DEFAULT_ANALYSIS_CSV_PATH = Path(
-    "data/processed/price_comparison_with_categories.csv"
-)
+DEFAULT_ANALYSIS_CSV_PATH = Path("data/processed/price_comparison_with_categories.csv")
 
 
 @dataclass(frozen=True)
@@ -333,9 +331,7 @@ def write_combined_csv(
                     "include_in_analysis": (
                         include_in_analysis(product.item_code) if label else ""
                     ),
-                    "classification_method": (
-                        CLASSIFICATION_METHOD if label else ""
-                    ),
+                    "classification_method": (CLASSIFICATION_METHOD if label else ""),
                     "shufersal_price": product.shufersal_price
                     if product.shufersal_price is not None
                     else "",
@@ -352,9 +348,7 @@ def write_combined_csv(
                     "supercompare_product_name": label.product_name if label else "",
                     "manufacturer": (label.manufacturer or "") if label else "",
                     "source_url": label.source_url if label else "",
-                    "supercompare_category": (
-                        label.main_category if label else ""
-                    ),
+                    "supercompare_category": (label.main_category if label else ""),
                 }
             )
     return written

@@ -67,6 +67,9 @@ All docs: **[docs/README.md](docs/README.md)**.
 - SuperCompare crawler for external category labels
   (`data/processed/supercompare_products.csv`).
 - Data-quality checks, `.env` configuration, SQL for schema and analysis.
+- Streaming chat service (`python -m src.agent_platform`) that answers price
+  questions in plain language from read-only SQL over the analytical database
+  — see **[docs/agent_platform.md](docs/agent_platform.md)**.
 
 ---
 
@@ -87,8 +90,13 @@ Smart-Grocery-Platform/
 │   ├── etl/                   CLI, factory, Pipeline
 │   ├── data_extraction/       chain downloaders and XML parsers
 │   ├── database_loader/       PostgreSQL loaders and connections
-│   └── product_classification/
-│       └── supercompare/      category crawler
+│   ├── product_classification/
+│   │   └── supercompare/      category crawler
+│   └── agent_platform/        chat service (FastAPI + pydantic-ai)
+│       ├── api/               app factory, SSE and JSON routes
+│       ├── chat_service/      streaming, context control, conversations
+│       ├── grocery/           read-only SQL tools over the analytical layer
+│       └── skills/            SKILL.md playbooks
 ├── scripts/                   connection check, inspection helpers
 ├── test/unit/
 ├── CONTRIBUTING.md
@@ -134,6 +142,9 @@ query without copying 4 GB of history.
 - BeautifulSoup
 - lxml
 - Pandas
+- scikit-learn
+- pydantic-ai (chat service agent and skills)
+- FastAPI + uvicorn (local chat service)
 - Git
 
 ---

@@ -61,6 +61,7 @@ docs/README.md                     this map
         ├── product_classifier_error_analysis.md
         │                          Test mistakes of the winning Linear SVM
         ├── modeling_decisions.md  short conclusions (canonical: ADR 0006)
+        ├── agent_platform.md      chat service over the analytical database
         │
         └── adr/                   durable decisions (do not rewrite history)
 ```
@@ -85,8 +86,9 @@ than silently changing the original decision.
 | To understand SuperCompare labels and the CSV | [supercompare_labeling.md](supercompare_labeling.md) |
 | To understand the 12-class classifier experiments | [product_classifier_experiments.md](product_classifier_experiments.md) |
 | To see which model and features we kept | [ADR 0006](adr/0006-main-category-classifier.md) |
+| To ask the data questions in plain language | [agent_platform.md](agent_platform.md) |
 | To contribute code in this repo’s style | [CONTRIBUTING.md](../CONTRIBUTING.md) |
-| To see why Pipeline / three chains / Supabase / labels / classifier | ADRs 0001–0006 below |
+| To see why Pipeline / three chains / Supabase / labels / classifier / chat | ADRs 0001–0007 below |
 
 ---
 
@@ -180,6 +182,20 @@ The durable choice of features and model is
 [ADR 0006](adr/0006-main-category-classifier.md).
 Test mistakes: [product_classifier_error_analysis.md](product_classifier_error_analysis.md).
 
+### [agent_platform.md](agent_platform.md)
+
+The chat service that makes the analytical layer answerable in plain language:
+
+- `uv run python -m src.agent_platform`, served with FastAPI over SSE
+- a pydantic-ai agent combining `SKILL.md` playbooks with five read-only SQL
+  tools; no free-form SQL, and the connection is read-only server-side
+- explicit context control, so what the model was sent is always inspectable
+- reads the **remote** analytical database (`REMOTE_DB_*`), never the local ETL
+  database
+
+The durable choices are [ADR 0007](adr/0007-agent-platform-chat-service.md).
+Related code: `src/agent_platform/`.
+
 ---
 
 ## Architecture Decision Records (`docs/adr/`)
@@ -196,6 +212,7 @@ reality changes; do not pretend the original context never existed.
 | [0004](adr/0004-product-categorization-and-training-sample.md) | Categorize comparable products; SuperCompare silver labels first | Sample sizes, coverage, what not to train on |
 | [0005](adr/0005-resilient-supercompare-crawler.md) | Checkpointed, retrying SuperCompare crawler | Why pages are saved under `data/raw/supercompare/` |
 | [0006](adr/0006-main-category-classifier.md) | TF-IDF + Linear SVM; keep manufacturer; 12 main categories | Why this classical model, split, and metric |
+| [0007](adr/0007-agent-platform-chat-service.md) | Streaming chat service; skills as docs, fixed read-only SQL as capability | Why no text-to-SQL, how ties are counted, how context is controlled |
 
 ---
 

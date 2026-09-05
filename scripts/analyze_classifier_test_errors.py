@@ -113,7 +113,10 @@ def main() -> None:
     errors.to_csv(ERRORS_PATH, index=False)
     pairs.to_csv(PAIR_COUNTS_PATH, index=False)
     print(f"Test products: {len(test)}", flush=True)
-    print(f"Misclassified: {len(errors)} ({len(errors) / len(test) * 100:.1f}%)", flush=True)
+    print(
+        f"Misclassified: {len(errors)} ({len(errors) / len(test) * 100:.1f}%)",
+        flush=True,
+    )
     print("\nMost common true → predicted pairs:", flush=True)
     print(pairs.head(20).to_string(index=False), flush=True)
     print(f"\nSaved {ERRORS_PATH}", flush=True)

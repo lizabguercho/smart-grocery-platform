@@ -17,6 +17,7 @@ def get_connection() -> psycopg.Connection:
         password=os.getenv("DB_PASSWORD"),
     )
 
+
 def get_remote_connection() -> psycopg.Connection:
     """Create a connection to the remote PostgreSQL database."""
 

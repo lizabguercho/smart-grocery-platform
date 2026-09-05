@@ -7,8 +7,8 @@ class AnalysisProduct:
     item_name: str
     manufacture_name: str | None
     manufacture_item_description: str | None
-    
-    
+
+
 @dataclass
 class SuperCompareProduct:
     item_code: str

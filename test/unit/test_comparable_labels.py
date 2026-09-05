@@ -1,8 +1,8 @@
 from pathlib import Path
 
 from src.product_classification.comparable_labels import (
-    SuperCompareProduct,
     ComparableProduct,
+    SuperCompareProduct,
     coverage_rows,
     deduplicate_products,
     include_in_analysis,
@@ -26,7 +26,9 @@ def _product(code: str, category: str, subcategory: str) -> SuperCompareProduct:
 def test_deduplicate_keeps_first_row() -> None:
     first = _product("1", "Dairy & Eggs", "Milk")
     second = _product("1", "Dairy & Eggs", "Milk")
-    unique, dropped = deduplicate_products([first, second, _product("2", "Baby", "Diapers")])
+    unique, dropped = deduplicate_products(
+        [first, second, _product("2", "Baby", "Diapers")]
+    )
     assert dropped == 1
     assert [product.item_code for product in unique] == ["1", "2"]
 
@@ -43,7 +45,10 @@ def test_coverage_and_exclusion_flags() -> None:
         _product("2", "Dairy & Eggs", "Eggs"),
         _product("3", "Dairy & Eggs", "Milk"),
     ]
-    matched = [_product("1", "Dairy & Eggs", "Eggs"), _product("3", "Dairy & Eggs", "Milk")]
+    matched = [
+        _product("1", "Dairy & Eggs", "Eggs"),
+        _product("3", "Dairy & Eggs", "Milk"),
+    ]
     rows = {row.subcategory: row for row in coverage_rows(unique, matched)}
     assert rows["Eggs"].matched_comparable == 1
     assert rows["Eggs"].supercompare_unique == 2
@@ -61,8 +66,8 @@ def test_coverage_and_exclusion_flags() -> None:
 
 def test_effective_main_category_uses_manual_overlay() -> None:
     from src.product_classification.comparable_labels import (
-        CategoryCorrection,
         CORRECTION_SOURCE_MANUAL_REVIEW,
+        CategoryCorrection,
         effective_main_category,
         load_category_corrections,
     )
@@ -105,7 +110,9 @@ def test_write_combined_csv_includes_unlabeled_comparable_products(
     ]
     labels = {"1": _product("1", "Dairy & Eggs", "Milk")}
     output = tmp_path / "combined.csv"
-    written = write_combined_csv(comparable, labels, {"1": "milk", "2": "bread"}, output)
+    written = write_combined_csv(
+        comparable, labels, {"1": "milk", "2": "bread"}, output
+    )
     text = output.read_text(encoding="utf-8")
     assert written == 2
     assert "Dairy & Eggs" in text

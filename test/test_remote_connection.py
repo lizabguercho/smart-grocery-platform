@@ -1,6 +1,5 @@
 from src.database_loader.connection import get_remote_connection
 
-
 connection = get_remote_connection()
 
 with connection.cursor() as cursor:
