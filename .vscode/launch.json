@@ -16,6 +16,32 @@
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "justMyCode": true
+    },
+    {
+      "name": "SuperCompare Crawler (Milk)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "src.product_classification.supercompare",
+      "args": [
+        "--category",
+        "dairy-and-eggs",
+        "--subcategory",
+        "milk",
+        "--log-level",
+        "DEBUG"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "SuperCompare Crawler (Full)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "src.product_classification.supercompare",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
     }
   ],
   "inputs": [

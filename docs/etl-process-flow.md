@@ -2,11 +2,12 @@
 
 This is a working map of one pipeline run: **extract → parse → load**.
 
-Use it while building Stores. Fill in the Parse and Load sections as those
-steps are implemented.
-
-Architecture details live in [etl_pipeline.md](etl_pipeline.md) and
+PriceFull, Stores, and PromoFull are implemented for Shufersal, Rami Levy,
+and Victory. Use this page to open the right source file. Architecture
+rules live in [etl_pipeline.md](etl_pipeline.md) and
 [ADR 0001](adr/0001-etl-pipeline-orchestration.md).
+
+Index of all docs: [README.md](README.md).
 
 
 ## The three steps
@@ -79,9 +80,8 @@ if extract type is promo_full  →  extract_promo_full()
 otherwise                      →  extract_price_full()
 ```
 
-`extract_promo_full()` is abstract. Every chain implements it.
-The base `extract_stores()` raises `NotImplementedError`. A chain turns
-Stores on by overriding that method.
+`extract_promo_full()` is abstract on the base class; every chain
+implements it. Each chain also overrides `extract_stores()`.
 
 | Chain | PriceFull extract | Stores extract | PromoFull extract |
 |---|---|---|---|

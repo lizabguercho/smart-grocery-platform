@@ -2,20 +2,28 @@
 
 ## Overview
 
-Smart Grocery Platform is an end-to-end data engineering and analytics project that collects supermarket price data from Israeli retailers, stores it in a PostgreSQL database, and enables price comparison and market analysis.
+Smart Grocery Platform is a data-analyst portfolio project. It compares
+grocery prices across three Israeli supermarket chains — **Shufersal**,
+**Rami Levy**, and **Victory** — so a shopper can see where the same
+product is cheaper, and later where a category or a basket is cheaper.
 
-The project demonstrates the complete data pipeline, from data extraction to database design and analysis, following software engineering and data engineering best practices.
+The supporting engineering (ETL, PostgreSQL, a small shared remote
+database, SuperCompare category labels) exists so that analysis can be
+done carefully. It is not the final product.
+
+**Documentation map:** [docs/README.md](docs/README.md) lists every
+markdown file, what it is for, and a suggested reading order.
 
 ---
 
 ## Project Goals
 
-- Build an automated ETL pipeline for Israeli supermarket price data.
-- Design a normalized PostgreSQL database.
-- Compare product prices across stores and over time.
-- Perform data quality validation.
-- Build analytical dashboards and insights.
-- Develop a user interface for searching and comparing products (future phase).
+- Collect official PriceFull, Stores, and PromoFull files from three chains.
+- Store them in a normalized local PostgreSQL database with history.
+- Publish a small analytical subset (comparable products + chain prices).
+- Assign product categories so analysis can go beyond exact barcodes.
+- Answer: which chain is cheapest overall, by category, and for baskets.
+- Present findings (dashboard / portfolio write-up) after the analysis is stable.
 
 ---
 
@@ -42,22 +50,23 @@ uv run python -m src.etl --chain shufersal --extract prices_full --max-pages 2 -
 # Or in Cursor: Run and Debug → ETL Pipeline, then pick chain and dataset
 ```
 
-Full setup details (prerequisites, PostgreSQL, ETL order, troubleshooting): **[docs/getting-started.md](docs/getting-started.md)**.
+Full setup: **[docs/getting-started.md](docs/getting-started.md)**.
+Where we are in the work: **[docs/project-roadmap.md](docs/project-roadmap.md)**.
+All docs: **[docs/README.md](docs/README.md)**.
 
 ---
 
 ## Current Features
 
 - Unified ETL CLI (`python -m src.etl`) for Shufersal, Rami Levy, and Victory.
-- Download official PriceFull files per chain.
-- Download official Stores and PromoFull files per chain.
-- Parse XML price files into `PriceFullProduct` records.
-- Parse XML price files into `PriceFullProduct` records.
-- Store product information in a normalized PostgreSQL database.
-- Maintain historical product prices.
-- Automated data quality checks.
-- Environment-based database configuration.
-- SQL scripts for database creation and maintenance.
+- Official PriceFull, Stores, and PromoFull extract → parse → load.
+- Normalized local PostgreSQL (`grocery` schema) with historical prices.
+- Analytical tables: `chain_prices` (median price per chain) and
+  `price_comparison` (cheapest chain, including ties).
+- Shared remote PostgreSQL (Supabase) with the small analytical subset.
+- SuperCompare crawler for external category labels
+  (`data/processed/supercompare_products.csv`).
+- Data-quality checks, `.env` configuration, SQL for schema and analysis.
 
 ---
 
@@ -65,41 +74,23 @@ Full setup details (prerequisites, PostgreSQL, ETL order, troubleshooting): **[d
 
 ```
 Smart-Grocery-Platform/
-│
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── external/
-│
-├── database/
-│   ├── backups/
-│   └── erd/
-│
-├── docs/
+├── data/                      gitignored working files
+│   ├── raw/                   PriceFull, Stores, PromoFull, SuperCompare pages
+│   └── processed/             supercompare_products.csv and crawl report
+├── docs/                      guides + ADRs — start at docs/README.md
 │   └── adr/
-│
-├── notebooks/
-│
-├── scripts/
-│
-├── test/
-│   └── unit/
-│
 ├── sql/
-│   ├── 01_create_schema.sql
-│   ├── 02_create_tables.sql
-│   ├── 03_load_products.sql
-│   ├── 04_load_product_prices.sql
-│   ├── 05_indexes.sql
-│   ├── 06_views.sql
-│   ├── 07_data_quality_checks.sql
-│   └── inspection_queries.sql
-│
+│   ├── 01–07                  local schema, tables, indexes, quality checks
+│   ├── analysis/              chain_prices and price_comparison
+│   └── remote/                shared database schema and grants
 ├── src/
-│   ├── etl/
-│   ├── data_extraction/
-│   └── database_loader/
-│
+│   ├── etl/                   CLI, factory, Pipeline
+│   ├── data_extraction/       chain downloaders and XML parsers
+│   ├── database_loader/       PostgreSQL loaders and connections
+│   └── product_classification/
+│       └── supercompare/      category crawler
+├── scripts/                   connection check, inspection helpers
+├── test/unit/
 ├── CONTRIBUTING.md
 ├── pyproject.toml
 └── README.md
@@ -109,43 +100,26 @@ Smart-Grocery-Platform/
 
 ## Database Design
 
-The project uses a normalized PostgreSQL database.
+There are **two** PostgreSQL databases. Details:
+[docs/remote_database_architecture.md](docs/remote_database_architecture.md).
 
-### Tables
+### Local (ETL source of truth)
 
-### products
+| Table | Role |
+|---|---|
+| `grocery.products` | Latest product metadata, keyed by `item_code` (barcode) |
+| `grocery.product_prices` | Historical store-level prices |
+| `grocery.products_staging` | Truncated each PriceFull load |
+| `grocery.stores` | Latest store metadata |
+| `grocery.promotions` / `promotion_groups` / `promotion_items` | PromoFull history |
+| `grocery.chain_prices` | Median price per `item_code` × chain |
+| `grocery.price_comparison` | One row per product in at least two chains |
+| `grocery.product_classification` | Category labels (still empty until labels are promoted) |
 
-Stores static product information.
+### Remote (shared analysis, ~25 MB)
 
-Examples:
-
-- Product name
-- Manufacturer
-- Unit of measure
-- Package size
-
-Each product appears only once.
-
----
-
-### product_prices
-
-Stores historical prices.
-
-Each row represents:
-
-- Product
-- Store
-- Extraction date
-- Price
-
-This allows price comparison across stores and tracking price changes over time.
-
----
-
-### products_staging
-
-Temporary staging table used during the ETL process before loading data into the production tables.
+A subset of the local analytical tables, so two people can classify and
+query without copying 4 GB of history.
 
 ---
 
@@ -181,6 +155,11 @@ Load into PostgreSQL (staging → products → product_prices)
 See **[docs/etl_pipeline.md](docs/etl_pipeline.md)** and
 **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
+Category labels are a separate workflow (`python -m
+src.product_classification.supercompare`), documented in
+**[docs/supercompare_labeling.md](docs/supercompare_labeling.md)**.
+They are not part of the supermarket-file ETL.
+
 ---
 
 ## Data Quality
@@ -195,20 +174,20 @@ The project validates:
 
 ---
 
-## Future Improvements
+## Next (analysis, not more infrastructure)
 
-- Scheduled automatic updates
-- Product search API
-- Interactive dashboard
-- Price history visualizations
-- Shopping basket optimization
-- Web application
+See **[docs/project-roadmap.md](docs/project-roadmap.md)**.
+
+1. Join SuperCompare barcodes to comparable products and store reviewed
+   labels in remote `grocery.product_classification`.
+2. Validate category quality.
+3. Category-level price analysis, then baskets, then a dashboard.
 
 ---
 
 ## Author
 
-Liza Rabkina
+Liza Benguerchon
 
 This project was developed as part of my data analytics portfolio to demonstrate practical skills in:
 

@@ -19,3 +19,4 @@ __pycache__/
 # Downloaded supermarket data
 data/raw/
 data/processed/
+data/logs/
