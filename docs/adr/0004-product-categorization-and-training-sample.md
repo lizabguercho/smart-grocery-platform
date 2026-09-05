@@ -212,3 +212,11 @@ Do **not** train a classifier on Dairy & Eggs alone and apply it to all
 
 - Store accepted labels in remote `grocery.product_classification`,
   not only in local notebooks.
+
+## Later update (2 September 2026)
+
+The comparable join exists: **5,718** labeled / **9,098** unlabeled of
+14,816. A stratified 70/15/15 split and classical 12-class experiments
+are recorded in [ADR 0006](0006-main-category-classifier.md). The
+selected classical model is TF-IDF + Linear SVM with `item_name` +
+`manufacture_name`. Subcategory modeling is still deferred.

@@ -56,6 +56,11 @@ docs/README.md                     this map
         │                          local 4 GB vs remote 25 MB
         ├── supercompare_labeling.md
         │                          how category labels were obtained
+        ├── product_classifier_experiments.md
+        │                          12-class TF-IDF experiments (name vs manufacturer)
+        ├── product_classifier_error_analysis.md
+        │                          Test mistakes of the winning Linear SVM
+        ├── modeling_decisions.md  short conclusions (canonical: ADR 0006)
         │
         └── adr/                   durable decisions (do not rewrite history)
 ```
@@ -78,8 +83,10 @@ than silently changing the original decision.
 | To follow one command through the files | [etl-process-flow.md](etl-process-flow.md) |
 | To understand local vs remote databases | [remote_database_architecture.md](remote_database_architecture.md) |
 | To understand SuperCompare labels and the CSV | [supercompare_labeling.md](supercompare_labeling.md) |
+| To understand the 12-class classifier experiments | [product_classifier_experiments.md](product_classifier_experiments.md) |
+| To see which model and features we kept | [ADR 0006](adr/0006-main-category-classifier.md) |
 | To contribute code in this repo’s style | [CONTRIBUTING.md](../CONTRIBUTING.md) |
-| To see why Pipeline / three chains / Supabase / labels | ADRs 0001–0005 below |
+| To see why Pipeline / three chains / Supabase / labels / classifier | ADRs 0001–0006 below |
 
 ---
 
@@ -164,6 +171,15 @@ How category labels were collected from SuperCompare:
 
 Related code: `src/product_classification/`.
 
+### [product_classifier_experiments.md](product_classifier_experiments.md)
+
+First classical ML pass on the **5,718** labeled comparable products:
+`item_name` vs `item_name` + `manufacture_name`, three TF-IDF models,
+stratified 70/15/15 split. Winner is chosen on validation Macro F1.
+The durable choice of features and model is
+[ADR 0006](adr/0006-main-category-classifier.md).
+Test mistakes: [product_classifier_error_analysis.md](product_classifier_error_analysis.md).
+
 ---
 
 ## Architecture Decision Records (`docs/adr/`)
@@ -179,6 +195,7 @@ reality changes; do not pretend the original context never existed.
 | [0003](adr/0003-remote-analytical-database.md) | Local full DB + small remote analytical DB | Why Supabase and which tables are shared |
 | [0004](adr/0004-product-categorization-and-training-sample.md) | Categorize comparable products; SuperCompare silver labels first | Sample sizes, coverage, what not to train on |
 | [0005](adr/0005-resilient-supercompare-crawler.md) | Checkpointed, retrying SuperCompare crawler | Why pages are saved under `data/raw/supercompare/` |
+| [0006](adr/0006-main-category-classifier.md) | TF-IDF + Linear SVM; keep manufacturer; 12 main categories | Why this classical model, split, and metric |
 
 ---
 

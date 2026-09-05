@@ -6,11 +6,16 @@ import csv
 from collections import Counter, defaultdict
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 
 from src.product_classification.models import SuperCompareProduct
 
 CLASSIFICATION_METHOD = "supercompare_silver"
+CORRECTION_SOURCE_MANUAL_REVIEW = "manual error review"
+DEFAULT_CATEGORY_CORRECTIONS_PATH = Path(__file__).with_name(
+    "manual_category_corrections.csv"
+)
 
 # Weak SuperCompare *coverage* (Eggs, produce, beef, spices) is not the same
 # as a wrong label. Those slices stay in analysis when the name matches.
@@ -76,6 +81,50 @@ def coverage_status(coverage_percent: float) -> str:
     if coverage_percent >= STATUS_MEDIUM:
         return "medium"
     return "low"
+
+
+@dataclass(frozen=True)
+class CategoryCorrection:
+    item_code: str
+    original_supercompare_category: str
+    corrected_category: str
+    reason: str
+    correction_source: str
+
+
+@lru_cache(maxsize=8)
+def load_category_corrections(
+    path: Path | None = None,
+) -> dict[str, CategoryCorrection]:
+    """Load the overlay file. SuperCompare CSVs are never rewritten."""
+
+    csv_path = path or DEFAULT_CATEGORY_CORRECTIONS_PATH
+    corrections: dict[str, CategoryCorrection] = {}
+    with csv_path.open(newline="", encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            item_code = str(row["item_code"]).strip()
+            corrections[item_code] = CategoryCorrection(
+                item_code=item_code,
+                original_supercompare_category=row["original_supercompare_category"],
+                corrected_category=row["corrected_category"],
+                reason=row["reason"],
+                correction_source=row["correction_source"],
+            )
+    return corrections
+
+
+def effective_main_category(
+    item_code: str,
+    supercompare_category: str,
+    corrections: Mapping[str, CategoryCorrection] | None = None,
+) -> str:
+    """Modeling / analysis category: overlay if present, else SuperCompare."""
+
+    overlay = corrections if corrections is not None else load_category_corrections()
+    correction = overlay.get(str(item_code))
+    if correction is None:
+        return supercompare_category
+    return correction.corrected_category
 
 
 def include_in_analysis(item_code: str, subcategory: str | None = None) -> bool:
@@ -151,12 +200,17 @@ def category_counts(
 def to_classification_rows(
     matched_products: Sequence[SuperCompareProduct],
 ) -> list[ClassificationRow]:
+    corrections = load_category_corrections()
     rows: list[ClassificationRow] = []
     for product in matched_products:
         rows.append(
             ClassificationRow(
                 item_code=int(product.item_code),
-                category=product.main_category,
+                category=effective_main_category(
+                    product.item_code,
+                    product.main_category,
+                    corrections,
+                ),
                 subcategory=product.subcategory,
                 include_in_analysis=include_in_analysis(product.item_code),
                 classification_method=CLASSIFICATION_METHOD,
@@ -215,6 +269,7 @@ COMBINED_CSV_FIELDS = (
     "supercompare_product_name",
     "manufacturer",
     "source_url",
+    "supercompare_category",
 )
 
 DEFAULT_COMBINED_CSV_PATH = Path(
@@ -251,6 +306,7 @@ def write_combined_csv(
     """
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    corrections = load_category_corrections()
     written = 0
     with output_path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=COMBINED_CSV_FIELDS)
@@ -264,7 +320,15 @@ def write_combined_csv(
                 {
                     "item_code": product.item_code,
                     "item_name": database_names.get(product.item_code, ""),
-                    "category": label.main_category if label else "",
+                    "category": (
+                        effective_main_category(
+                            product.item_code,
+                            label.main_category,
+                            corrections,
+                        )
+                        if label
+                        else ""
+                    ),
                     "subcategory": label.subcategory if label else "",
                     "include_in_analysis": (
                         include_in_analysis(product.item_code) if label else ""
@@ -288,6 +352,9 @@ def write_combined_csv(
                     "supercompare_product_name": label.product_name if label else "",
                     "manufacturer": (label.manufacturer or "") if label else "",
                     "source_url": label.source_url if label else "",
+                    "supercompare_category": (
+                        label.main_category if label else ""
+                    ),
                 }
             )
     return written

@@ -1,0 +1,14 @@
+item_code,original_supercompare_category,corrected_category,reason,correction_source
+7290000204147,Dairy & Eggs,Household & Cleaning,"Plastopolish Japanese scouring pads are cleaning supplies, not dairy.",manual error review
+7290000484648,Snacks & Sweets,Beverages,"Arak 40% from a winery (יקב הגליל); alcohol, not a snack.",manual error review
+7290004575373,Bakery,Frozen,"Rio ice-cream multipack (ריאוגלידות); ice cream is Frozen, not Bakery.",manual error review
+7290010065332,Dairy & Eggs,Baby,"Pranok apple-banana puree is baby food, not dairy.",manual error review
+7290010193882,Snacks & Sweets,Frozen,"Name is frozen fries (ציפס קפוא), not a shelf-stable snack.",manual error review
+7290013269003,Baby,Household & Cleaning,"Sano Maxima is baby-scented laundry softener, not a Baby food/care item.",manual error review
+7290017457710,Personal Care & Hygiene,Household & Cleaning,"Fabric softener is laundry, not personal care.",manual error review
+7290019635802,Pantry & Cooking,Dairy & Eggs,Burrata is cheese; Pantry is factually wrong.,manual error review
+7290019635901,Pantry & Cooking,Dairy & Eggs,Labneh 5% is a dairy cheese/spread; Pantry is factually wrong.,manual error review
+7290108352153,Personal Care & Hygiene,Household & Cleaning,"Sano toilet-bowl gel is a cleaner, not soap/shampoo (already on the known-mismatch list).",manual error review
+7290119375257,Snacks & Sweets,Dairy & Eggs,"Gamadim peach-apricot is a Strauss yogurt pouch, not a snack candy.",manual error review
+7290119389872,Deli & Salads,Pantry & Cooking,"Pappardelle pasta is dry pasta, not deli/salads.",manual error review
+8700216237239,Beverages,Household & Cleaning,"Fairy dish/dishwasher capsules are cleaning products, not a drink.",manual error review

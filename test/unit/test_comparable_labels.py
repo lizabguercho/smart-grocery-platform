@@ -59,6 +59,43 @@ def test_coverage_and_exclusion_flags() -> None:
     assert include_in_analysis("7290013116024") is True
 
 
+def test_effective_main_category_uses_manual_overlay() -> None:
+    from src.product_classification.comparable_labels import (
+        CategoryCorrection,
+        CORRECTION_SOURCE_MANUAL_REVIEW,
+        effective_main_category,
+        load_category_corrections,
+    )
+
+    overlay = {
+        "8700216237239": CategoryCorrection(
+            item_code="8700216237239",
+            original_supercompare_category="Beverages",
+            corrected_category="Household & Cleaning",
+            reason="Fairy capsules",
+            correction_source=CORRECTION_SOURCE_MANUAL_REVIEW,
+        )
+    }
+    assert (
+        effective_main_category("8700216237239", "Beverages", overlay)
+        == "Household & Cleaning"
+    )
+    assert effective_main_category("1", "Dairy & Eggs", overlay) == "Dairy & Eggs"
+    loaded = load_category_corrections()
+    assert "5208049015312" not in loaded
+    assert loaded["7290119389872"].corrected_category == "Pantry & Cooking"
+    assert loaded["7290119389872"].correction_source == CORRECTION_SOURCE_MANUAL_REVIEW
+
+
+def test_to_classification_rows_applies_overlay_and_keeps_exclusion() -> None:
+    fairy = _product("8700216237239", "Beverages", "Soft Drinks")
+    cigarette = _product("5208049015312", "Beverages", "Alcohol")
+    rows = {row.item_code: row for row in to_classification_rows([fairy, cigarette])}
+    assert rows[8700216237239].category == "Household & Cleaning"
+    assert rows[5208049015312].category == "Beverages"
+    assert rows[5208049015312].include_in_analysis is False
+
+
 def test_write_combined_csv_includes_unlabeled_comparable_products(
     tmp_path: Path,
 ) -> None:

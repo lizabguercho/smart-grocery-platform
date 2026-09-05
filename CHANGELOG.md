@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added a first 12-class main-category experiment (`item_name` vs
+  `item_name` + `manufacture_name`, TF-IDF + Logistic Regression / Linear
+  SVM / Naive Bayes) in `product_classifier_experiments.md`, recorded as
+  ADR 0006
+- Added a Test-set error analysis of the winning Linear SVM
+  (`docs/product_classifier_error_analysis.md`)
+- Added a manual main-category overlay for 13 approved SuperCompare
+  errors (`src/product_classification/manual_category_corrections.csv`);
+  cigarettes stay on the existing analysis denylist
 - Added a documentation map (`docs/README.md`) and expanded guides for
   the current SuperCompare labeling phase, local vs remote `.env`
   variables, and ADR reading order

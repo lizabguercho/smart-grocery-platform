@@ -2,6 +2,9 @@
 
 Related: [Documentation map](README.md) ·
 [SuperCompare labeling](supercompare_labeling.md) ·
+[Classifier experiments](product_classifier_experiments.md) ·
+[ADR 0006 — classifier](adr/0006-main-category-classifier.md) ·
+[Error analysis](product_classifier_error_analysis.md) ·
 [Remote database](remote_database_architecture.md)
 
 ## Project Goal
@@ -134,6 +137,10 @@ exact product?” Categories unlock grouping.
 - Full catalog crawled into
   `data/processed/supercompare_products.csv`
   (**15,616** rows, **15,230** unique barcodes, 1 September 2026).
+- Comparable join: **5,718** labeled / **9,098** unlabeled of 14,816.
+- Classical 12-class experiments: manufacturer **kept**; winner
+  **TF-IDF + Linear SVM** (Test Macro F1 **0.862**). See
+  [product_classifier_experiments.md](product_classifier_experiments.md).
 - Earlier Dairy & Eggs barcode join against `grocery.products` was
   validated (Milk 88%, Cheese 94%, Eggs 43%).
 - Resilient crawler with checkpoints and retries ([ADR 0005](adr/0005-resilient-supercompare-crawler.md)).
@@ -143,13 +150,12 @@ Sample-size targets: [ADR 0004](adr/0004-product-categorization-and-training-sam
 
 ### What is not done yet
 
-- Join the **full** CSV to the **~14.8k comparable** products
-  (`grocery.price_comparison`), not only the full `grocery.products`
-  catalog.
-- Review conflicts, weak slices, and silver-label quality.
-- Write accepted labels to remote `grocery.product_classification`
-  (that table is still empty).
-- Train a model only for products that still have no reliable label.
+- Write accepted SuperCompare labels to remote
+  `grocery.product_classification` (that table is still empty).
+- Decide whether a Hebrew transformer is worth trying after the
+  classical Linear SVM (~0.86 Test Macro F1).
+- Score the ~9,098 unlabeled comparable products.
+- Train a **subcategory** model (55 classes) — not started.
 
 Classification results belong in remote `grocery.product_classification`
 so both contributors share the same labels.
@@ -164,13 +170,11 @@ Finish the labeling workflow. The SuperCompare crawl itself is done.
 
 Remaining work:
 
-1. Join `data/processed/supercompare_products.csv` to remote comparable
-   products (`grocery.price_comparison.item_code`).
-2. Measure coverage overall and per SuperCompare category/subcategory
-   on that comparable set.
-3. Review weak slices and any duplicate barcodes.
-4. Store accepted mappings in remote `grocery.product_classification`.
-5. Only then consider a simple model for leftovers.
+1. Store accepted SuperCompare mappings in remote
+   `grocery.product_classification`.
+2. Decide whether Linear SVM is good enough for the ~9,098 unlabeled
+   products, or whether a Hebrew transformer should be tested first.
+3. Do not train 55 subcategories until main-category scoring is settled.
 
 Do not over-engineer the ML solution. Reliable categories that are good
 enough for analytical use are the goal.
