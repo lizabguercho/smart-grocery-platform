@@ -22,18 +22,12 @@ def test_clean_manufacture_name_turns_placeholders_into_empty() -> None:
 
 
 def test_build_feature_text_keeps_name_only_when_asked() -> None:
-    assert (
-        build_feature_text("חלב 3%", "תנובה", include_manufacturer=False)
-        == "חלב 3%"
-    )
+    assert build_feature_text("חלב 3%", "תנובה", include_manufacturer=False) == "חלב 3%"
     assert (
         build_feature_text("חלב 3%", "תנובה", include_manufacturer=True)
         == "חלב 3% תנובה"
     )
-    assert (
-        build_feature_text("חלב 3%", None, include_manufacturer=True)
-        == "חלב 3%"
-    )
+    assert build_feature_text("חלב 3%", None, include_manufacturer=True) == "חלב 3%"
 
 
 def test_stratified_split_keeps_every_category_in_each_part() -> None:

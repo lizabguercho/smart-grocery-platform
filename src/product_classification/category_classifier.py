@@ -137,13 +137,17 @@ def category_counts_table(
 ) -> pd.DataFrame:
     """One row per category with counts in each split."""
 
-    counts = pd.DataFrame(
-        {
-            "train": train["category"].value_counts(),
-            "validation": validation["category"].value_counts(),
-            "test": test["category"].value_counts(),
-        }
-    ).fillna(0).astype(int)
+    counts = (
+        pd.DataFrame(
+            {
+                "train": train["category"].value_counts(),
+                "validation": validation["category"].value_counts(),
+                "test": test["category"].value_counts(),
+            }
+        )
+        .fillna(0)
+        .astype(int)
+    )
     counts["total"] = counts["train"] + counts["validation"] + counts["test"]
     return counts.sort_values("total", ascending=False)
 
@@ -174,7 +178,9 @@ def fit_tfidf_and_model(
     return vectorizer, model
 
 
-def score_predictions(y_true: Sequence[str], y_pred: Sequence[str]) -> tuple[float, float]:
+def score_predictions(
+    y_true: Sequence[str], y_pred: Sequence[str]
+) -> tuple[float, float]:
     accuracy = float(accuracy_score(y_true, y_pred))
     macro_f1 = float(f1_score(y_true, y_pred, average="macro", zero_division=0))
     return accuracy, macro_f1

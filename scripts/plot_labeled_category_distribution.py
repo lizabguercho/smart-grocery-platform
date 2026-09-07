@@ -24,7 +24,9 @@ counts = [count for _, count in items][::-1]
 pcts = [count / n * 100 for count in counts]
 fig, ax = plt.subplots(figsize=(10, 6.5))
 bars = ax.barh(labels, pcts, color="#2f5d50")
-ax.axvline(100 / n * 100, color="#b45309", linestyle="--", linewidth=1, label="100 examples")
+ax.axvline(
+    100 / n * 100, color="#b45309", linestyle="--", linewidth=1, label="100 examples"
+)
 ax.set_xlabel("% of labeled comparable products (n = 5,718)")
 ax.set_title("Labeled comparable products by main category")
 for bar, count, pct in zip(bars, counts, pcts):
@@ -45,11 +47,17 @@ items = sub.most_common()
 labels = [name for name, _ in items][::-1]
 counts = [count for _, count in items][::-1]
 pcts = [count / n * 100 for count in counts]
-colors = ["#2f5d50" if c >= 100 else "#b45309" if c >= 50 else "#9b1c1c" for c in counts]
+colors = [
+    "#2f5d50" if c >= 100 else "#b45309" if c >= 50 else "#9b1c1c" for c in counts
+]
 fig, ax = plt.subplots(figsize=(11, 14))
 bars = ax.barh(labels, pcts, color=colors)
-ax.axvline(50 / n * 100, color="#b45309", linestyle="--", linewidth=1, label="50 examples")
-ax.axvline(100 / n * 100, color="#2f5d50", linestyle=":", linewidth=1, label="100 examples")
+ax.axvline(
+    50 / n * 100, color="#b45309", linestyle="--", linewidth=1, label="50 examples"
+)
+ax.axvline(
+    100 / n * 100, color="#2f5d50", linestyle=":", linewidth=1, label="100 examples"
+)
 ax.set_xlabel("% of labeled comparable products (n = 5,718)")
 ax.set_title("Labeled comparable products by subcategory")
 for bar, count, pct in zip(bars, counts, pcts):

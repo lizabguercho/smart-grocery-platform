@@ -9,6 +9,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added streaming grocery analytical chat service and web UI
+
+- Added an interactive Web Chat UI served directly by FastAPI at `/` and `/ui`,
+  supporting live SSE token streaming, collapsible tool execution and query
+  result badges, conversational multi-turn history, Markdown rendering, and
+  Hebrew/English text support with zero external frontend dependencies
+- Added a streaming chat service (`uv run python -m src.agent_platform`) that
+  answers grocery price questions in plain language from the shared analytical
+  database, served with FastAPI over Server-Sent Events
+- Added a pydantic-ai agent combining a `SkillsToolset` of three `SKILL.md`
+  playbooks (`grocery-database`, `price-comparison`, `chain-competitiveness`)
+  with a `FunctionToolset` of five read-only SQL tools; there is no free-form
+  SQL tool and `run_skill_script` is excluded
+- Added read-only database access for the agent: `default_transaction_read_only`
+  and `statement_timeout` are set as server-side session options on a pooled
+  async connection, so no tool can write or run an unbounded query
+- Added explicit context control through a `ProcessHistory` capability that
+  trims history by whole conversation turns, preserving `ToolCallPart` and
+  `ToolReturnPart` pairing, and audits every outbound model request
+- Added `GET /conversations/{id}/context` so the exact payload a next turn
+  would send to the model can be inspected
+- Added per-conversation token-bucket rate limiting with an injected clock,
+  alongside per-run `UsageLimits` for requests, tool calls and tokens
+- Added a `ChatServiceError` hierarchy where each error owns its `ErrorCode`
+  and HTTP status, with one wire payload shared by HTTP responses and SSE
+  `error` events
+- Added `docs/agent_platform.md` and ADR 0007 for the chat service
 - Added a first 12-class main-category experiment (`item_name` vs
   `item_name` + `manufacture_name`, TF-IDF + Logistic Regression / Linear
   SVM / Naive Bayes) in `product_classifier_experiments.md`, recorded as
@@ -34,6 +61,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Added `fastapi`, `sse-starlette` and `uvicorn` dependencies, and enabled the
+  `pool` extra on `psycopg` for async connection pooling
 - Replaced per-chain ETL scripts with a unified `python -m src.etl` Pipeline
 
 - Replaced per-chain `process_*.py` scripts with chain extractors and shared parse/load strategies
@@ -47,3 +76,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed CSV export from the default ETL run
 
 ### Security
+
+- The chat service agent cannot write to the database or compose SQL: every
+  statement is a named `%s`-parameterized constant, the connection is read-only
+  and statement-timed server-side, skill script execution is disabled, and
+  driver errors are wrapped so connection details are never returned to a
+  client

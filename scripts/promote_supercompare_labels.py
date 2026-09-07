@@ -168,7 +168,9 @@ def print_review(
         format_share(matched_total, unique_total),
     )
 
-    print("\n=== coverage by subcategory (matched comparable / SuperCompare unique) ===")
+    print(
+        "\n=== coverage by subcategory (matched comparable / SuperCompare unique) ==="
+    )
     for row in coverage_rows(unique_products, matched):
         print(
             f"{row.main_category}\t{row.subcategory}\t"
@@ -199,7 +201,9 @@ def print_review(
         "Hummus & Tahini",
     ):
         samples = sample_codes_by_subcategory(matched, subcategory, limit=6)
-        print(f"\n-- {subcategory} (n={sum(1 for p in matched if p.subcategory == subcategory)}) --")
+        print(
+            f"\n-- {subcategory} (n={sum(1 for p in matched if p.subcategory == subcategory)}) --"
+        )
         for product in samples:
             print(
                 product.item_code,
