@@ -4,13 +4,16 @@ Loads SuperCompare labels from CSV and item_name / manufacture_name from
 the local grocery.products table. Does not write to any database table.
 
   uv run python scripts/run_category_classifier_experiments.py
+  PYTHONPATH=. .venv/bin/python3 -u scripts/run_category_classifier_experiments.py --corrected-svm
 """
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 import pandas as pd
+from sklearn.metrics import f1_score
 
 from src.database_loader.connection import get_connection
 from src.product_classification.category_classifier import (
@@ -28,7 +31,6 @@ from src.product_classification.category_classifier import (
 from src.product_classification.comparable_labels import (
     join_to_comparable,
     load_unique_products,
-    effective_main_category,
 )
 from src.product_classification.supercompare.config import DEFAULT_PRODUCTS_PATH
 
@@ -37,6 +39,9 @@ VALIDATION_RESULTS_PATH = OUTPUT_DIR / "classifier_validation_results.csv"
 SPLIT_COUNTS_PATH = OUTPUT_DIR / "classifier_split_counts.csv"
 TEST_REPORT_PATH = OUTPUT_DIR / "classifier_test_classification_report.txt"
 TEST_CONFUSION_PATH = OUTPUT_DIR / "classifier_test_confusion_matrix.csv"
+LABEL_REVIEW_PATH = OUTPUT_DIR / "classifier_label_error_review.csv"
+BASELINE_TEST_ACCURACY = 0.8706
+BASELINE_TEST_MACRO_F1 = 0.8622
 
 MODELS = (
     MODEL_LOGISTIC_REGRESSION,
@@ -76,12 +81,7 @@ def load_labeled_comparable_products() -> tuple:
 
     comparable_codes = [row[0] for row in comparable_rows]
     matched = join_to_comparable(unique_products, comparable_codes)
-    labels = {
-        product.item_code: effective_main_category(
-            product.item_code, product.main_category
-        )
-        for product in matched
-    }
+    labels = {product.item_code: product.main_category for product in matched}
     print(f"Labeled comparable products: {len(labels)}", flush=True)
 
     rows = []
@@ -98,6 +98,86 @@ def load_labeled_comparable_products() -> tuple:
             }
         )
     return labeled_frame_from_rows(rows)
+
+
+def obvious_label_overlay(path: Path = LABEL_REVIEW_PATH) -> dict[str, str]:
+    review = pd.read_csv(path, dtype=str)
+    obvious = review.loc[review["confidence"] == "obvious"]
+    return dict(
+        zip(obvious["item_code"].astype(str), obvious["proposed_correct_category"])
+    )
+
+
+def apply_obvious_labels(
+    frame: pd.DataFrame, overlay: dict[str, str]
+) -> pd.DataFrame:
+    out = frame.copy()
+    out["category"] = [
+        overlay.get(str(code), category)
+        for code, category in zip(out["item_code"], out["category"])
+    ]
+    return out
+
+
+def retrain_corrected_svm() -> None:
+    """Same 70/15/15 split as the baseline; y updated only on obvious recodes."""
+
+    overlay = obvious_label_overlay()
+    print(f"Obvious label recodes: {len(overlay)}", flush=True)
+    frame = load_labeled_comparable_products()
+    train, validation, test = stratified_train_val_test(frame)
+    print(
+        f"Split sizes — train {len(train)}, validation {len(validation)}, test {len(test)}",
+        flush=True,
+    )
+    for name, part in (("train", train), ("validation", validation), ("test", test)):
+        n = int(part["item_code"].isin(overlay).sum())
+        print(f"  recodes in {name}: {n}", flush=True)
+    train = apply_obvious_labels(train, overlay)
+    validation = apply_obvious_labels(validation, overlay)
+    test = apply_obvious_labels(test, overlay)
+
+    print("\nRetraining TF-IDF + Linear SVM (item_name + manufacture_name)...", flush=True)
+    test_acc, test_macro, report, confusion, y_pred = evaluate_winner_on_test(
+        train,
+        test,
+        include_manufacturer=True,
+        model_name=MODEL_LINEAR_SVM,
+    )
+    test_weighted = float(
+        f1_score(test["category"], y_pred, average="weighted", zero_division=0)
+    )
+    delta = test_macro - BASELINE_TEST_MACRO_F1
+    print("\nTEST (corrected y, same products as baseline split):", flush=True)
+    print(f"  Accuracy:     {test_acc:.4f}  (baseline {BASELINE_TEST_ACCURACY:.4f})", flush=True)
+    print(f"  Macro F1:     {test_macro:.4f}  (baseline {BASELINE_TEST_MACRO_F1:.4f})", flush=True)
+    print(f"  Weighted F1:  {test_weighted:.4f}", flush=True)
+    print(f"  Macro F1 delta vs baseline: {delta:+.4f}", flush=True)
+    print(report, flush=True)
+    print(confusion.to_string(), flush=True)
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    TEST_REPORT_PATH.write_text(
+        TEST_REPORT_PATH.read_text(encoding="utf-8")
+        + (
+            "\n\n--- After obvious SuperCompare recodes (same split) ---\n"
+            f"Test accuracy: {test_acc:.4f}\n"
+            f"Test macro F1: {test_macro:.4f} (baseline {BASELINE_TEST_MACRO_F1:.4f}, "
+            f"delta {delta:+.4f})\n"
+            f"Test weighted F1: {test_weighted:.4f}\n\n"
+            f"{report}"
+        )
+        if TEST_REPORT_PATH.exists()
+        else (
+            f"After obvious SuperCompare recodes (same split)\n"
+            f"Test accuracy: {test_acc:.4f}\n"
+            f"Test macro F1: {test_macro:.4f}\n"
+            f"Test weighted F1: {test_weighted:.4f}\n\n"
+            f"{report}"
+        ),
+        encoding="utf-8",
+    )
+    print(f"\nUpdated {TEST_REPORT_PATH}", flush=True)
 
 
 def main() -> None:
@@ -185,4 +265,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    if "--corrected-svm" in sys.argv:
+        retrain_corrected_svm()
+    else:
+        main()

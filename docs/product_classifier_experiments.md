@@ -232,6 +232,20 @@ only.
 Test is almost the same as validation, which is a good sign: we did not
 overfit the choice to one unlucky Validation draw.
 
+Retrain with the 14 obvious recodes from
+`classifier_label_error_review.csv`, **same barcodes in Train/Test**
+(`random_state=42`). All 14 recodes fell in Test (0 in Train). Same
+TF-IDF + Linear SVM, `item_name` + `manufacture_name`.
+
+| Metric | Uncorrected Test | After 14 obvious recodes |
+|---|---:|---:|
+| Accuracy | 0.871 | 0.885 |
+| Macro F1 | 0.862 | 0.878 |
+| Weighted F1 | — | 0.884 |
+
+Macro F1 **+0.016**. That is a small gold-label cleanup on Test, not a
+materially different model (Train y was unchanged).
+
 ### Per-category Test scores
 
 | Category | Test n | Precision | Recall | F1 |
