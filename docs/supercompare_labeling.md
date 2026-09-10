@@ -595,10 +595,10 @@ column. SuperCompare manufacturer is filled for **95.3%** of the 5,718
 labeled rows and is empty for unlabeled rows by construction, so it
 cannot be a model feature for the 9,098.
 
-| Population | n | Manufacturer present | Missing / empty |
-|---|---:|---:|---:|
-| Labeled comparable | 5,718 | 5,222 (**91.3%**) | 496 (8.7%) |
-| Unlabeled comparable | 9,098 | 8,000 (**87.9%**) | 1,098 (12.1%) |
+| Population | n | Manufacturer present | Missing / empty | Unique names |
+|---|---:|---:|---:|---:|
+| Labeled comparable | 5,718 | 5,222 (**91.3%**) | 496 (8.7%) | 1,075 |
+| Unlabeled comparable | 9,098 | 8,000 (**87.9%**) | 1,098 (12.1%) | 1,703 |
 
 Gap: **−3.4 percentage points**. Completeness is similar enough to keep
 manufacturer as a classifier input. Handle missing values (do not drop

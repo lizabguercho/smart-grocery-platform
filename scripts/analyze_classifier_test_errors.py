@@ -26,7 +26,6 @@ print("imports: database + SuperCompare...", flush=True)
 
 from src.database_loader.connection import get_connection
 from src.product_classification.comparable_labels import (
-    effective_main_category,
     join_to_comparable,
     load_unique_products,
 )
@@ -67,12 +66,7 @@ def load_labeled_comparable_products():
 
     comparable_codes = [row[0] for row in comparable_rows]
     matched = join_to_comparable(unique_products, comparable_codes)
-    labels = {
-        product.item_code: effective_main_category(
-            product.item_code, product.main_category
-        )
-        for product in matched
-    }
+    labels = {product.item_code: product.main_category for product in matched}
     rows = []
     for item_code, item_name, manufacture_name in comparable_rows:
         category = labels.get(item_code)
