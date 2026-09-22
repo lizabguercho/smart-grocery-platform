@@ -20,3 +20,14 @@ __pycache__/
 data/raw/
 data/processed/
 data/logs/
+
+# Local pg_dump of grocery.products (keep on disk, do not version)
+sql/remote/remote_data.sql
+
+# Local Tableau workbooks, extracts, and PowerPoint decks (not versioned)
+*.pptx
+*.twb
+*.twbr
+*.hyper
+~$*.pptx
+/Final_version_Smart_Grocery.png
