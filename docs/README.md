@@ -1,11 +1,8 @@
 # Documentation map
 
-This folder is the project’s written memory. Use it to answer “where are
-we, why did we choose this, and what do I run?” without reading the
-source first.
-
-The repository README is a short overview. This page is the index of
-every markdown file and the order that makes them make sense.
+This folder is the project’s written record: what was built, why, and
+how to run it. The repository README is the public overview. This page
+is the index.
 
 ---
 
@@ -19,8 +16,8 @@ The business question is:
 > product cheaper — overall, by category, and in a typical basket?
 
 Infrastructure (ETL, PostgreSQL, Supabase, SuperCompare crawler) exists
-to make that analysis possible. It is not the final story of the
-project. The intended narrative is:
+to make that analysis possible. Headline numbers and methods:
+[project-roadmap.md](project-roadmap.md).
 
 ```text
 business problem
@@ -32,10 +29,9 @@ business problem
   → visualization
 ```
 
-Current phase: **product categorization**. Price comparison tables
-already exist. SuperCompare silver labels have been crawled into
-`data/processed/supercompare_products.csv`. Those labels are **not**
-yet loaded into `grocery.product_classification`.
+Price comparison tables, SuperCompare labels, a 12-class SVM, a
+comparability audit, and an illustrative weekly basket are documented
+in this folder. Large CSVs stay gitignored under `data/processed/`.
 
 ---
 
@@ -46,7 +42,7 @@ README.md                          60-second overview + install snippet
 docs/README.md                     this map
         │
         ├── getting-started.md     how to set up a machine
-        ├── project-roadmap.md     what is done vs what comes next
+        ├── project-roadmap.md     scope, findings, and method limits
         │
         ├── etl_pipeline.md        ETL architecture (source of truth)
         ├── etl-process-flow.md    file-by-file walk of one run
@@ -84,7 +80,7 @@ than silently changing the original decision.
 | If you want… | Read this |
 |---|---|
 | To clone, install, connect, and run ETL | [getting-started.md](getting-started.md) |
-| To know what phase we are in | [project-roadmap.md](project-roadmap.md) |
+| To see scope, findings, and limits | [project-roadmap.md](project-roadmap.md) |
 | To understand extract → parse → load | [etl_pipeline.md](etl_pipeline.md) |
 | To follow one command through the files | [etl-process-flow.md](etl-process-flow.md) |
 | To understand local vs remote databases | [remote_database_architecture.md](remote_database_architecture.md) |
@@ -100,7 +96,7 @@ than silently changing the original decision.
 
 ---
 
-## Guides (what exists today)
+## Guides
 
 ### [getting-started.md](getting-started.md)
 
@@ -114,15 +110,9 @@ contributor role.
 
 ### [project-roadmap.md](project-roadmap.md)
 
-Status and next analysis steps. Treat this as the product plan:
-
-1. ETL — complete
-2. Database model — complete
-3. Cross-chain `chain_prices` / `price_comparison` — complete
-4. Shared remote database — complete
-5. **Product categorization — in progress** (crawl done, labels not in DB)
-6. Then: validate labels → analysis dataset → EDA → business questions
-   → baskets → dashboard → portfolio write-up
+Public project overview: pipeline, headline results (catalog, basket,
+classifier), publishing rules for the three-chain extract, and
+documented limits.
 
 ### [etl_pipeline.md](etl_pipeline.md)
 
@@ -194,7 +184,8 @@ Test mistakes: [product_classifier_error_analysis.md](product_classifier_error_a
 
 The chat service that makes the analytical layer answerable in plain language:
 
-- `uv run python -m src.agent_platform`, served with FastAPI over SSE
+- `uv run python -m src.agent_platform`, or Cursor **Chat Service**
+  (opens `http://127.0.0.1:8000/` when Uvicorn is ready)
 - a pydantic-ai agent combining `SKILL.md` playbooks with five read-only SQL
   tools; no free-form SQL, and the connection is read-only server-side
 - explicit context control, so what the model was sent is always inspectable
@@ -279,7 +270,7 @@ SQL that *is* in Git:
 |---|---|
 | `sql/01`–`07` | Schema, tables, indexes, quality checks |
 | `sql/analysis/` | Builds `chain_prices` and `price_comparison` |
-| `sql/remote/` | Remote schema, grants, and load helpers |
+| `sql/remote/` | Shared-database setup helpers (dumps are gitignored) |
 
 ---
 
@@ -287,8 +278,8 @@ SQL that *is* in Git:
 
 - Put **how to run** in getting-started / etl_pipeline, not in every ADR.
 - Put **why** in an ADR when the choice should survive a rewrite.
-- Put **current phase and next steps** in the roadmap; keep checklists
-  there, not duplicated in three places.
+- Put **scope, findings, and limits** in the project overview rather
+  than repeating the same status list in every guide.
 - When numbers change (row counts, match rates, crawl size), update
   `supercompare_labeling.md` and ADR 0004 together.
 - Never put database passwords in markdown. Variable names only.

@@ -90,24 +90,16 @@ Columns (see `sql/02_create_tables.sql`):
 - `classification_method`
 - `classification_confidence`
 
-Raw SuperCompare memberships are silver labels. They must be reviewed
+Raw SuperCompare memberships are silver labels. They are reviewed
 before they become rows in this table. A barcode that appears in more
 than one SuperCompare endpoint cannot be copied blindly because this
 primary key allows only one label.
 
-The planned remaining workflow is:
-
-```text
-supercompare_products.csv  (silver labels, local)
-        ↓
-join to price_comparison.item_code  (~14.8k comparable products)
-        ↓
-review coverage, weak slices, quality sample
-        ↓
-grocery.product_classification  (remote, shared)
-        ↓
-optional model for products still unlabeled
-```
+Analysis uses the crawl CSV and SQL views in `sql/analysis/` as well
+as this table. Labels are joined to `price_comparison.item_code`
+(~14.8k comparable products). Weak slices were sampled; accepted
+corrections live in
+`src/product_classification/manual_category_corrections.csv`.
 
 ---
 
@@ -297,7 +289,7 @@ The initial remote database contains:
 |---|---:|---|
 | `products` | 61,768 | Product metadata + ML input |
 | `stores` | 587 | Store and chain reference |
-| `product_classification` | 0 | Manual/ML product categories |
+| `product_classification` | — | Accepted labels (crawl CSV + overlay) |
 | `chain_prices` | 36,067 | Product × chain representative prices |
 | `price_comparison` | 14,816 | Final exact-product price comparison |
 
@@ -305,25 +297,17 @@ The initial remote database contains:
 
 ---
 
-## Current Status
+## What is in the remote database
 
-- [x] Load data from Shufersal, Rami Levy, and Victory
-- [x] Build local PostgreSQL data model
-- [x] Identify products available across multiple chains
-- [x] Calculate median product price per chain
-- [x] Create `chain_prices`
-- [x] Create `price_comparison`
-- [x] Implement cheapest-chain and tie logic
-- [x] Define which tables should be shared remotely
-- [x] Create remote PostgreSQL database (Supabase)
-- [x] Upload shared tables
-- [x] Configure secure database credentials (`REMOTE_DB_*` in `.env`)
-- [x] Give contributor database access
-- [x] Test remote connection from the project
-- [x] Crawl SuperCompare taxonomy into `supercompare_products.csv`
-- [ ] Join silver labels to comparable products and review quality
-- [ ] Load accepted labels into remote `grocery.product_classification`
-- [ ] Classify remaining products that have no reliable external label
+- Official files from Shufersal, Rami Levy, and Victory loaded locally
+- Local PostgreSQL model and analytical tables
+- `chain_prices` and `price_comparison` (cheapest chain and ties)
+- Shared remote PostgreSQL (Supabase) with the analytical subset
+- SuperCompare crawl in `supercompare_products.csv`
+- Silver labels joined to comparable products; quality review and
+  SVM experiments documented in `docs/`
+
+Credentials: `REMOTE_DB_*` in `.env` (never committed).
 
 ---
 
