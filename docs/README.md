@@ -62,6 +62,11 @@ docs/README.md                     this map
         │                          Test mistakes of the winning Linear SVM
         ├── modeling_decisions.md  short conclusions (canonical: ADR 0006)
         ├── agent_platform.md      chat service over the analytical database
+        ├── comparability_audit.md barcode/SKU like-for-like review
+        ├── weekly_basket_coverage.md
+        │                          illustrative weekly basket vs catalog coverage
+        ├── weekly_basket_results.md
+        │                          13-line comparable basket totals
         │
         └── adr/                   durable decisions (do not rewrite history)
 ```
@@ -87,6 +92,9 @@ than silently changing the original decision.
 | To understand the 12-class classifier experiments | [product_classifier_experiments.md](product_classifier_experiments.md) |
 | To see which model and features we kept | [ADR 0006](adr/0006-main-category-classifier.md) |
 | To ask the data questions in plain language | [agent_platform.md](agent_platform.md) |
+| To see which barcodes are not like-for-like | [comparability_audit.md](comparability_audit.md) |
+| To see which weekly-basket staples have like-for-like codes | [weekly_basket_coverage.md](weekly_basket_coverage.md) |
+| To see the comparable weekly-basket totals | [weekly_basket_results.md](weekly_basket_results.md) |
 | To contribute code in this repo’s style | [CONTRIBUTING.md](../CONTRIBUTING.md) |
 | To see why Pipeline / three chains / Supabase / labels / classifier / chat | ADRs 0001–0007 below |
 
@@ -196,6 +204,33 @@ The chat service that makes the analytical layer answerable in plain language:
 The durable choices are [ADR 0007](adr/0007-agent-platform-chat-service.md).
 Related code: `src/agent_platform/`.
 
+### [comparability_audit.md](comparability_audit.md)
+
+Read-only check of whether `item_code` is the same sellable SKU across
+chains. Uses 2026-08-19 PriceFull names, quantities, and manufacturers,
+not the single `grocery.products` row. Includes the 70-product ≥100%
+review and scores the rest of the eligible catalog. Manufacturer
+conflict alone is not invalid. Conservative Tableau publishing keeps
+only audit-valid three-chain rows
+(`data/processed/tableau_verified_three_chains.csv`, 5,676 of 6,408).
+The full audit CSV and the original Tableau extract are unchanged.
+
+### [weekly_basket_coverage.md](weekly_basket_coverage.md)
+
+Illustrative 13-item weekly basket (milk, eggs, bread, chicken, rice,
+pasta, potatoes, produce, yogurt, household). Read-only coverage
+against the verified three-chain extract, the broader comparison
+tables, store-level prices, and PriceFull. Packaged staples match on
+barcode; fresh produce and chicken mostly use chain-specific weighted
+PLUs and need a separate matching table.
+
+### [weekly_basket_results.md](weekly_basket_results.md)
+
+13-line illustrative comparable basket (packaged verified SKUs, approved
+fresh PLUs, basket-only eggs). Potatoes and chicken excluded. Rami Levy
+₪193.70 vs Victory ₪210.00. Tableau CSV:
+`data/processed/weekly_basket_comparison.csv`.
+
 ---
 
 ## Architecture Decision Records (`docs/adr/`)
@@ -229,6 +264,14 @@ working data the markdown describes.
 | `data/raw/supercompare/` | Checkpointed SuperCompare API pages + `taxonomy.json` |
 | `data/processed/supercompare_products.csv` | Full crawl export: barcode + SuperCompare category path |
 | `data/processed/supercompare_crawl_report.json` | Crawl completeness report |
+| `data/processed/price_spread_100pct_review.csv` | Manual review of 70 eligible products with ≥100% spread |
+| `data/processed/comparability_audit.csv` | Full eligible-catalog comparability audit (14,653 rows) |
+| `data/processed/tableau_price_comparison.csv` | Full Tableau extract from `v_price_comparison_with_categories` |
+| `data/processed/tableau_verified_three_chains.csv` | Conservative three-chain dashboard extract (5,676 audit-valid products) |
+| `data/processed/weekly_basket_candidates.csv` | Candidate barcodes for the illustrative weekly basket (coverage only) |
+| `data/processed/weekly_basket_fresh_matches.csv` | Pending per-chain fresh SKU matches (cucumbers, tomatoes, potatoes, bananas, chicken), ₪/kg |
+| `data/processed/weekly_basket_exceptions.csv` | Basket-only SKU exceptions (does not change the comparability audit) |
+| `data/processed/weekly_basket_comparison.csv` | 13-line comparable weekly basket (39 chain rows) for Tableau |
 
 SQL that *is* in Git:
 

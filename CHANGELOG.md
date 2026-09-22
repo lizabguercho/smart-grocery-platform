@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added a conservative Tableau extract of 5,676 audit-valid three-chain
+  products (`data/processed/tableau_verified_three_chains.csv`); the
+  original extract, classifications, and workbook are unchanged
+- Added an illustrative 13-line weekly basket comparison
+  (`data/processed/weekly_basket_comparison.csv`,
+  `docs/weekly_basket_results.md`); potatoes and chicken excluded;
+  audit and workbook unchanged
 - Added streaming grocery analytical chat service and web UI
 
 - Added an interactive Web Chat UI served directly by FastAPI at `/` and `/ui`,
