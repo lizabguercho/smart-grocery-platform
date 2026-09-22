@@ -12,9 +12,8 @@ __pycache__/
 # macOS
 .DS_Store
 
-# Cursor / VS Code local settings (keep the shared ETL launcher)
-.vscode/*
-!.vscode/launch.json
+# Cursor / VS Code local settings (not versioned)
+.vscode/
 
 # Downloaded supermarket data
 data/raw/
