@@ -336,7 +336,26 @@ Potential views include:
 - product-level comparison
 - filters for category/subcategory
 
-Do not build the dashboard before the analytical logic is validated.
+### Conservative publishing policy (three-chain dashboard)
+
+A barcode in three chains is not automatically a like-for-like SKU.
+The published three-chain dataset is the audit-valid subset only:
+
+- Source view: `grocery.v_price_comparison_with_categories`
+- Keep `include_in_analysis = true` and `chains_compared = 3`
+- Keep `proposed_status = valid` from `data/processed/comparability_audit.csv`
+- Coverage: **5,676 / 6,408** (88.6%)
+- Leave out 696 unresolved `needs_review` rows, 35 `invalid`, and 1 `uncertain`
+- Do not cap or rewrite source prices
+- Keep valid large spreads (a high percent is not a collision by itself)
+
+File: `data/processed/tableau_verified_three_chains.csv`.
+The original extract `data/processed/tableau_price_comparison.csv` and
+`Smart_Grocery_Dashboard.twb` are unchanged until the workbook is
+repointed.
+
+Do not build headline dashboard claims from the unfiltered 6,408
+three-chain barcodes.
 
 ---
 
