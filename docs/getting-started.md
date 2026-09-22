@@ -277,6 +277,23 @@ implemented for all three chains).
 That uses the same `python -m src.etl` command as the terminal. Select
 the project `.venv` interpreter if Cursor asks.
 
+### Run the chat service
+
+Needs `REMOTE_DB_*` and a model API key in `.env`. See
+[agent_platform.md](agent_platform.md).
+
+**From Cursor:** Run and Debug → **Chat Service**. That is
+`uv run python -m src.agent_platform`. When Uvicorn is listening,
+the browser opens `http://127.0.0.1:8000/`.
+
+**From the terminal:**
+
+```bash
+uv run python -m src.agent_platform
+```
+
+Then open `http://127.0.0.1:8000/`.
+
 ### Download, parse, and load PriceFull files
 
 ```bash

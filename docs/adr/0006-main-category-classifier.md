@@ -85,14 +85,13 @@ Bakery (F1 0.727), Deli & Salads (F1 0.800, n=14), Snacks & Sweets
 (F1 0.811). Narrative, per-class tables, and how to rerun:
 [product_classifier_experiments.md](../product_classifier_experiments.md).
 
-### Still open
+### Transformer vs scoring leftovers
 
-A Hebrew transformer is **not** the next default step. Linear SVM
-already reaches ~0.86 Test Macro F1. A transformer would need to beat
-that on Bakery / Deli / Pantry overlap, at a much higher setup cost.
-Do not train it until that tradeoff is accepted. Do not score the
-~9,098 unlabeled products until Linear SVM is accepted as good enough
-or a transformer comparison is done.
+A Hebrew transformer is **not** required for the published analysis.
+Linear SVM already reaches ~0.86 Test Macro F1. A transformer would
+need to beat that on Bakery / Deli / Pantry overlap at a much higher
+setup cost. Unlabeled comparables (~9,098) are not scored as
+SuperCompare gold in the dashboard extract.
 
 ## Rejected alternatives
 
@@ -150,3 +149,12 @@ also drops denylist barcodes. Historical Test scores (0.871 / 0.862)
 were measured on uncorrected SuperCompare labels.
 
 Details: [product_classifier_error_analysis.md](../product_classifier_error_analysis.md).
+
+## Later update (September 2026) — Hebrew tokenizer experiment
+
+AlephBERT was used to inspect token lengths on labeled comparable
+products. Fixed 12-class label IDs live in
+`src/product_classification/transformer_classifier.py`. The production
+classifier remains **TF-IDF + Linear SVM**. The transformer extra is
+optional (`uv sync --group transformers`) and is not required to
+rebuild the published analysis.

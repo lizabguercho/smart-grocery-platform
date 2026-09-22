@@ -30,8 +30,8 @@ This audit asks, for the full eligible catalog:
    conflict?
 2. Which barcodes look like short/internal PLUs, wholesale-only
    comparisons, or each-vs-kg mismatches?
-3. What should be reviewed before Thursday’s dashboard, without treating
-   every spelling difference as a bad match?
+3. Which barcodes look like short/internal PLUs, wholesale-only
+   comparisons, or each-vs-kg mismatches?
 
 ---
 
@@ -311,9 +311,8 @@ that passed the audit — including the 150% chocolate muffins from the
 itself evidence of a barcode collision.
 
 File: `data/processed/tableau_verified_three_chains.csv`. Columns match
-the current Tableau extract / `grocery.v_price_comparison_with_categories`.
-The workbook `Smart_Grocery_Dashboard.twb` is unchanged and still reads
-`tableau_price_comparison.csv` until it is pointed at this file.
+`grocery.v_price_comparison_with_categories`. Local Tableau workbooks
+should use this file for headline three-chain views.
 
 On this verified set (9 September 2026): mean
 `price_difference_pct` is **19.14**. Category counts: Pantry & Cooking
@@ -323,47 +322,20 @@ Meat & Fish 174; Fresh Produce 98; Baby 93; Deli & Salads 83.
 
 ---
 
-## Thursday dashboard strategy
+## Publishing policy (three-chain dashboard)
 
-Time-box. Do **not** try to read 1,483 rows, and do **not** exclude
-anything until you approve it.
+Headline three-chain views use the conservative extract, not the raw
+6,408 three-chain barcodes. Rows are not excluded only because
+manufacturers differ (Elite vs Strauss, Kinder vs Ferrero), because of
+Hebrew abbreviations, or because the percent spread is large while
+`proposed_status` is `valid`.
 
-**Must-do (already judged or high confidence):**
+Source prices are not capped. `include_in_analysis` and
+`tableau_price_comparison.csv` are not overwritten by this audit.
 
-1. Keep the prior 27 `invalid` and 4 `uncertain` decisions. Do not
-   headline the 3,822% pan gap or the other ≥100% collisions.
-2. Glance at the 8 `each_vs_kg` and 3 `collision_keyword` rows.
-3. Glance at the 24 `7290000000…` internal PLU barcodes.
-4. **Three-chain dashboard:** the 24 high-risk
-   `manufacturer_conflict` rows with spread ≥50%. These are the ones
-   that can still move a three-chain KPI.
-
-**Should-do if there is a second hour:**
-
-5. The 177 three-chain rows newly moved `valid` → `needs_review`.
-   Start with `name_mismatch` (91). Treat short-barcode + manufacturer
-   (69; Kinder/Ferrero, Tic Tac, Mentos) as likely brand vs company
-   unless the names also diverge.
-6. Filter remaining `needs_review` with `price_difference_pct >= 50`
-   (170 rows catalog-wide, 47 in the three-chain subset).
-7. Sample 15 of the 128 new wholesale-only `invalid` rows.
-
-**Do not do before Thursday:**
-
-- Re-score 13,006 `valid` rows by eye.
-- Exclude a row only because manufacturers differ (Elite vs Strauss,
-  Kinder vs Ferrero).
-- Treat every Hebrew abbreviation as a collision.
-- Cap prices, flip `include_in_analysis`, or overwrite
-  `tableau_price_comparison.csv`.
-- Treat a valid large spread as a collision. The verified extract keeps
-  those rows.
-
-The conservative three-chain extract
-(`tableau_verified_three_chains.csv`) is the publishable subset. Point
-the dashboard at that file if the workbook should show only like-for-like
-SKU matches. The full extract and the audit CSV remain the complete
-record, including the 696 unresolved `needs_review` barcodes.
+The conservative file `tableau_verified_three_chains.csv` is the
+publishable subset. The full extract and the audit CSV remain the
+complete record, including unresolved `needs_review` barcodes.
 
 ---
 

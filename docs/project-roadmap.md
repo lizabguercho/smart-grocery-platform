@@ -1,447 +1,167 @@
-# Smart Grocery Platform — Current Status and Analysis Roadmap
+# Project overview
 
 Related: [Documentation map](README.md) ·
-[SuperCompare labeling](supercompare_labeling.md) ·
+[Comparability audit](comparability_audit.md) ·
+[Weekly basket results](weekly_basket_results.md) ·
 [Classifier experiments](product_classifier_experiments.md) ·
-[ADR 0006 — classifier](adr/0006-main-category-classifier.md) ·
-[Error analysis](product_classifier_error_analysis.md) ·
+[ADR 0006](adr/0006-main-category-classifier.md) ·
 [Remote database](remote_database_architecture.md)
 
-## Project Goal
+Smart Grocery Platform compares **official** prices from Shufersal,
+Rami Levy, and Victory so a shopper can see where the **same product**
+is cheaper, where a **category** is cheaper, and what an **illustrative
+weekly basket** costs.
 
-The Smart Grocery Platform is a data analytics portfolio project analyzing grocery prices across three Israeli supermarket chains:
-
-- Shufersal
-- Rami Levy
-- Victory
-
-The main business goal is to determine how supermarket prices differ across chains and help consumers understand where they can save money.
-
-The project is intended primarily as a **Data Analyst portfolio project**, not as a Data Engineering project.
-
-Therefore, the next development phases should prioritize:
-
-1. product categorization,
-2. data analysis,
-3. business insights,
-4. visualization,
-5. communication of results.
-
-Avoid adding unnecessary infrastructure unless it is required to complete the analysis.
+It is a **data analytics** project. Infrastructure (ETL, PostgreSQL, a
+small remote analytical database) is there to make the numbers
+rebuildable and reviewable.
 
 ---
 
-# Current Project Status
+## Scope
 
-## 1. Data Extraction and ETL — COMPLETE
-
-Data has been collected from Shufersal, Rami Levy, and Victory.
-
-The local PostgreSQL database contains the detailed/raw and historical data required by the ETL pipeline.
-
-The local database should remain the main environment for:
-
-- raw data
-- historical price data
-- ETL processing
-- rebuilding analytical tables
-- data validation
+| Layer | What it is |
+|---|---|
+| Sources | PriceFull, Stores, PromoFull for three chains |
+| Local database | Full history, staging, promotions, rebuilds |
+| Analytical tables | `chain_prices` (median per chain) and `price_comparison` |
+| Shared remote DB | ~25 MB subset for analysis and the chat service |
+| Categories | SuperCompare silver labels + TF-IDF Linear SVM |
+| Audit | Like-for-like check on barcode joins |
+| Basket | 13 documented lines; potatoes and chicken excluded |
+| Presentation | Tableau (local workbooks) and a read-only chat API |
 
 ---
 
-## 2. Database Design — COMPLETE
+## Pipeline
 
-The project has a structured PostgreSQL data model containing product, store, price, promotion, and analytical data.
-
-The analytical layer contains the main tables required for further analysis.
+```text
+official chain files
+  → ETL (extract → parse → load)
+  → local PostgreSQL history
+  → chain_prices + price_comparison
+  → SuperCompare labels + classifier
+  → comparability audit
+  → verified three-chain extract + weekly basket
+  → Tableau / chat over the analytical layer
+```
 
 ---
 
-## 3. Cross-Chain Product Comparison — COMPLETE
+## Findings (documented snapshots)
 
-Products that appear across supermarket chains have been identified using `item_code`.
+PriceFull day used for the audit and basket: **2026-08-19**.
 
-A chain-level representative price is calculated using the median price across stores.
+### Catalog
 
-The main analytical tables include:
+- **14,816** comparable products (at least two chains, same `item_code`).
+- **6,408** appear in all three chains; **5,676** of those are
+  audit-`valid` (88.6%) and are the published three-chain set.
+- SuperCompare crawl: **15,616** rows, **15,230** unique barcodes
+  (1 September 2026). Join to comparables: **5,718** labeled,
+  **9,098** unlabeled.
+
+### Weekly basket
+
+Illustrative household shop (not a consumption survey):
+
+| Chain | Total |
+|---|---:|
+| **Rami Levy** | **₪193.70** |
+| Shufersal | ₪203.00 |
+| Victory | ₪210.00 |
+
+Rami Levy is **₪16.30** (7.76%) below Victory. Line-level table:
+[weekly_basket_results.md](weekly_basket_results.md).
+
+### Classifier
+
+12 SuperCompare main categories, `item_name` + `manufacture_name`,
+stratified 70/15/15:
+
+| Metric | Test (uncorrected labels) |
+|---|---|
+| Accuracy | 0.871 |
+| Macro F1 | 0.862 |
+
+Manufacturer is kept as a feature. A 13-row manual overlay corrects
+obvious SuperCompare errors; cigarettes stay on the analysis denylist.
+A Hebrew transformer was explored as a tokenizer experiment, not as
+the production model.
+
+---
+
+## Analytical tables
 
 ### `grocery.chain_prices`
 
-One row per:
-
-`item_code + chain_id`
-
-Contains the median price of the product within that supermarket chain.
+One row per `item_code` + `chain_id`: median store price for that
+chain (positive prices only). Median is used because stores inside a
+chain disagree.
 
 ### `grocery.price_comparison`
 
-One row per comparable product.
+One row per comparable product: Shufersal, Rami Levy, and Victory
+medians, cheapest price, and cheapest chain. Ties are labeled as ties.
 
-Contains:
-
-- Shufersal price
-- Rami Levy price
-- Victory price
-- cheapest price
-- cheapest chain
-
-This allows exact-product price comparisons across chains.
-
----
-
-## 4. Shared Remote Database — COMPLETE
-
-A shared PostgreSQL database has been created in Supabase.
-
-The remote database contains the lightweight analytical layer rather than the complete local historical database.
-
-Current shared tables:
-
-- `grocery.products`
-- `grocery.stores`
-- `grocery.product_classification`
-- `grocery.chain_prices`
-- `grocery.price_comparison`
-
-A dedicated PostgreSQL `contributor` role has been created.
-
-The contributor has read/write access to the shared `grocery` schema.
-
-Remote connectivity has been successfully tested through:
-
-- PostgreSQL / psql
-- pgAdmin
-- Python using `get_remote_connection()`
-
-Database credentials are stored in `.env` and must never be committed to Git.
-
----
-
-# Current Phase: Product Categorization
-
-This is the next major project phase.
-
-The purpose of categorization is NOT to turn the project into an ML project.
-Categorization exists so analysis can ask category-level questions:
-
-> Which supermarket is cheapest for dairy?
-> Is one chain consistently cheaper for snacks?
-> Does the cheapest supermarket depend on the product category?
-
-Exact barcode matching already answers “which chain is cheapest for this
-exact product?” Categories unlock grouping.
-
-### What is already done
-
-- SuperCompare taxonomy discovered (12 parent categories, 55 subcategories).
-- Full catalog crawled into
-  `data/processed/supercompare_products.csv`
-  (**15,616** rows, **15,230** unique barcodes, 1 September 2026).
-- Comparable join: **5,718** labeled / **9,098** unlabeled of 14,816.
-- Classical 12-class experiments: manufacturer **kept**; winner
-  **TF-IDF + Linear SVM** (Test Macro F1 **0.862**). See
-  [product_classifier_experiments.md](product_classifier_experiments.md).
-- Earlier Dairy & Eggs barcode join against `grocery.products` was
-  validated (Milk 88%, Cheese 94%, Eggs 43%).
-- Resilient crawler with checkpoints and retries ([ADR 0005](adr/0005-resilient-supercompare-crawler.md)).
-
-Details: [supercompare_labeling.md](supercompare_labeling.md).
-Sample-size targets: [ADR 0004](adr/0004-product-categorization-and-training-sample.md).
-
-### What is not done yet
-
-- Write accepted SuperCompare labels to remote
-  `grocery.product_classification` (that table is still empty).
-- Decide whether a Hebrew transformer is worth trying after the
-  classical Linear SVM (~0.86 Test Macro F1).
-- Score the ~9,098 unlabeled comparable products.
-- Train a **subcategory** model (55 classes) — not started.
-
-Classification results belong in remote `grocery.product_classification`
-so both contributors share the same labels.
-
----
-
-# Next Steps
-
-## Step 1 — Complete Product Categorization
-
-Finish the labeling workflow. The SuperCompare crawl itself is done.
-
-Remaining work:
-
-1. Store accepted SuperCompare mappings in remote
-   `grocery.product_classification`.
-2. Decide whether Linear SVM is good enough for the ~9,098 unlabeled
-   products, or whether a Hebrew transformer should be tested first.
-3. Do not train 55 subcategories until main-category scoring is settled.
-
-Do not over-engineer the ML solution. Reliable categories that are good
-enough for analytical use are the goal.
-
----
-
-## Step 2 — Validate Classification Quality
-
-Before using categories for business analysis, validate them.
-
-Check:
-
-- number of classified products
-- number of unclassified products
-- category distribution
-- subcategory distribution
-- obviously incorrect classifications
-- categories with very few products
-- products assigned to inappropriate categories
-
-Take samples from each major category and manually inspect them.
-
-The purpose is to ensure classification errors do not distort the later price analysis.
-
----
-
-## Step 3 — Prepare the Analysis Dataset
-
-Create a clean analytical dataset combining:
-
-- product information
-- product category
-- product subcategory
-- chain-level prices
-- cheapest chain
-
-The exact implementation can be a SQL view or another appropriate analytical layer.
-
-Avoid duplicating data unnecessarily.
-
-The resulting dataset should make business-analysis queries simple.
-
----
-
-## Step 4 — Exploratory Data Analysis
-
-Understand the dataset before answering business questions.
-
-Investigate:
-
-- number of comparable products
-- products available in 2 chains vs 3 chains
-- products per category
-- price distributions
-- missing prices
-- extreme prices / possible outliers
-- price differences between chains
-- category coverage by chain
-
-The goal is to understand limitations and biases in the comparison dataset.
-
----
-
-## Step 5 — Core Business Analysis
-
-This is one of the most important stages of the entire project.
-
-Focus on a small number of strong business questions rather than producing many unrelated SQL queries.
-
-Priority questions include:
-
-### Which chain is cheapest most often?
-
-Calculate how frequently:
-
-- Shufersal
-- Rami Levy
-- Victory
-
-has the lowest price for comparable products.
-
-Handle ties explicitly.
-
-### How large are price differences between chains?
-
-Do not only identify the cheapest chain.
-
-Measure the magnitude of the difference.
-
-For example:
-
-- absolute price difference
-- percentage price difference
-- median savings
-- distribution of savings
-
-### Which chain is cheapest by category?
-
-Compare supermarket competitiveness across categories.
-
-Examples:
-
-- Dairy & Eggs
-- Snacks & Sweets
-- Beverages
-- Frozen Food
-- Personal Care
-- Cleaning
-
-Determine whether different chains are competitive in different categories.
-
-### Are the conclusions different for products available in all three chains?
-
-Separate:
-
-- products available in exactly two chains
-- products available in all three chains
-
-This prevents availability differences from creating misleading conclusions.
-
----
-
-## Step 6 — Basket Analysis
-
-Move from individual products to a consumer-oriented question:
-
-> What happens when someone buys an entire grocery basket?
-
-Create several representative baskets where supported by the data.
-
-For each basket calculate:
-
-- Shufersal total
-- Rami Levy total
-- Victory total
-- cheapest chain
-- absolute savings
-- percentage savings
-
-Basket assumptions must be documented clearly.
-
-Do not force comparisons when equivalent/comparable products are unavailable.
-
----
-
-## Step 7 — Visualization / Dashboard
-
-After the analytical questions and metrics are stable, create the presentation layer.
-
-The dashboard should communicate insights rather than simply display tables.
-
-Potential views include:
-
-- cheapest chain overall
-- cheapest chain by category
-- median price differences
-- potential savings
-- basket comparison
-- product-level comparison
-- filters for category/subcategory
-
-### Conservative publishing policy (three-chain dashboard)
+### Published three-chain extract
 
 A barcode in three chains is not automatically a like-for-like SKU.
-The published three-chain dataset is the audit-valid subset only:
 
-- Source view: `grocery.v_price_comparison_with_categories`
+- View: `grocery.v_price_comparison_with_categories`
 - Keep `include_in_analysis = true` and `chains_compared = 3`
-- Keep `proposed_status = valid` from `data/processed/comparability_audit.csv`
-- Coverage: **5,676 / 6,408** (88.6%)
-- Leave out 696 unresolved `needs_review` rows, 35 `invalid`, and 1 `uncertain`
-- Do not cap or rewrite source prices
-- Keep valid large spreads (a high percent is not a collision by itself)
+- Keep `proposed_status = valid` from `comparability_audit.csv`
+- **5,676 / 6,408** (88.6%)
+- Out: 696 `needs_review`, 35 `invalid`, 1 `uncertain`
+- Source prices are not capped or rewritten
+- Valid large spreads stay (a high percent is not a collision by itself)
 
-File: `data/processed/tableau_verified_three_chains.csv`.
-The original extract `data/processed/tableau_price_comparison.csv` and
-`Smart_Grocery_Dashboard.twb` are unchanged until the workbook is
-repointed.
-
-Do not build headline dashboard claims from the unfiltered 6,408
-three-chain barcodes.
+File: `data/processed/tableau_verified_three_chains.csv` (gitignored).
 
 ---
 
-## Step 8 — Insights and Recommendations
+## Why categories exist
 
-Translate analytical results into understandable conclusions.
+Barcode match answers “which chain is cheaper for this SKU?”
+Categories answer grouping questions (dairy vs snacks vs household)
+without pretending every unlabeled leftover is gold.
 
-Examples of the type of conclusions the project should eventually support:
-
-- which chain wins most exact-product comparisons
-- whether that advantage is large or small
-- which categories each chain performs best in
-- whether consumers can achieve meaningful savings
-- whether one supermarket is consistently cheapest or whether the answer depends on the shopping basket
-
-Every final claim must be supported by the data.
-
-Document important analytical limitations.
+Labels come from **which SuperCompare subcategory endpoint** returned
+the barcode. They are silver, not ground truth. Details:
+[supercompare_labeling.md](supercompare_labeling.md).
 
 ---
 
-## Step 9 — Portfolio Presentation
+## Limits (by design)
 
-Once analysis is complete, prepare the project for GitHub and CV presentation.
+These are methodology choices, not a backlog:
 
-The final project story should emphasize:
-
-**Business problem → Data → Methodology → Analysis → Insights → Visualization**
-
-Do not make infrastructure the main story.
-
-ETL, PostgreSQL, Supabase, remote collaboration, permissions, and database architecture demonstrate technical ability, but they support the analysis rather than being the final product.
-
-The portfolio should highlight measurable findings such as:
-
-- number of products analyzed
-- number of comparable products
-- price differences
-- category-level findings
-- potential savings
-
-Only use numbers actually produced by the final analysis.
+- Comparisons use **exact `item_code`** unless a basket line is an
+  approved exception (eggs) or an approved fresh-PLU triple.
+- Fresh chicken and ordinary white potatoes are **out** of the money
+  basket (kashrut/cut/plant and Victory potato assortment).
+- Unlabeled comparables (**9,098**) are not scored into the published
+  dashboard extract as if they were SuperCompare gold.
+- `grocery.product_classification` is the intended home for accepted
+  labels; analysis also uses crawl CSVs and SQL views documented in
+  `sql/analysis/`.
+- Tableau files are **local** and gitignored; GitHub holds methods,
+  SQL, and write-ups.
+- The chat service is **read-only** over the analytical database. It
+  cannot invent SQL.
 
 ---
 
-# Development Principle
+## How to read the rest
 
-This is primarily a **Data Analyst portfolio project**.
-
-When suggesting future work, prioritize:
-
-1. analytical correctness
-2. SQL and Python analysis
-3. data validation
-4. business questions
-5. visualization
-6. interpretation and communication
-
-Do NOT introduce additional architecture, cloud services, abstractions, frameworks, or engineering complexity unless there is a concrete analytical requirement for them.
-
-The infrastructure is currently sufficient to proceed with the analysis.
-
----
-
-# AI-Assisted Development
-
-The project is being developed with significant assistance from ChatGPT and Cursor.
-
-AI may help with:
-
-- writing code
-- SQL
-- debugging
-- documentation
-- architecture suggestions
-- refactoring
-
-However, code should remain understandable to the project owner.
-
-When generating or modifying important analytical logic:
-
-- explain what the code does
-- explain why the approach is being used
-- avoid unnecessary complexity
-- prefer solutions appropriate for a junior Data Analyst project
-- make assumptions explicit
-- do not silently introduce major architectural changes
-
-The goal is not simply to generate working code, but to maintain a project whose analytical reasoning can be explained and defended in a technical interview.
+| Topic | Document |
+|---|---|
+| Install and run ETL | [getting-started.md](getting-started.md) |
+| ETL design | [etl_pipeline.md](etl_pipeline.md) |
+| Two databases | [remote_database_architecture.md](remote_database_architecture.md) |
+| Labels | [supercompare_labeling.md](supercompare_labeling.md) |
+| SVM experiments | [product_classifier_experiments.md](product_classifier_experiments.md) |
+| SKU audit | [comparability_audit.md](comparability_audit.md) |
+| Basket | [weekly_basket_results.md](weekly_basket_results.md) |
+| Chat | [agent_platform.md](agent_platform.md) |
+| Decisions | ADRs 0001–0007 |

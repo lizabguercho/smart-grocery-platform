@@ -4,8 +4,7 @@ Related: [Coverage](weekly_basket_coverage.md) ·
 [Comparability audit](comparability_audit.md)
 
 Date: 9 September 2026. Illustrative 13-line household basket. Not a
-consumption survey. **No change** to the database, `comparability_audit.csv`,
-classifications, existing price extracts, or the Tableau workbook.
+consumption survey.
 
 Tableau file: `data/processed/weekly_basket_comparison.csv` (39 rows: 13
 lines × 3 chains). Filter is unnecessary if you sum `line_total` by

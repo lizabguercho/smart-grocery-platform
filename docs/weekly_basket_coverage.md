@@ -4,9 +4,10 @@ Related: [Documentation map](README.md) ·
 [Comparability audit](comparability_audit.md) ·
 [Project roadmap](project-roadmap.md)
 
-Date: 9 September 2026. This is a **read-only** coverage study. It does
-not change the database, classification labels, existing CSVs, or the
-Tableau workbook. It does **not** compute or publish basket totals.
+Date: 9 September 2026. This is a **read-only** coverage study of
+whether an illustrative 13-item weekly basket has like-for-like codes
+in the verified extract. Basket **totals** are in
+[weekly_basket_results.md](weekly_basket_results.md).
 
 Candidate barcodes and chain coverage:
 `data/processed/weekly_basket_candidates.csv`.
@@ -320,47 +321,32 @@ brands/specs (792 m vs 441 m). Pick one SKU; do not mix packs.
 
 ---
 
-## How to get a reliable basket without weakening the audit
+## How the published basket stays honest
 
-Do **not**: auto-join on Hebrew name; treat `7290000000…` PLUs as
-universal produce codes; drop `internal_plu_pattern` or
-`quantity_ratio_ge_5`; mix Atara / Landa / Victory butcher codes; swap
-cherry packs for loose tomatoes silently; publish a ₪ total until
-matches are approved.
+The money comparison does **not** auto-join on Hebrew name, treat
+`7290000000…` PLUs as universal produce codes, drop
+`internal_plu_pattern` or `quantity_ratio_ge_5`, mix butcher brands, or
+swap cherry packs for loose tomatoes silently.
 
-Do:
+What was used:
 
-1. **Packaged core (now).** Build a barcode basket from verified SKUs:
-   milk `7290004131074`, bread `7290000497112`, rice `7290000211169`,
-   pasta `7290000060880`, yogurt `7290000057132`, dish soap
-   `8001090184375` or Palmolive 1 L, toilet paper `7290103704766`.
-   Optional tomato **pack**: `7290000993560`, labelled as cherry 460 g.
+1. **Packaged core** — verified three-chain SKUs: milk
+   `7290004131074`, bread `7290000497112`, rice `7290000211169`, pasta
+   `7290000060880`, yogurt `7290000057132`, Palmolive 1 L
+   `7290004078270`, toilet paper `7290103704766`, tuna
+   `7290005287930`, lentils `7290001041208`.
+2. **Eggs** — `7290001201589` as a documented basket-only exception
+   (audit `needs_review` for quantity 1 vs 12). The audit CSV is not
+   rewritten.
+3. **Fresh produce** — approved ₪/kg triples in
+   `weekly_basket_fresh_matches.csv` for cucumbers, loose tomatoes, and
+   bananas. Potatoes and chicken stay **out** of the comparable basket
+   (Victory has no ordinary white potato; chicken plants/kashrut/cut
+   do not match).
+4. **Two stories** — (A) like-for-like packaged barcodes; (B) fresh
+   staples as approved PLU triples, not GTIN identity.
 
-2. **Eggs (documented basket exception, approved).** Use
-   `7290001201589` only in the basket exception list. Leave
-   `quantity_ratio_ge_5` and `comparability_audit.csv` unchanged.
-
-3. **Fresh produce and chicken (separate matching table).** Draft rows
-   are in `data/processed/weekly_basket_fresh_matches.csv`. Proposed
-   triples for cucumbers, loose tomatoes, and bananas are
-   `approved`. Potatoes, chicken, and all alternative rows stay
-   `pending`. Comparison is ₪/kg within a reviewed triple, not “same
-   barcode.” Eggs `7290001201589` are a separate basket-only exception
-   (approved). Potatoes and chicken stay pending and should be
-   **excluded** from the comparable basket (Victory has no ordinary
-   white potato; chicken plants/kashrut/cut are not shown to match).
-   Do not publish basket totals in this pass.
-
-4. **Two published stories, if needed.** (A) like-for-like packaged
-   basket on verified barcodes; (B) fresh staples as a qualitative
-   coverage note. That keeps the dashboard honest without pretending
-   PLUs are GTIN identity.
-
-5. **Store support filters.** Prefer candidates with stores in all
-   three chains (Rami cherry tomatoes at 1 store is a weak 3-chain
-   row even when the barcode matches).
-
-No basket totals are calculated in this pass.
+Totals: [weekly_basket_results.md](weekly_basket_results.md).
 
 ---
 

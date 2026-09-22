@@ -30,9 +30,14 @@ Then:
 uv run python -m src.agent_platform
 ```
 
-The service listens on `http://127.0.0.1:8000`. Visiting the root URL (`/` or
-`/ui`) in a browser opens the interactive Web Chat UI. Interactive API docs are
-at `/docs`.
+The service listens on `http://127.0.0.1:8000`. When Uvicorn reports it
+is running, open `/` or `/ui` for the Web Chat UI. Interactive API docs
+are at `/docs`.
+
+In Cursor, **Run and Debug → Chat Service** runs the same command
+(`uv run python -m src.agent_platform`) and opens
+`http://127.0.0.1:8000/` in your default browser once the server is
+listening. Stop the debug session to stop the service.
 
 ```bash
 curl -s http://127.0.0.1:8000/health

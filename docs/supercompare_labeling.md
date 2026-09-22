@@ -671,26 +671,23 @@ Vegetables (561), Trash Bags & Wraps (442), Fresh Fruit (427).
 
 Do not treat SuperCompare’s 9,512 unmapped products as a hole in
 *our* comparison dataset. They are SuperCompare items we cannot use
-for cheapest-chain analysis. The hole to fill with a model is the
-9,098 comparable products with no SuperCompare barcode.
+for cheapest-chain analysis. The remaining comparable products without
+a SuperCompare barcode are **9,098**; the published dashboard extract
+does not treat those as SuperCompare gold.
 
-## 10. Next Steps
+## 10. What the labeling work produced
 
-Done in this phase:
-
-- [x] Deduplicate SuperCompare on `item_code` and join to
+- Deduplicated SuperCompare on `item_code` and joined to
   `grocery.price_comparison`
-- [x] Write `data/processed/price_comparison_with_categories.csv`
-- [x] Measure labeled share of the comparable set (38.6%)
-- [x] Chart category / subcategory distribution for training-sample size
-- [x] Separate unlabeled comparable products (9,098) from unmapped SuperCompare barcodes (9,512)
+- Wrote `data/processed/price_comparison_with_categories.csv`
+- Measured labeled share of the comparable set (**38.6%**)
+- Charted category / subcategory distribution for sample size
+- Separated unlabeled comparable products (**9,098**) from unmapped
+  SuperCompare barcodes (**9,512**)
+- Trained and evaluated a 12-class main-category SVM (see
+  [product_classifier_experiments.md](product_classifier_experiments.md))
+- Used categories in the comparability extract, weekly basket, and
+  Tableau views
 
-Still planned:
-
-1. Promote reviewed barcode → category mappings to remote
-   `grocery.product_classification`.
-2. Create a labeled train/validation/test split if unlabeled leftovers
-   still need a model.
-3. Train and evaluate a simple **main-category** classifier for the
-   ~9,098 products without a SuperCompare label.
-4. Use categories in category-level price analysis (roadmap steps 3–8).
+Accepted label corrections:
+`src/product_classification/manual_category_corrections.csv`.

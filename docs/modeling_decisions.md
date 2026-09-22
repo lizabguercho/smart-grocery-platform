@@ -18,8 +18,9 @@ the same model; the gain is almost entirely cleaner Test gold, not a
 new decision surface. Macro F1 **+0.016** is a small evaluation bump,
 not a material model improvement.
 
-Do not score the ~9,098 unlabeled products yet. Do not train a Hebrew
-transformer yet.
+The production model is TF-IDF + Linear SVM. Unlabeled comparables
+are not treated as SuperCompare gold. A Hebrew transformer is a
+tokenizer experiment, not the published classifier.
 
 ## Manufacturer completeness (dashboard)
 
@@ -53,7 +54,8 @@ now have an approved overlay (see below). Cigarettes stay excluded.
 Short or empty names (`ברייק3`, missing manufacturer) are a real
 **model limit** of bag-of-words TF-IDF.
 
-**Next:** keep Linear SVM; decide taxonomy/reporting for
-Bakery–Pantry–Snacks before any transformer. The obvious-recode
-retrain did not change Train, so it is not a reason to score the 9,098
-yet.
+The published classifier is Linear SVM. Bakery / Pantry / Snacks
+overlap is treated as category ambiguity in reporting, not as a reason
+to replace the model. The obvious-recode overlay did not change Train,
+so it is not used as a reason to treat the 9,098 unlabeled products as
+scored gold.

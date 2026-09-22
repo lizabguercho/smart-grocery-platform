@@ -210,15 +210,13 @@ resolve “is granola pantry or snacks?” until we decide the rule.
 
 ---
 
-## What to try next (no transformer, no unlabeled scoring yet)
+## Reporting choices
 
-1. **Do not retrain yet** on the old Test metrics. The published 0.871
-   Test score used **uncorrected** SuperCompare y.
-2. Future training and grocery analysis should use the **correction
-   overlay** below, and drop `include_in_analysis=false` barcodes.
-3. For analysis charts, consider merging or footnote-ing Bakery +
-   Pantry + Snacks when the business question is “dry sweet/salty
-   goods.”
+The published Test metrics (accuracy 0.871, Macro F1 0.862) use
+**uncorrected** SuperCompare labels. Grocery analysis that needs
+cleaner names uses the **correction overlay** below and drops
+`include_in_analysis=false` barcodes. Bakery + Pantry + Snacks can be
+grouped or footnoted when the question is “dry sweet/salty goods.”
 
 ---
 

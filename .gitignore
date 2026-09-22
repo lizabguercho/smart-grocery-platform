@@ -12,17 +12,17 @@ __pycache__/
 # macOS
 .DS_Store
 
-# Cursor / VS Code local settings (keep the shared ETL launcher)
-.vscode/*
-!.vscode/launch.json
+# Cursor / VS Code local settings (not versioned)
+.vscode/
 
 # Downloaded supermarket data
 data/raw/
 data/processed/
 data/logs/
 
-# Local pg_dump of grocery.products (keep on disk, do not version)
+# Local pg_dump snapshots (keep on disk, do not version)
 sql/remote/remote_data.sql
+sql/remote/remote_schema.sql
 
 # Local Tableau workbooks, extracts, and PowerPoint decks (not versioned)
 *.pptx
