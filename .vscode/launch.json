@@ -6,9 +6,17 @@
       "type": "debugpy",
       "request": "launch",
       "module": "src.agent_platform",
+      "python": "uv",
+      "pythonArgs": ["run", "python"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
-      "justMyCode": true
+      "justMyCode": true,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "Uvicorn running on http://127\\.0\\.0\\.1:8000",
+        "uriFormat": "http://127.0.0.1:8000/",
+        "killOnServerStop": true
+      }
     },
     {
       "name": "ETL Pipeline",

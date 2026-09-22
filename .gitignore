@@ -21,8 +21,9 @@ data/raw/
 data/processed/
 data/logs/
 
-# Local pg_dump of grocery.products (keep on disk, do not version)
+# Local pg_dump snapshots (keep on disk, do not version)
 sql/remote/remote_data.sql
+sql/remote/remote_schema.sql
 
 # Local Tableau workbooks, extracts, and PowerPoint decks (not versioned)
 *.pptx
