@@ -11,6 +11,7 @@
 CREATE TABLE IF NOT EXISTS grocery.products (
     item_code BIGINT PRIMARY KEY,
     item_name TEXT,
+    item_name_en TEXT,
     manufacture_name TEXT,
     manufacture_country TEXT,
     manufacture_item_description TEXT,

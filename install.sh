@@ -139,6 +139,7 @@ SQL_SCRIPTS=(
   sql/01_create_schema.sql
   sql/02_create_tables.sql
   sql/05_indexes.sql
+  sql/08_add_item_name_en.sql
 )
 
 for script in "${SQL_SCRIPTS[@]}"; do
