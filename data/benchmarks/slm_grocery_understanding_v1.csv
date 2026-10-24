@@ -1,0 +1,250 @@
+benchmark_version,item_code,raw_item_name,is_product,category,subcategory,manufacture_name,slice_tags
+slm_grocery_understanding_v1,7290117906422,אגוז קשיו קלוי ענק 150 גרם,True,Snacks & Sweets,Nuts & Seeds,שקדיה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290019865179,חליטת סנגריה 15 שקיקים,True,Beverages,Hot Drinks,ויסוצקי,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290019790280,חלב נטול לקטז2% 1ל הגולן,True,Dairy & Eggs,Milk,מחלבות רמת הגולן,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000976433,קשיו ענק קלוי,True,Snacks & Sweets,Nuts & Seeds,דין שיווק,hebrew_only
+slm_grocery_understanding_v1,7290016693898,יין פטי ורדו בראשית 750,True,Beverages,Alcohol,יקבי ארזה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290115200027,פתי בר פינוקי שוקו 220ג,True,Bakery,Cookies & Cakes,DR GERARD,hebrew_only|has_digits
+slm_grocery_understanding_v1,8033413430708,לימונצלו וילה מאסה700מל,True,Beverages,Alcohol,וילה מאסה,hebrew_only|has_digits
+slm_grocery_understanding_v1,5711953148347,גבינת שמנת טבעי 300 גר ארלה,True,Dairy & Eggs,Cheese,ארלה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290003751303,"עוף טרי שלם ארוז העה""ח",True,Meat & Fish,Poultry,כללי,hebrew_only
+slm_grocery_understanding_v1,7290019603849,חמוצמוצים שטוחים טעם תות,True,Snacks & Sweets,Candy & Gum,"מיה תעשיות מזון מ.ת.מ בע""מ",hebrew_only
+slm_grocery_understanding_v1,np-026,דמי משלוח הזמנה,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290018441480,סורבה פינה קולדה 500 מל,True,Frozen,Ice Cream & Desserts,מוצרי איכות אמריקאיים,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290019014850,"תרסיס דוחה מים 400 מ""ל",True,Household & Cleaning,Cleaning Products,"סאסאטק אגש""ח בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,4009300014560,פומפדור חליטת חורף סנגריה חמה,True,Beverages,Hot Drinks,TEEKANNE- POMPADOU,hebrew_only
+slm_grocery_understanding_v1,7290018894217,בלקוני עוגות אישיות מיקס מקס קקאו 350 ג',True,Bakery,Cookies & Cakes,בלקוני,hebrew_only|has_digits|long_name
+slm_grocery_understanding_v1,7290000318769,פסטרמה צלעות אסאדו עלהאש,True,Meat & Fish,Deli & Processed Meat,מעדני  יחיעם,hebrew_only
+slm_grocery_understanding_v1,7290003461677,"חומוס ""אסלי""ים תיכוני 1ק",True,Deli & Salads,Hummus & Tahini,שמיר,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290018921609,קרם החתלה קלנדולה 120גרם,True,Baby,Baby Care,פישר מעבדות פרמצבטיות בע,hebrew_only|has_digits
+slm_grocery_understanding_v1,72940983,חומוס אחלה 250 גרם,True,Deli & Salads,Hummus & Tahini,אחלה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290119375356,דנונה מולטי קולגן 200 גר,True,Dairy & Eggs,Yogurt & Pudding,"שטראוס בריאות בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,7290012193125,סוכרלוז 150 טבליות כשלפ,True,Pantry & Cooking,Baking Supplies,מרמולייט,hebrew_only|has_digits
+slm_grocery_understanding_v1,4810168019051,הרינג מלוח מצונן+תבלין,True,Pantry & Cooking,Spices & Seasonings,---,hebrew_only
+slm_grocery_understanding_v1,np-014,סיבוס פטור מעמ,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,25675120181,חמצוצים ממולא בטעם פירות 125 גר גורי,True,Snacks & Sweets,Candy & Gum,,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290012022067,קריספיות קידס 30 גרם,True,Bakery,Cookies & Cakes,דילייט,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290015194471,מאגדת פאף בטעם בצל 8*15,True,Snacks & Sweets,Salty Snacks,אשבול,hebrew_only|has_digits
+slm_grocery_understanding_v1,9322969000039,"פריכ.תירס+דגנים150כשל""פ",True,Snacks & Sweets,Salty Snacks,ריאל פודס בעמ,hebrew_only|has_digits|short_name
+slm_grocery_understanding_v1,7290008909761,קרלסברג בקבוק בודד,True,Beverages,Alcohol,החברה המרכזית,hebrew_only
+slm_grocery_understanding_v1,87108538,מנטוס תות גליל 37.5 גר,True,Snacks & Sweets,Candy & Gum,פרפטי ואן מלה ברדה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000523224,מלח ים דק 500ג מלח הארץ,True,Pantry & Cooking,Spices & Seasonings,"חברת מלח הארץ אילת בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,7290010650767,אנדיב אדום,True,Fresh Produce,Fresh Vegetables,תקוע,hebrew_only|short_name
+slm_grocery_understanding_v1,7290011379025,פלפל צילי ארוז מרינה,True,Fresh Produce,Fresh Vegetables,מרינה,hebrew_only
+slm_grocery_understanding_v1,4895060586160,סוכריות חמוץ משפחתי120ג,True,Beverages,Soft Drinks,כללי,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290017079769,"מחית תפו""ע ובננה 120 גרם",True,Baby,Baby Food,פרוטה פודיווין איי.אס,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290013675545,שניצל כלי תחבורה 700 גר מאמא עוף,True,Frozen,Frozen Meals,תנובה גליל שותפות מוגבלת,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290018441558,פיינט שוקולד אגוזים כשלפ,True,Frozen,Ice Cream & Desserts,מוצרי איכות אמריקאיים,hebrew_only
+slm_grocery_understanding_v1,8717662470790,בצלי שלוט 350 גר`,True,Fresh Produce,Fresh Vegetables,,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290002327103,גחנון תימני 900 גרם,True,Frozen,Frozen Pastry & Pizza,אופרה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290018338964,מחית תפוח,True,Baby,Baby Food,תבואות,hebrew_only|short_name
+slm_grocery_understanding_v1,7290019056669,ספרינג תפוחים לייט 1.5 ל,True,Beverages,Juices,יפאורה תבורי בעמ,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290108356199,כיף אל סבון אפרסק ופלפל שחור,True,Personal Care & Hygiene,Soap & Shampoo,כיף,hebrew_only
+slm_grocery_understanding_v1,6943750903075,פרישלוק .,True,Baby,Baby Food,כללי,hebrew_only|short_name
+slm_grocery_understanding_v1,np-011,דמי משלוח רמי לוי,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7509546689616,קולגייט אופטיק ויט פחם75,True,Personal Care & Hygiene,Oral Care,---,hebrew_only|has_digits
+slm_grocery_understanding_v1,np-032,גודי פטור מעמ הזמנה,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290015282697,כרוב אדום 200 גרם,True,Deli & Salads,Packaged Salads,סלטי שמיר,hebrew_only|has_digits
+slm_grocery_understanding_v1,4000417101419,גלילי וופל קרם וניל,True,Snacks & Sweets,Chocolate,אמיצ'לי,hebrew_only
+slm_grocery_understanding_v1,np-019,גודי פטור,False,,,,non_product|hebrew_only|short_name
+slm_grocery_understanding_v1,7290000060088,בייגלה מקלות מלוחים400גר,True,Snacks & Sweets,Salty Snacks,אסם,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290055090702,איגלושלוקי 60י 2.030 מל,True,Frozen,Ice Cream & Desserts,כרמית,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290018755280,שלגון טוויסטר טרופי 56 ג,True,Frozen,Ice Cream & Desserts,מנא ס.א,hebrew_only|has_digits
+slm_grocery_understanding_v1,85,מישלוח לבית הלקוח,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,np-030,סיבוס ארוחה פטור מעמ,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290004575557,סנקור 80 גרם,True,Dairy & Eggs,Yogurt & Pudding,,hebrew_only|has_digits
+slm_grocery_understanding_v1,4014400901412,מרסי מריר 250 גרם,True,Snacks & Sweets,Chocolate,מרסי,hebrew_only|has_digits
+slm_grocery_understanding_v1,np-024,איסוף עצמי אינטרנט,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290018249260,סוכר חום סוויטנגו 400 גר,True,Pantry & Cooking,Baking Supplies,"דרך לחיות ד.י בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000415932,קובה למרק בית יוסף,True,Deli & Salads,Prepared Foods,עטרת יסמין,hebrew_only
+slm_grocery_understanding_v1,7290010757893,"בורקס תפו""א ללא גלוטן",True,Household & Cleaning,Cleaning Products,מאפיית אריאל,hebrew_only
+slm_grocery_understanding_v1,7290000369617,כדורי גבינה בשמן 150גרם,True,Meat & Fish,Deli & Processed Meat,עמיר ניצן,hebrew_only|has_digits
+slm_grocery_understanding_v1,196,גודי פטור מעמ,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,319,תו סיבוס פטור מעמ,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290016276848,תבשיל איטריות בטעם עוף70,True,Pantry & Cooking,Rice Pasta & Grains,טיאן פוד,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290105692511,עוגת הבית עוגת שיש כשר לפסח,True,Bakery,Cookies & Cakes,"אסם תעשיות מזון בע""מ",hebrew_only
+slm_grocery_understanding_v1,7290108351811,מרכך כביסה  floral touch,True,Household & Cleaning,Laundry,סנו,mixed_script
+slm_grocery_understanding_v1,np-017,משלוח אינטרנט מהיר,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290000993461,עגבניות שרי צהוב,True,Fresh Produce,Fresh Vegetables,קטיף.,hebrew_only
+slm_grocery_understanding_v1,np-018,איסוף עצמי ללא תשלום,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290011501556,קיווי מיובש בקופסא 160 ג,True,Fresh Produce,Fresh Fruit,דין שיווק,hebrew_only|has_digits
+slm_grocery_understanding_v1,np-015,תן ביס שובר,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290010068258,כוסמת טבעית 500 גרם,True,Pantry & Cooking,Rice Pasta & Grains,"ע.רן שיווק כיטוב בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,4014400917956,בונבוניירת מרסי קריספי עם שקדים,True,Snacks & Sweets,Chocolate,שטורק,hebrew_only
+slm_grocery_understanding_v1,7290015282581,חומוס אבו גוש+חריף 200 ג,True,Deli & Salads,Hummus & Tahini,סלטי שמיר,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000034256,ביסקוויט תירוש 175 גרם,True,Bakery,Cookies & Cakes,מגדנית הדר,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290004575571,טילון וניל 75 גרם,True,Dairy & Eggs,Yogurt & Pudding,ריאו,hebrew_only|has_digits
+slm_grocery_understanding_v1,np-028,דמי מישלוח לבית,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290116534817,שיבולת שועל חמוציות וציה,True,Pantry & Cooking,Breakfast Cereal,תלמה,hebrew_only
+slm_grocery_understanding_v1,115,דמי מישלוח אינטרנט,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290016150117,סלק אדום מבושל בואקום (ק,True,Fresh Produce,Fresh Vegetables,ג'ואבג'י  יואייבי,hebrew_only
+slm_grocery_understanding_v1,7290012313899,גרעיני פול 550 גרם,True,Frozen,Frozen Vegetables & Fruit,א.א שימורי עדן,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290108356175,כיף אל סבון אבטיח ומנטה,True,Personal Care & Hygiene,Soap & Shampoo,"קוסופארם בע\""מ",hebrew_only
+slm_grocery_understanding_v1,8720181216268,תחליב רחצה בניחוח פיסטוק ומגנוליה 750 מ,True,Personal Care & Hygiene,Soap & Shampoo,יוניליוור גרמניה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7804643270003,אוכמניות טריות 125 גרם,True,Fresh Produce,Fresh Fruit,VALLE MAULA,hebrew_only|has_digits
+slm_grocery_understanding_v1,8719200998032,מזולה בטעם חמאה 250 גרם,True,Dairy & Eggs,Cream & Butter,"מיוצר ע\""י יוניליוור ישר",hebrew_only|has_digits
+slm_grocery_understanding_v1,73490130359,"קרם קרקר ""הדר"" 250 גרם",True,Bakery,Cookies & Cakes,מגדנית הדר,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000048192,גב.לבנה רכה 9% 250 גרם,True,Dairy & Eggs,Cheese,מחלבת אלון תבור,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290117389102,קוקי שקיות לצלייה 5יח,True,Household & Cleaning,Trash Bags & Wraps,POLITAN,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290018338971,מחית שזיף אורגנית,True,Baby,Baby Food,תבואות,hebrew_only
+slm_grocery_understanding_v1,7290008801546,"מוסקט קינג דיווד 750 מ""ל",True,Beverages,Alcohol,אגודת הכורמים הקואופרטיב,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290013302267,מחיות בייבי תפוח 6*190גר,True,Baby,Baby Food,טעמן,hebrew_only|has_digits
+slm_grocery_understanding_v1,np-029,איסוף עצמי חנות,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290000201870,29 טיטולים פרימיום שלב 6,True,Baby,Diapers,---,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290107931465,פריכיות תחתית שוק.לבן70ג,True,Bakery,Cookies & Cakes,"שטראוס גרופ בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,7290019603375,כמון מובחר שקית 80 גרם,True,Pantry & Cooking,Spices & Seasonings,מיה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290002814603,מסיר שומנים מבושם לימון,True,Household & Cleaning,Cleaning Products,"קומפלקס כימיקלים בע""מ",hebrew_only
+slm_grocery_understanding_v1,7290107649735,גלידה משפחתית 5 טעמים 2,True,Frozen,Ice Cream & Desserts,"גלידת שטראוס בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,np-013,איסוף עצמי סניף,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290019885061,ווייט פיש אושן 567 גרם,True,Meat & Fish,Fish & Seafood,כללי,hebrew_only|has_digits
+slm_grocery_understanding_v1,3228022910023,פרזידנט חמאה,True,Dairy & Eggs,Cream & Butter,פרזידנט,hebrew_only|short_name
+slm_grocery_understanding_v1,np-001,דמי משלוח,False,,,,non_product|hebrew_only|short_name
+slm_grocery_understanding_v1,7290015599047,בלוק  לגירוד על פיצה,True,Frozen,Frozen Meals,וגה,hebrew_only
+slm_grocery_understanding_v1,3600542431910,קולור נטורלס 2.1,True,Personal Care & Hygiene,Soap & Shampoo,קוסמופול,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290012413636,תה ירוק צאי מסאלה 25שק,True,Beverages,Hot Drinks,ויסוצקי,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000134680,קימל שלם 40 גרם,True,Pantry & Cooking,Spices & Seasonings,תבליני טעם וריח,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000292007,K3 פיתיון ג'ל לתיקנים,True,Household & Cleaning,Cleaning Products,סנו,mixed_script|has_digits
+slm_grocery_understanding_v1,7290118422723,ערגליות מיניס  תות300גרם,True,Bakery,Cookies & Cakes,"אסם תעשיות מזון בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,7290011877446,בייבי כיף קרם נגד גירויים,True,Baby,Baby Care,כיף,hebrew_only
+slm_grocery_understanding_v1,7290013787408,רביולי בטטה 330 גרם,True,Deli & Salads,Prepared Foods,דודו איטליאן פרודקטס בע\,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290019153931,פרוט&ווג תפוז גזר 1 ל,True,Beverages,Juices,יפאורה תבורי בעמ,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290112968685,חומוס גרגרים בתטבילה400ג,True,Deli & Salads,Hummus & Tahini,סלטי צבר,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290003996049,פטרוזיליה חסלט - כשר )ק(,True,Fresh Produce,Fresh Herbs,חסלט,hebrew_only
+slm_grocery_understanding_v1,8720181043093,דאו.אקס ספריי אפולו 150,True,Personal Care & Hygiene,Deodorant & Skincare,יוניליוור UK,hebrew_only|has_digits
+slm_grocery_understanding_v1,87,משלוח אינטרנט,False,,,,non_product|hebrew_only|short_name
+slm_grocery_understanding_v1,np-025,תו תן ביס פטור מעמ,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,8700216732048,לנור כדוריות הבושם אוקיינוס 270 גרם,True,Household & Cleaning,Cleaning Products,פרוקטר,hebrew_only|has_digits
+slm_grocery_understanding_v1,11210618503,רוטב טבסקו חריף אקסטרא 60 מל,True,Deli & Salads,Hummus & Tahini,,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290010051335,בצל ירוק א. אדמה,True,Fresh Produce,Fresh Vegetables,אדמה,hebrew_only
+slm_grocery_understanding_v1,8445291028920,מחית תפוח עץ ובננה190ג,True,Baby,Baby Food,נסטלה פולסקה אס.איי,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290119373710,חומוס40%מועשר+חריף250גר,True,Deli & Salads,Hummus & Tahini,"שטראוס גרופ בע""מ",hebrew_only|has_digits|short_name
+slm_grocery_understanding_v1,7290000554839,מסקרפונה 40% 250ג גד,True,Dairy & Eggs,Cheese,מחלבות גד,hebrew_only|has_digits
+slm_grocery_understanding_v1,np-033,דמי משלוח סופר,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290112495280,ברנפלקס ריבועי קינמון400,True,Pantry & Cooking,Breakfast Cereal,"יוניליוור שפע ישראל בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,7290006920836,פרוסות מעושנת 350 גרם,True,Meat & Fish,Fish & Seafood,"צי תעשיות מזון יבנה בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,7290019603856,חמוצמוצים שטוחים צבעוניי,True,Snacks & Sweets,Candy & Gum,"מיה תעשיות מזון מ.ת.מ בע""מ",hebrew_only
+slm_grocery_understanding_v1,np-022,משלוח אינטרנט אקספרס,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,33383220291,אוכמניות טריות 125גרם,True,Fresh Produce,Fresh Fruit,NICEBLUE S.A,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290010193967,"קישקע ממולא עד""ח 600 גרם",True,Meat & Fish,Deli & Processed Meat,,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290103702311,טאצ ממחטות כיס מנטול 10,True,Household & Cleaning,Paper Products,שניב תעשיות נייר,hebrew_only|has_digits
+slm_grocery_understanding_v1,5029053527574,10תח.ספיגה לילה בנים4-7,True,Personal Care & Hygiene,Feminine Care,חוגלה קימברלי,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290004230326,מקלות פילו תפוח עץ 600גר,True,Bakery,Cookies & Cakes,נטו מלינדה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290018198148,ציפס קריספי1.25ק תפוגן,True,Snacks & Sweets,Salty Snacks,"תפוגן תעשיות בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,7290110563462,חלב נטול לקטוז 2% 1 ליטר,True,Dairy & Eggs,Milk,מחלבת יטבתה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290014002944,חליטת חמדת השקד 25ש*2.3ג,True,Beverages,Hot Drinks,ויסוצקי,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290105695321,עוגת הבית בראוניס פאדג' שוקולד,True,Bakery,Cookies & Cakes,אסם,hebrew_only
+slm_grocery_understanding_v1,4053700288205,קרם להסרת שיער רגיש100מל,True,Personal Care & Hygiene,Soap & Shampoo,ויט,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000000848,מארז תירס צהוב - שקיל,True,Fresh Produce,Fresh Fruit,קטיף.,hebrew_only
+slm_grocery_understanding_v1,7290000134970,חוואיג במיכל 100 גרם,True,Pantry & Cooking,Spices & Seasonings,תבליני טעם וריח,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290014503144,"דלתון כנען גליל750מ""ל",True,Beverages,Alcohol,יקב דלתון,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290011964542,פפריקה מתוקה מיכל 400 גר,True,Pantry & Cooking,Spices & Seasonings,תבליני טעם וריח,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290019014935,תבנית אלומיניום עבה רוסט,True,Household & Cleaning,Disposable Tableware,---,hebrew_only
+slm_grocery_understanding_v1,7290122780376,סלט קולסלאו 225 גרם צבר,True,Deli & Salads,Packaged Salads,סלטי צבר,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000530444,כתף בקר מעושן,True,Meat & Fish,Deli & Processed Meat,זוגלובק,hebrew_only
+slm_grocery_understanding_v1,7290017065618,פקורינו פרוס 34% 150גר,True,Dairy & Eggs,Cheese,כללי,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290004119928,מעדן קרלו וניל 3% 125 גר,True,Dairy & Eggs,Yogurt & Pudding,מחלבת אלון תבור,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290105474001,לה קט פטה בקר 100 גרם,True,Meat & Fish,Deli & Processed Meat,LA NORMANDISE SA,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290017932453,בסיס להכנת עוגת פאי,True,Bakery,Cookies & Cakes,---,hebrew_only
+slm_grocery_understanding_v1,np-016,דמי מישלוח,False,,,,non_product|hebrew_only|short_name
+slm_grocery_understanding_v1,4084500853836,ורדים ומשי 515 מל פיירי,True,Household & Cleaning,Cleaning Products,PROCTER&GAMBLE,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290018400531,תרמילי אפונה מתוקה בתרמיל,True,Fresh Produce,Fresh Vegetables,"סנפרוסט בע""מ",hebrew_only
+slm_grocery_understanding_v1,7290003319145,8 מנות בצנצנת מיוחד .,True,Meat & Fish,Fish & Seafood,.,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290019167129,טירמיסו פרווה 75 גרם,True,Bakery,Cookies & Cakes,עדן קינוחים,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290122783483,חומוס ישראלי עם סחוג ירוק צבר,True,Deli & Salads,Hummus & Tahini,צבר,hebrew_only
+slm_grocery_understanding_v1,7290008409049,מיני דק שניצל שומשום,True,Frozen,Frozen Meals,מאמא עוף,hebrew_only
+slm_grocery_understanding_v1,7290109640204,גוש בסגנון חלומי 18% 250,True,Dairy & Eggs,Cheese,ויגרדן,hebrew_only|has_digits
+slm_grocery_understanding_v1,613008753320,אריזונה גינסנג ודבש450מ,True,Beverages,Soft Drinks,נובה טרייד,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290118425007,מקלוני ירקות בטטה גזר500,True,Frozen,Frozen Vegetables & Fruit,טבעול,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290003727667,"חומוס מסעדה 1 ק""ג צבר",True,Deli & Salads,Hummus & Tahini,סלטי צבר,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000104751,כרוב ניצנים מוקפא 800 גר,True,Frozen,Frozen Vegetables & Fruit,סנפרוסט,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290019603528,שוקו של מיה 800 גרם,True,Beverages,Hot Drinks,מיה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290101112228,מאגדת גלידל פרי אננס 8יח,True,Frozen,Ice Cream & Desserts,פלקו בעמ,hebrew_only|has_digits
+slm_grocery_understanding_v1,4820180816552,Cookiesש.שועל קוקוס180גר,True,Bakery,Cookies & Cakes,PASTICERE,mixed_script|has_digits|short_name
+slm_grocery_understanding_v1,7290003387205,ספיד סטיק לגבר 56 גר,True,Personal Care & Hygiene,Deodorant & Skincare,קולגייט-פלמוליב,hebrew_only|has_digits
+slm_grocery_understanding_v1,4005900273482,לבלו  אוכמניות בליסטר,True,Personal Care & Hygiene,Deodorant & Skincare,HELLAS BEIERSDORF,hebrew_only
+slm_grocery_understanding_v1,8445291028647,מחית מרק ירקות 190 גרם,True,Baby,Baby Food,נסטלה פולסקה אס.איי,hebrew_only|has_digits
+slm_grocery_understanding_v1,79,איסוף עצמי-אינטרנט,False,,,,non_product|hebrew_only|short_name
+slm_grocery_understanding_v1,5900020020710,חט.קראנץ שוקו-וניל6נסטלה,True,Snacks & Sweets,Cereal & Energy Bars,סי. פי. פולין,hebrew_only|has_digits|short_name
+slm_grocery_understanding_v1,np-020,פטור מעמ סיבוס,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290005174551,חומוס 125 גרם,True,Deli & Salads,Hummus & Tahini,"שטראוס גרופ בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,7290012022005,קריספיות חיטה טבעי 60 גר,True,Bakery,Cookies & Cakes,דילייט,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290108620320,יין אימפריאל סוביניון375,True,Beverages,Alcohol,יקב ציון,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290008116886,בלנאום בייבי פורטה500מל,True,Baby,Baby Care,נאופארם,hebrew_only|has_digits
+slm_grocery_understanding_v1,5410316959810,"סמירנוף אייס פחית 250מ""ל",True,Beverages,Alcohol,דיאגו אופריישנס,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290113560109,משחה פרודונטקס ט.צמחי75מ,True,Personal Care & Hygiene,Oral Care,DEMICLEN,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290016995701,מחית בננה ותפוח אורגני,True,Baby,Baby Food,תבואות,hebrew_only
+slm_grocery_understanding_v1,7290108359282,נייר טואלט 4 שכבות עבה ורך במיוחד,True,Household & Cleaning,Paper Products,סנו,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290010068241,גרעיני חמניות 200 גרם,True,Snacks & Sweets,Nuts & Seeds,,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290006878038,שמיר מהדרין,True,Fresh Produce,Fresh Herbs,,hebrew_only|short_name
+slm_grocery_understanding_v1,7290000289052,פוליויקס בניחוח פרחי סחלבים,True,Household & Cleaning,Cleaning Products,סנו,hebrew_only
+slm_grocery_understanding_v1,7290112357083,אפונה ירוקה 380 גרם,True,Pantry & Cooking,Canned & Jarred,קונסרב איטליה,hebrew_only|has_digits
+slm_grocery_understanding_v1,8002267011753,"פולרטי חטיפי קרח 400מ""ל",True,Frozen,Ice Cream & Desserts,SPA DOLFIN,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290013195296,וייט פיש רוזנרס 500 גרם,True,Meat & Fish,Fish & Seafood,,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290002735007,בצק עלים 1 קג ינון קפואזן,True,Frozen,Frozen Pastry & Pizza,קפוא-זן,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000652542,פילה אמנון 5-7 100%  דג- תנובה,True,Meat & Fish,Fish & Seafood,,hebrew_only|has_digits
+slm_grocery_understanding_v1,np-027,משלוח אינטרנט בסיסי,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290018720585,בייגלה שמיניות+שומשום300,True,Snacks & Sweets,Salty Snacks,---,hebrew_only|has_digits|short_name
+slm_grocery_understanding_v1,np-007,איסוף עצמי,False,,,,non_product|hebrew_only|short_name
+slm_grocery_understanding_v1,7613287821348,נתחי סויה דמויי עוף,True,Frozen,Frozen Meals,"טבעול צכיה בע""מ",hebrew_only
+slm_grocery_understanding_v1,8000380003761,וופל פטיסרי קוקוס100ג,True,Bakery,Cookies & Cakes,לואקר,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290104061417,חומוס עם טחינה אחלה 400ג,True,Deli & Salads,Hummus & Tahini,"שטראוס גרופ בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,7290107280075,תבניות אלומיניום לאפיהL,True,Household & Cleaning,Trash Bags & Wraps,סנו,mixed_script
+slm_grocery_understanding_v1,7290003751839,"עצמות עוף למרק בד""ץ לק""ג",True,Meat & Fish,Poultry,מ.ב גלאט,hebrew_only
+slm_grocery_understanding_v1,7290108353846,"כפפות ניטריל שחורות ללא אבקה מידה 80 יחידות, L",True,Household & Cleaning,Cleaning Products,סנו,mixed_script|has_digits|long_name
+slm_grocery_understanding_v1,7290102393060,יוג.מולר מיקס גליליות170,True,Dairy & Eggs,Yogurt & Pudding,---,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000318530,רוסטביף צלי בקר במשקל,True,Meat & Fish,Deli & Processed Meat,יחיעם,hebrew_only
+slm_grocery_understanding_v1,9001616702822,זוג מוצצים סיליקון 6+ סגול וורוד,True,Baby,Baby Care,MAM,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290002319450,כרכום 80 גרם,True,Pantry & Cooking,Spices & Seasonings,מיה תעשיות מזון מ.ת.מ. ב,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290119373970,קפסולות טנזניה 13,True,Beverages,Hot Drinks,שטראוס קפה בי.וי,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000139715,קרמים בטעם נוגט 550 גרם,True,Snacks & Sweets,Chocolate,אשבול,hebrew_only|has_digits
+slm_grocery_understanding_v1,np-012,משלוח אינטרנט שופרסל,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290104721533,סלט פלפלים קלויים 400 גר,True,Pantry & Cooking,Canned & Jarred,"שטראוס גרופ בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,np-031,תן ביס פטור,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290011570934,תערובת להכנה פנקייק400ג,True,Pantry & Cooking,Baking Supplies,אשבל בעמ,hebrew_only|has_digits
+slm_grocery_understanding_v1,8024985011204,סמוזי תפוח תות בננה 100ג,True,Baby,Baby Food,נטורה נובה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290014355569,"חזה הודו מעושן כשל""פ400ג",True,Meat & Fish,Deli & Processed Meat,גלאט עוף,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290013906250,סלמי מהדרין קהילות 200 ג,True,Meat & Fish,Deli & Processed Meat,,hebrew_only|has_digits
+slm_grocery_understanding_v1,np-002,דמי משלוח אינטרנט,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290010002078,פלפל שחור טחון 100 גרם,True,Pantry & Cooking,Spices & Seasonings,א.ל ייצור ושיווק תבלינים,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290117267202,גבינת שמנת עם שום  21%,True,Dairy & Eggs,Cheese,גידה,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000000411,שום יבש,True,Fresh Produce,Fresh Vegetables,קטיף.,hebrew_only|short_name
+slm_grocery_understanding_v1,8850006491621,מארז סבון מוצק פלמוליב נטורלס קמומיל לאיזון,True,Personal Care & Hygiene,Soap & Shampoo,,hebrew_only
+slm_grocery_understanding_v1,7290112966766,טחינה בלאדי חציל עגבנ350,True,Deli & Salads,Packaged Salads,צבר,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290005576942,שמיר גלאט עלים - יחידה,True,Fresh Produce,Fresh Herbs,כללי,hebrew_only
+slm_grocery_understanding_v1,7290014204713,"ספריי לגוף 250 מ""ל",True,Personal Care & Hygiene,Deodorant & Skincare,פנינה רוזנבלום,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000103532,"גרעיני תירס בד""צ 700 גרם",True,Frozen,Frozen Vegetables & Fruit,סנפרוסט,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290018500392,חלה קלועה פיקוח אנג`ל,True,Bakery,Bread,מאפיית שלמה א. אנג'ל,hebrew_only
+slm_grocery_understanding_v1,8410376040135,בסקוויט מריה 600 גרם,True,Bakery,Cookies & Cakes,גאלטס גולון פלנסיה ספרד,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290005423871,משחת אורביטול3*145ג,True,Personal Care & Hygiene,Oral Care,טרופיקל דגיל תעשיות קוסמ,hebrew_only|has_digits|short_name
+slm_grocery_understanding_v1,7290019635147,חמאה איטלקית 100 גרם,True,Dairy & Eggs,Cream & Butter,---,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290017079776,מחית סלט פירות 120 גרם,True,Baby,Baby Food,פרוטה פודיווין איי.אס,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290013358516,מאסטר שף מיקסלט עם חמוציות 200 גר`,True,Fresh Produce,Fresh Fruit,אפקט טבעי,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290005576041,שמיר גלאט עלים - יח,True,Fresh Produce,Fresh Herbs,ביכורי השקמה,hebrew_only
+slm_grocery_understanding_v1,7290000319063,כתף בקר מפולפל 150 גרם,True,Meat & Fish,Deli & Processed Meat,יחיעם,hebrew_only|has_digits
+slm_grocery_understanding_v1,37600297967,מטבל סלסה בחריפ.עדינה439,True,Deli & Salads,Packaged Salads,Chi-Chi&#039;s,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290008455855,ירכיים טרי לנדא לפי משקל,True,Meat & Fish,Poultry,כללי,hebrew_only
+slm_grocery_understanding_v1,321,תן ביס פטור מעמ,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,5740900403246,ממרח לורפק ללא מלח500גרם,True,Dairy & Eggs,Cream & Butter,ארלה פודס אמבא,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000294780,סנו גאול אקונומ.סמיכה4ל,True,Household & Cleaning,Cleaning Products,סנו,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290108359077,120 ממחטות אף בעלות 3 שכבות עשירות בלחות בקופסא,True,Household & Cleaning,Paper Products,Soft Solo,hebrew_only|has_digits|long_name
+slm_grocery_understanding_v1,7290108500677,כבד דג שיבוט בשמן הדג 120 גר וילי פוד,True,Meat & Fish,Fish & Seafood,וילי פוד,hebrew_only|has_digits|long_name
+slm_grocery_understanding_v1,np-021,דמי משלוח ללקוח,False,,,,non_product|hebrew_only
+slm_grocery_understanding_v1,7290017917184,"ד""ר פישר אולטרסול ג'ל אלוורה פורטה",True,Personal Care & Hygiene,Deodorant & Skincare,דר פישר,hebrew_only
+slm_grocery_understanding_v1,7290017926391,אגרול במילוי ירקות 600 ג,True,Frozen,Frozen Vegetables & Fruit,"חטיפי אלקיים בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,5711953172441,סטארבקס פרפוצינו עוג250,True,Beverages,Hot Drinks,ARLA,hebrew_only|has_digits
+slm_grocery_understanding_v1,8008660210038,מעדן תות שדה מנז אנד גאסר,True,Dairy & Eggs,Yogurt & Pudding,מנז' אנד גאסר,hebrew_only
+slm_grocery_understanding_v1,7290107970129,ליידי ספיד סטיק רול פרש,True,Personal Care & Hygiene,Deodorant & Skincare,קולגייט-פלמוליב,hebrew_only
+slm_grocery_understanding_v1,8718951159808,מברשת שיניים 360 לניקוי כל חלל הפה,True,Personal Care & Hygiene,Oral Care,קולגייט-פלמוליב,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290107280655,אבקת כביסה בייבי,True,Baby,Baby Care,מקסימה,hebrew_only
+slm_grocery_understanding_v1,7290018928394,"תערובת לאפיה ללג כשל""פ",True,Pantry & Cooking,Baking Supplies,מולינו,hebrew_only
+slm_grocery_understanding_v1,7290116534725,2ב1 פינוק בייבי 700מ,True,Baby,Baby Care,יוניליוור ישראל טיפוח,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290003681211,צנובר 80 גר,True,Snacks & Sweets,Nuts & Seeds,מיה תעשיות מזון מ.ת.מ. ב,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290000692456,"אגקס חלונות 2*750 מ""ל",True,Household & Cleaning,Cleaning Products,ש.שסטוביץ,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290108359794,נוזל לניקוי כלים בניחוח למון גראס,True,Household & Cleaning,Cleaning Products,סנו,hebrew_only
+slm_grocery_understanding_v1,7509546688596,ליידי ספיד סטיק פחם 45 ג,True,Personal Care & Hygiene,Deodorant & Skincare,CP,hebrew_only|has_digits
+slm_grocery_understanding_v1,7290106520905,סלט טורקי 400 גרם,True,Deli & Salads,Packaged Salads,"שטראוס גרופ בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,7290105692535,עוגת שוקו שוקוציפס350גר,True,Bakery,Cookies & Cakes,"אסם תעשיות מזון בע""מ",hebrew_only|has_digits
+slm_grocery_understanding_v1,np-023,מישלוח לבית,False,,,,non_product|hebrew_only|short_name
+slm_grocery_understanding_v1,7290020174468,צמד שימגי לבן חום,True,Fresh Produce,Fresh Vegetables,,hebrew_only
+slm_grocery_understanding_v1,72940976,סלט כרוב אדום במיונז 250 ג,True,Deli & Salads,Packaged Salads,אחלה,hebrew_only|has_digits
+slm_grocery_understanding_v1,9001616860881,מאמ מוצצים 0-2,True,Baby,Baby Care,---,hebrew_only|has_digits

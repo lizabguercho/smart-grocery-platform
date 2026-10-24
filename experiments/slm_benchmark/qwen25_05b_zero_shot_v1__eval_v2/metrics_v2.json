@@ -1,0 +1,66 @@
+{
+  "evaluation_version": "v2_layers_1_2",
+  "n_predictions": 249,
+  "n_joined": 6,
+  "n_missing_gold": 243,
+  "n_products": 5,
+  "n_non_products": 1,
+  "layer1": {
+    "is_product": {
+      "accuracy": 0.16666666666666666,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "category_accuracy_silver": 0.0,
+    "category_n": 5,
+    "quantity_accuracy": 0.5,
+    "quantity_n": 4,
+    "unit_accuracy": 0.25,
+    "unit_n": 4
+  },
+  "layer2": {
+    "attribute_accuracy": {
+      "brand": {
+        "n": 5.0,
+        "accuracy": 0.4,
+        "note": ""
+      },
+      "product_type": {
+        "n": 0.0,
+        "accuracy": 0.0,
+        "note": "unscored_from_v1_predictions"
+      },
+      "variant": {
+        "n": 0.0,
+        "accuracy": 0.0,
+        "note": "unscored_from_v1_predictions"
+      },
+      "quantity": {
+        "n": 5.0,
+        "accuracy": 0.4,
+        "note": ""
+      },
+      "unit": {
+        "n": 5.0,
+        "accuracy": 0.4,
+        "note": ""
+      },
+      "pack_count": {
+        "n": 0.0,
+        "accuracy": 0.0,
+        "note": "unscored_from_v1_predictions"
+      },
+      "percent": {
+        "n": 0.0,
+        "accuracy": 0.0,
+        "note": "unscored_from_v1_predictions"
+      }
+    },
+    "critical_miss_rate": 0.8,
+    "critical_miss_count": 4,
+    "pred_name_en_present": 4,
+    "pred_name_en_missing_when_gold": 1,
+    "note": "product_type/variant/pack/percent not in v1 model schema; left unscored. English string quality needs Layer 3 judge or human review of errors."
+  }
+}

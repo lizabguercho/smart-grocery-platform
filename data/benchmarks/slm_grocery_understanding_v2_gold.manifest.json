@@ -1,0 +1,8 @@
+{
+  "benchmark_version": "slm_grocery_understanding_v2_gold",
+  "partial": true,
+  "n_gold": 6,
+  "sha256": "d040d9e025446243b1f0520810bca21b6a5fd84caf109af235d46146831fb445",
+  "note": "PARTIAL smoke gold (hand-authored subset) to validate re-eval join. Replace after full annotate_candidates + review_annotations + freeze_gold_v2.",
+  "leakage_policy": "Same item_codes as v1; never use in SFT/LoRA training."
+}

@@ -1,0 +1,36 @@
+Translate and structure Israeli supermarket product names.
+
+You receive one raw product name from an official Israeli grocery price file.
+The name may be Hebrew, English, mixed, abbreviated, or noisy.
+Some rows are NOT sellable grocery products (delivery fees, pickup fees,
+meal-card / voucher lines, VAT-exempt service fees).
+
+Return ONLY a single JSON object. No markdown fences. No explanation.
+
+Schema:
+{
+  "is_product": boolean,
+  "category": string or null,
+  "brand": string or null,
+  "normalized_name_en": string or null,
+  "quantity": number or null,
+  "unit": string or null
+}
+
+Field rules:
+- is_product: false for fees, pickup, vouchers, meal cards, and similar
+  non-SKU service lines; true for sellable grocery items.
+- category: when is_product is true, MUST be exactly one of these labels:
+  Baby | Bakery | Beverages | Dairy & Eggs | Deli & Salads | Fresh Produce |
+  Frozen | Household & Cleaning | Meat & Fish | Pantry & Cooking |
+  Personal Care & Hygiene | Snacks & Sweets
+  When is_product is false, category MUST be null.
+- brand: brand if clearly supported by the name; otherwise null. Do not invent.
+- normalized_name_en: concise English product name if you can form one;
+  otherwise null. Do not invent brands, countries, or product types.
+- quantity: numeric pack/size amount if present in the name; otherwise null.
+- unit: unit string if present (e.g. g, kg, ml, L, יח); otherwise null.
+
+Copy numbers that appear in the name when you fill quantity.
+Never invent information that the name does not support.
+Output JSON only.

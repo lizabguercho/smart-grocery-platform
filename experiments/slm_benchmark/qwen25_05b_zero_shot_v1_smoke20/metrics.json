@@ -1,0 +1,286 @@
+{
+  "n": 20,
+  "structural": {
+    "parse_success_rate": 0.3,
+    "parse_success_count": 6,
+    "valid_category_rate_among_product_preds": 0.0
+  },
+  "is_product": {
+    "accuracy": 0.05,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "tp": 0.0,
+    "fp": 0.0,
+    "fn": 19.0,
+    "tn": 1.0
+  },
+  "category": {
+    "n": 19,
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "per_class": {
+      "Baby": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1.0
+      },
+      "Bakery": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2.0
+      },
+      "Beverages": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 4.0
+      },
+      "Dairy & Eggs": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3.0
+      },
+      "Deli & Salads": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2.0
+      },
+      "Fresh Produce": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0.0
+      },
+      "Frozen": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1.0
+      },
+      "Household & Cleaning": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1.0
+      },
+      "Meat & Fish": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2.0
+      },
+      "Pantry & Cooking": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0.0
+      },
+      "Personal Care & Hygiene": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0.0
+      },
+      "Snacks & Sweets": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3.0
+      }
+    },
+    "confusion": {
+      "Baby": {
+        "Baby": 0,
+        "Bakery": 0,
+        "Beverages": 0,
+        "Dairy & Eggs": 0,
+        "Deli & Salads": 0,
+        "Fresh Produce": 0,
+        "Frozen": 0,
+        "Household & Cleaning": 0,
+        "Meat & Fish": 0,
+        "Pantry & Cooking": 0,
+        "Personal Care & Hygiene": 0,
+        "Snacks & Sweets": 0,
+        "__invalid_or_missing__": 1
+      },
+      "Bakery": {
+        "Baby": 0,
+        "Bakery": 0,
+        "Beverages": 0,
+        "Dairy & Eggs": 0,
+        "Deli & Salads": 0,
+        "Fresh Produce": 0,
+        "Frozen": 0,
+        "Household & Cleaning": 0,
+        "Meat & Fish": 0,
+        "Pantry & Cooking": 0,
+        "Personal Care & Hygiene": 0,
+        "Snacks & Sweets": 0,
+        "__invalid_or_missing__": 2
+      },
+      "Beverages": {
+        "Baby": 0,
+        "Bakery": 0,
+        "Beverages": 0,
+        "Dairy & Eggs": 0,
+        "Deli & Salads": 0,
+        "Fresh Produce": 0,
+        "Frozen": 0,
+        "Household & Cleaning": 0,
+        "Meat & Fish": 0,
+        "Pantry & Cooking": 0,
+        "Personal Care & Hygiene": 0,
+        "Snacks & Sweets": 0,
+        "__invalid_or_missing__": 4
+      },
+      "Dairy & Eggs": {
+        "Baby": 0,
+        "Bakery": 0,
+        "Beverages": 0,
+        "Dairy & Eggs": 0,
+        "Deli & Salads": 0,
+        "Fresh Produce": 0,
+        "Frozen": 0,
+        "Household & Cleaning": 0,
+        "Meat & Fish": 0,
+        "Pantry & Cooking": 0,
+        "Personal Care & Hygiene": 0,
+        "Snacks & Sweets": 0,
+        "__invalid_or_missing__": 3
+      },
+      "Deli & Salads": {
+        "Baby": 0,
+        "Bakery": 0,
+        "Beverages": 0,
+        "Dairy & Eggs": 0,
+        "Deli & Salads": 0,
+        "Fresh Produce": 0,
+        "Frozen": 0,
+        "Household & Cleaning": 0,
+        "Meat & Fish": 0,
+        "Pantry & Cooking": 0,
+        "Personal Care & Hygiene": 0,
+        "Snacks & Sweets": 0,
+        "__invalid_or_missing__": 2
+      },
+      "Fresh Produce": {
+        "Baby": 0,
+        "Bakery": 0,
+        "Beverages": 0,
+        "Dairy & Eggs": 0,
+        "Deli & Salads": 0,
+        "Fresh Produce": 0,
+        "Frozen": 0,
+        "Household & Cleaning": 0,
+        "Meat & Fish": 0,
+        "Pantry & Cooking": 0,
+        "Personal Care & Hygiene": 0,
+        "Snacks & Sweets": 0,
+        "__invalid_or_missing__": 0
+      },
+      "Frozen": {
+        "Baby": 0,
+        "Bakery": 0,
+        "Beverages": 0,
+        "Dairy & Eggs": 0,
+        "Deli & Salads": 0,
+        "Fresh Produce": 0,
+        "Frozen": 0,
+        "Household & Cleaning": 0,
+        "Meat & Fish": 0,
+        "Pantry & Cooking": 0,
+        "Personal Care & Hygiene": 0,
+        "Snacks & Sweets": 0,
+        "__invalid_or_missing__": 1
+      },
+      "Household & Cleaning": {
+        "Baby": 0,
+        "Bakery": 0,
+        "Beverages": 0,
+        "Dairy & Eggs": 0,
+        "Deli & Salads": 0,
+        "Fresh Produce": 0,
+        "Frozen": 0,
+        "Household & Cleaning": 0,
+        "Meat & Fish": 0,
+        "Pantry & Cooking": 0,
+        "Personal Care & Hygiene": 0,
+        "Snacks & Sweets": 0,
+        "__invalid_or_missing__": 1
+      },
+      "Meat & Fish": {
+        "Baby": 0,
+        "Bakery": 0,
+        "Beverages": 0,
+        "Dairy & Eggs": 0,
+        "Deli & Salads": 0,
+        "Fresh Produce": 0,
+        "Frozen": 0,
+        "Household & Cleaning": 0,
+        "Meat & Fish": 0,
+        "Pantry & Cooking": 0,
+        "Personal Care & Hygiene": 0,
+        "Snacks & Sweets": 0,
+        "__invalid_or_missing__": 2
+      },
+      "Pantry & Cooking": {
+        "Baby": 0,
+        "Bakery": 0,
+        "Beverages": 0,
+        "Dairy & Eggs": 0,
+        "Deli & Salads": 0,
+        "Fresh Produce": 0,
+        "Frozen": 0,
+        "Household & Cleaning": 0,
+        "Meat & Fish": 0,
+        "Pantry & Cooking": 0,
+        "Personal Care & Hygiene": 0,
+        "Snacks & Sweets": 0,
+        "__invalid_or_missing__": 0
+      },
+      "Personal Care & Hygiene": {
+        "Baby": 0,
+        "Bakery": 0,
+        "Beverages": 0,
+        "Dairy & Eggs": 0,
+        "Deli & Salads": 0,
+        "Fresh Produce": 0,
+        "Frozen": 0,
+        "Household & Cleaning": 0,
+        "Meat & Fish": 0,
+        "Pantry & Cooking": 0,
+        "Personal Care & Hygiene": 0,
+        "Snacks & Sweets": 0,
+        "__invalid_or_missing__": 0
+      },
+      "Snacks & Sweets": {
+        "Baby": 0,
+        "Bakery": 0,
+        "Beverages": 0,
+        "Dairy & Eggs": 0,
+        "Deli & Salads": 0,
+        "Fresh Produce": 0,
+        "Frozen": 0,
+        "Household & Cleaning": 0,
+        "Meat & Fish": 0,
+        "Pantry & Cooking": 0,
+        "Personal Care & Hygiene": 0,
+        "Snacks & Sweets": 0,
+        "__invalid_or_missing__": 3
+      }
+    }
+  },
+  "efficiency": {
+    "total_runtime_seconds": 32.72333683312172,
+    "mean_latency_seconds": 1.636166841656086,
+    "median_latency_seconds": 1.5991004369861912,
+    "p95_latency_seconds": 2.032636250020005,
+    "items_per_second": 0.6111846142706484
+  }
+}

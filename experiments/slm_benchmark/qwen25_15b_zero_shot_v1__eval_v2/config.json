@@ -1,0 +1,7 @@
+{
+  "evaluation_version": "v2_layers_1_2",
+  "source_predictions": "experiments/slm_benchmark/qwen25_15b_zero_shot_v1/predictions.jsonl",
+  "source_experiment_id": "qwen25_15b_zero_shot_v1",
+  "gold_path": "data/benchmarks/slm_grocery_understanding_v2_gold.csv",
+  "note": "Re-evaluation only; model outputs were not regenerated."
+}

@@ -1,0 +1,16 @@
+{
+  "experiment_id": "qwen25_05b_zero_shot_v1_smoke5",
+  "benchmark_version": "slm_grocery_understanding_v1",
+  "model_alias": "qwen25_05b",
+  "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "prompt_version": "zero_shot_v1",
+  "temperature": 0,
+  "do_sample": false,
+  "max_new_tokens": 256,
+  "dtype": "auto",
+  "quantization": null,
+  "device": "auto",
+  "constrained_decoding": false,
+  "limit": 5,
+  "timestamp": "2026-10-02T18:00:29.705119+00:00"
+}

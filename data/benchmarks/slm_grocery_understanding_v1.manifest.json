@@ -1,0 +1,49 @@
+{
+  "benchmark_version": "slm_grocery_understanding_v1",
+  "seed": 42,
+  "per_category_target": 18,
+  "non_product_target": 40,
+  "n_total": 249,
+  "n_products": 216,
+  "n_non_products": 33,
+  "category_histogram": {
+    "Baby": 18,
+    "Bakery": 18,
+    "Beverages": 18,
+    "Dairy & Eggs": 18,
+    "Deli & Salads": 18,
+    "Fresh Produce": 18,
+    "Frozen": 18,
+    "Household & Cleaning": 18,
+    "Meat & Fish": 18,
+    "Pantry & Cooking": 18,
+    "Personal Care & Hygiene": 18,
+    "Snacks & Sweets": 18
+  },
+  "slice_counts": {
+    "has_digits": 156,
+    "hebrew_only": 244,
+    "long_name": 4,
+    "mixed_script": 5,
+    "non_product": 33,
+    "short_name": 19
+  },
+  "source_labeled_composition": {
+    "Baby": 137,
+    "Bakery": 320,
+    "Beverages": 550,
+    "Dairy & Eggs": 519,
+    "Deli & Salads": 93,
+    "Fresh Produce": 229,
+    "Frozen": 362,
+    "Household & Cleaning": 619,
+    "Meat & Fish": 245,
+    "Pantry & Cooking": 1096,
+    "Personal Care & Hygiene": 830,
+    "Snacks & Sweets": 718
+  },
+  "source_analysis_csv": "data/processed/price_comparison_with_categories.csv",
+  "non_product_note": "Non-product rows use strong fee/voucher markers. When the database has fewer than the target, remaining rows are synthetic names (item_code prefix np-) built from the same exclusion phrases. Broad markers like חזרות/הנחות were not used alone for gold labeling.",
+  "leakage_policy": "Frozen benchmark item_codes must never be included in future SFT/LoRA training datasets. Exact item_name duplicates were removed within the sample; semantic near-duplicates were not fully eliminated.",
+  "sha256": "d49d622de55124f636f53a2d62f63da5c04e81b0d70b6e2c18b96df121b629cd"
+}

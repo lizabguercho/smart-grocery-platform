@@ -1,0 +1,34 @@
+item_code,raw_item_name,gold_is_product,gold_category,pred_is_product,pred_category,failed_fields,parse_success,error_message,raw_model_output,slice_tags
+6943750903075,פרישלוק .,True,Baby,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": null, ""quantity"": null, ""unit"": null}",hebrew_only|short_name
+7290000201870,29 טיטולים פרימיום שלב 6,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 29,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290011877446,בייבי כיף קרם נגד גירויים,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+7290008116886,בלנאום בייבי פורטה500מל,True,Baby,,,parse,False,schema_validation_error:1,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Banana Apple Fruits"",
+  ""quantity"": 500,
+  ""unit"": ""ml""
+}",hebrew_only|has_digits
+7290013302267,מחיות בייבי תפוח 6*190גר,True,Baby,,,parse,False,schema_validation_error:1,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Kiwi Fruit Packets"",
+  ""quantity"": 6,
+  ""unit"": ""pack""
+}",hebrew_only|has_digits

@@ -1,0 +1,5 @@
+item_code,raw_item_name,gold_name_en,pred_normalized_name_en,gold_brand,pred_brand,gold_quantity,pred_quantity,gold_unit,pred_unit,critical_miss,failed_fields
+7290019790280,חלב נטול לקטז2% 1ל הגולן,Golan Lactose-Free Milk 2% 1 L,Chal nuclul tolu 2%,Golan,,1.0,1.0,L,,True,brand;unit
+7290000976433,קשיו ענק קלוי,Jumbo Roasted Cashews,,,,,1.0,,,True,quantity;name_en_missing
+7290016693898,יין פטי ורדו בראשית 750,Bereshit Petit Verdot Wine 750 mL,Pentecostal Bread,Bereshit,,750.0,1.0,mL,,True,brand;quantity;unit
+5711953148347,גבינת שמנת טבעי 300 גר ארלה,Arla Natural Cream Cheese 300 g,Gibit Natural 300ml Arlaha,Arla,,300.0,1.0,g,ml,True,brand;quantity;unit

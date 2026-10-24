@@ -1,0 +1,41 @@
+item_code,raw_item_name,gold_is_product,gold_category,pred_is_product,pred_category,failed_fields,parse_success,error_message,raw_model_output,slice_tags
+7290000976433,קשיו ענק קלוי,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290016693898,יין פטי ורדו בראשית 750,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Pentecostal Bread"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290019865179,חליטת סנגריה 15 שקיקים,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Chlorine"",
+  ""quantity"": 15,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290019790280,חלב נטול לקטז2% 1ל הגולן,True,Dairy & Eggs,,,parse,False,schema_validation_error:1,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Chal nuclul tolu 2%"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290117906422,אגוז קשיו קלוי ענק 150 גרם,True,Snacks & Sweets,,,parse,False,schema_validation_error:1,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Aguz Shvay Klevye Nekhuyot 150 Grm"",
+  ""quantity"": 150,
+  ""unit"": ""Grm""
+}",hebrew_only|has_digits

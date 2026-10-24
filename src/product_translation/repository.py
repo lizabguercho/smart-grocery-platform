@@ -6,10 +6,10 @@ Hebrew `item_name` is never updated. We only add/fill `item_name_en`.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from src.product_translation.exclusions import exclusion_like_patterns
+
 from src.product_translation.config import SAMPLE_BATCH_SIZE, TEST_BATCH_SIZE
 from src.product_translation.exclusions import exclusion_like_patterns
-from src.product_translation.exclusions import exclusion_like_patterns
+
 ADD_ENGLISH_NAME_COLUMN_SQL = """
 ALTER TABLE grocery.products
     ADD COLUMN IF NOT EXISTS item_name_en TEXT;
@@ -102,7 +102,7 @@ class ProductTranslationRepository:
         """Skip rows that already have item_name_en; take the next `limit` names."""
         patterns = exclusion_like_patterns()
         with self._connection.cursor() as cursor:
-            cursor.execute(FETCH_UNTRANSLATED_SQL, (patterns,limit,))
+            cursor.execute(FETCH_UNTRANSLATED_SQL, (patterns, limit))
             rows = cursor.fetchall()
         return [
             ProductToTranslate(item_code=row[0], item_name=row[1]) for row in rows

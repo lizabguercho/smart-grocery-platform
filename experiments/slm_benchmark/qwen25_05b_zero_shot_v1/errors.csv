@@ -1,0 +1,1591 @@
+item_code,raw_item_name,gold_is_product,gold_category,pred_is_product,pred_category,failed_fields,parse_success,error_message,raw_model_output,slice_tags
+11210618503,רוטב טבסקו חריף אקסטרא 60 מל,True,Deli & Salads,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Potato Chips 60g"",
+  ""quantity"": 60,
+  ""unit"": null
+}
+```",hebrew_only|has_digits
+25675120181,חמצוצים ממולא בטעם פירות 125 גר גורי,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Chuxtapuses, meat and fish, 125g porridge"",
+  ""quantity"": 125,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+3228022910023,פרזידנט חמאה,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Parzivalin Kneaded Flour"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|short_name
+33383220291,אוכמניות טריות 125גרם,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Acrema Fresh Produce 125g"",
+  ""quantity"": 125,
+  ""unit"": ""grams""
+}",hebrew_only|has_digits
+3600542431910,קולור נטורלס 2.1,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Kolor Nurtalas 2.1"",
+  ""quantity"": 2,
+  ""unit"": null
+}",hebrew_only|has_digits
+37600297967,מטבל סלסה בחריפ.עדינה439,True,Deli & Salads,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": ""Shelley's Salad Bag"", ""quantity"": 439, ""unit"": null}",hebrew_only|has_digits
+4000417101419,גלילי וופל קרם וניל,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Gelilu Vopla"",
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+4005900273482,לבלו  אוכמניות בליסטר,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Lubrizol"",
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+4009300014560,פומפדור חליטת חורף סנגריה חמה,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Pom-Pop Chicken Salad"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+4014400901412,מרסי מריר 250 גרם,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Marissa Rimmer 250g"",
+  ""quantity"": 250,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+4014400917956,בונבוניירת מרסי קריספי עם שקדים,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Bunonirot Kirsi"",
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+4053700288205,קרם להסרת שיער רגיש100מל,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 100,
+  ""unit"": null
+}",hebrew_only|has_digits
+4084500853836,ורדים ומשי 515 מל פיירי,True,Household & Cleaning,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": ""Ordrés et Symétrie"", ""quantity"": 515, ""unit"": null}",hebrew_only|has_digits
+4810168019051,הרינג מלוח מצונן+תבלין,True,Pantry & Cooking,False,,is_product;category,True,,"{""is_product"": false, ""category"": ""Fresh Produce"", ""brand"": null, ""normalized_name_en"": ""Gelatinized Milk and Butter"", ""quantity"": 1, ""unit"": null}",hebrew_only
+4820180816552,Cookiesש.שועל קוקוס180גר,True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Cookies ש.שועל קוקוס 180 גר"",
+  ""quantity"": 180,
+  ""unit"": ""grams""
+}",mixed_script|has_digits|short_name
+4895060586160,סוכריות חמוץ משפחתי120ג,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Chilled Vegetables"",
+  ""quantity"": 120,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+5029053527574,10תח.ספיגה לילה בנים4-7,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Baby"",
+  ""brand"": null,
+  ""normalized_name_en"": ""10 Days of Family Fun"",
+  ""quantity"": 4,
+  ""unit"": null
+}",hebrew_only|has_digits
+5410316959810,"סמירנוף אייס פחית 250מ""ל",True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Semen Nufu 250ml"",
+  ""quantity"": 250,
+  ""unit"": ""ml""
+}",hebrew_only|has_digits
+5711953148347,גבינת שמנת טבעי 300 גר ארלה,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Gibit Natural 300ml Arlaha"",
+  ""quantity"": 1,
+  ""unit"": ""ml""
+}",hebrew_only|has_digits
+5711953172441,סטארבקס פרפוצינו עוג250,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Starter Pack 250"",
+  ""quantity"": 250,
+  ""unit"": null
+}",hebrew_only|has_digits
+5740900403246,ממרח לורפק ללא מלח500גרם,True,Dairy & Eggs,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": """", ""quantity"": 1, ""unit"": null}",hebrew_only|has_digits
+5900020020710,חט.קראנץ שוקו-וניל6נסטלה,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 6,
+  ""unit"": null
+}",hebrew_only|has_digits|short_name
+613008753320,אריזונה גינסנג ודבש450מ,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Arizona Ginsen & Dabash 450ml"",
+  ""quantity"": 450,
+  ""unit"": null
+}",hebrew_only|has_digits
+6943750903075,פרישלוק .,True,Baby,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": null, ""quantity"": null, ""unit"": null}",hebrew_only|short_name
+7290000000411,שום יבש,True,Fresh Produce,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": """", ""quantity"": null, ""unit"": null}",hebrew_only|short_name
+7290000000848,מארז תירס צהוב - שקיל,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Arav Tishor Shov"",
+  ""quantity"": 1,
+  ""unit"": ""kg""
+}",hebrew_only
+7290000034256,ביסקוויט תירוש 175 גרם,True,Bakery,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": ""Biskviit"", ""quantity"": 175, ""unit"": null}",hebrew_only|has_digits
+7290000048192,גב.לבנה רכה 9% 250 גרם,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Bulgarian Rache 9%"",
+  ""quantity"": 250,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290000060088,בייגלה מקלות מלוחים400גר,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Beverly Milk Cans"",
+  ""quantity"": 400,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290000103532,"גרעיני תירס בד""צ 700 גרם",True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Garden Salad"",
+  ""quantity"": 700,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290000104751,כרוב ניצנים מוקפא 800 גר,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Nectarine Apple 800g"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290000134680,קימל שלם 40 גרם,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Kilim 40 gram"",
+  ""quantity"": 40,
+  ""unit"": ""gram""
+}",hebrew_only|has_digits
+7290000134970,חוואיג במיכל 100 גרם,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Chua'uig in Matkul 100 gram"",
+  ""quantity"": 100,
+  ""unit"": ""gram""
+}",hebrew_only|has_digits
+7290000139715,קרמים בטעם נוגט 550 גרם,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Gourmet Roasted Squash"",
+  ""quantity"": 550,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290000201870,29 טיטולים פרימיום שלב 6,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 29,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290000289052,פוליויקס בניחוח פרחי סחלבים,True,Household & Cleaning,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Polypiks"",
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+7290000292007,K3 פיתיון ג'ל לתיקנים,True,Household & Cleaning,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": null,
+  ""unit"": null
+}
+```",mixed_script|has_digits
+7290000294780,סנו גאול אקונומ.סמיכה4ל,True,Household & Cleaning,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": null, ""quantity"": null, ""unit"": null}",hebrew_only|has_digits
+7290000318530,רוסטביף צלי בקר במשקל,True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Ratzlaf Chalali Bok"",
+  ""quantity"": 1,
+  ""unit"": ""kg""
+}",hebrew_only
+7290000318769,פסטרמה צלעות אסאדו עלהאש,True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Pesetrata Zelatot Ashdod Elaash"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290000319063,כתף בקר מפולפל 150 גרם,True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Pulap"",
+  ""quantity"": 150,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290000369617,כדורי גבינה בשמן 150גרם,True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Cider with sugar syrup"",
+  ""quantity"": 150,
+  ""unit"": ""gram""
+}",hebrew_only|has_digits
+7290000415932,קובה למרק בית יוסף,True,Deli & Salads,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Quarantine Milk"",
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+7290000523224,מלח ים דק 500ג מלח הארץ,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Watermelon Juice"",
+  ""quantity"": 500,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290000530444,כתף בקר מעושן,True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+7290000554839,מסקרפונה 40% 250ג גד,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 40,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290000652542,פילה אמנון 5-7 100%  דג- תנובה,True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Fruit and Vegetable Pack"",
+  ""quantity"": 5,
+  ""unit"": """"
+}",hebrew_only|has_digits
+7290000976433,קשיו ענק קלוי,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290000993461,עגבניות שרי צהוב,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Gherkins with beetroot"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290002319450,כרכום 80 גרם,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Cranberry 80g"",
+  ""quantity"": 1,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290002327103,גחנון תימני 900 גרם,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Gachnun Tyman 900 Gm"",
+  ""quantity"": 1,
+  ""unit"": ""gm""
+}",hebrew_only|has_digits
+7290002735007,בצק עלים 1 קג ינון קפואזן,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Yaniv's Fresh Produce Bags"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290002814603,מסיר שומנים מבושם לימון,True,Household & Cleaning,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Shumam Bovim Lemongrass"",
+  ""quantity"": 10,
+  ""unit"": null
+}",hebrew_only
+7290003319145,8 מנות בצנצנת מיוחד .,True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""8 bunches of special fresh produce"",
+  ""quantity"": 8,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290003387205,ספיד סטיק לגבר 56 גר,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Baby"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Sedapod Steak for Boy"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290003461677,"חומוס ""אסלי""ים תיכוני 1ק",True,Deli & Salads,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Asliim Tisch"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290003681211,צנובר 80 גר,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 80,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290003727667,"חומוס מסעדה 1 ק""ג צבר",True,Deli & Salads,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Shu'as Matzada 1 Kgb Zebra"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290003751303,"עוף טרי שלם ארוז העה""ח",True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Aviv's fresh chicken salad"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290003751839,"עצמות עוף למרק בד""ץ לק""ג",True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+7290003996049,פטרוזיליה חסלט - כשר )ק(,True,Fresh Produce,False,,is_product;category,True,,"{""is_product"": false, ""category"": ""Fresh Produce"", ""brand"": null, ""normalized_name_en"": ""Tarshil Hayeshtel"", ""quantity"": null, ""unit"": null}",hebrew_only
+7290004119928,מעדן קרלו וניל 3% 125 גר,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Gelatin Nyls 3%"",
+  ""quantity"": 125,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290004230326,מקלות פילו תפוח עץ 600גר,True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Philadelphia Apple Tree"",
+  ""quantity"": 600,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290004575557,סנקור 80 גרם,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Sennor 80 Grms"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290004575571,טילון וניל 75 גרם,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Tilon Nyl 75g"",
+  ""quantity"": 75,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290005174551,חומוס 125 גרם,True,Deli & Salads,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Sunflower Seeds"",
+  ""quantity"": 125,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290005423871,משחת אורביטול3*145ג,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 3,
+  ""unit"": null
+}",hebrew_only|has_digits|short_name
+7290005576041,שמיר גלאט עלים - יח,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Głat Eels"",
+  ""quantity"": 1,
+  ""unit"": ""ul""
+}",hebrew_only
+7290005576942,שמיר גלאט עלים - יחידה,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Głat Eales - Cigars"",
+  ""quantity"": 1,
+  ""unit"": ""uncg""
+}",hebrew_only
+7290006878038,שמיר מהדרין,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only|short_name
+7290006920836,פרוסות מעושנת 350 גרם,True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Fresh Produce - 350g"",
+  ""quantity"": 350,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290008116886,בלנאום בייבי פורטה500מל,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Banana Apple Fruits"",
+  ""quantity"": 500,
+  ""unit"": ""ml""
+}",hebrew_only|has_digits
+7290008409049,מיני דק שניצל שומשום,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290008455855,ירכיים טרי לנדא לפי משקל,True,Meat & Fish,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": null,
+  ""unit"": null
+}
+```",hebrew_only
+7290008801546,"מוסקט קינג דיווד 750 מ""ל",True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Moskett Kiddush 750 ml"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290008909761,קרלסברג בקבוק בודד,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Karsozberg Baked Potato"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290010002078,פלפל שחור טחון 100 גרם,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Plum Black Toner 100ml"",
+  ""quantity"": 100,
+  ""unit"": ""ml""
+}",hebrew_only|has_digits
+7290010051335,בצל ירוק א. אדמה,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Israeli Green Apple Salad"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290010068241,גרעיני חמניות 200 גרם,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Garne'eyim 200 gram"",
+  ""quantity"": 200,
+  ""unit"": ""gram""
+}",hebrew_only|has_digits
+7290010068258,כוסמת טבעית 500 גרם,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Cupcake"",
+  ""quantity"": 500,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290010193967,"קישקע ממולא עד""ח 600 גרם",True,Meat & Fish,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 600,
+  ""unit"": null
+}
+```",hebrew_only|has_digits
+7290010650767,אנדיב אדום,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only|short_name
+7290010757893,"בורקס תפו""א ללא גלוטן",True,Household & Cleaning,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Birkeis Tifon Av"",
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+7290011379025,פלפל צילי ארוז מרינה,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Plum-colored salmon"",
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+7290011501556,קיווי מיובש בקופסא 160 ג,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 160,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290011570934,תערובת להכנה פנקייק400ג,True,Pantry & Cooking,False,,is_product;category,True,,"{""is_product"": false, ""category"": ""Fresh Produce"", ""brand"": null, ""normalized_name_en"": ""Potato Mash"", ""quantity"": 100, ""unit"": null}",hebrew_only|has_digits
+7290011877446,בייבי כיף קרם נגד גירויים,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+7290011964542,פפריקה מתוקה מיכל 400 גר,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Perekka Matokha Mekal 400 Grams"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290012022005,קריספיות חיטה טבעי 60 גר,True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Rice"",
+  ""quantity"": 60,
+  ""unit"": """"
+}",hebrew_only|has_digits
+7290012022067,קריספיות קידס 30 גרם,True,Bakery,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 30,
+  ""unit"": null
+}
+```",hebrew_only|has_digits
+7290012193125,סוכרלוז 150 טבליות כשלפ,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Sour Cucumber 150 Pack"",
+  ""quantity"": 150,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290012313899,גרעיני פול 550 גרם,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Grenadier 550 Grams"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290012413636,תה ירוק צאי מסאלה 25שק,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Tehrey Ketov Shai 25"",
+  ""quantity"": 25,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290013195296,וייט פיש רוזנרס 500 גרם,True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Israeli Bread Basket 500g"",
+  ""quantity"": 500,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290013302267,מחיות בייבי תפוח 6*190גר,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Kiwi Fruit Packets"",
+  ""quantity"": 6,
+  ""unit"": ""pack""
+}",hebrew_only|has_digits
+7290013358516,מאסטר שף מיקסלט עם חמוציות 200 גר`,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Shafat Shafat with 200 grams"",
+  ""quantity"": 200,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290013675545,שניצל כלי תחבורה 700 גר מאמא עוף,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""700 grams of baby eagle eggs"",
+  ""quantity"": 1,
+  ""unit"": ""grams""
+}",hebrew_only|has_digits
+7290013787408,רביולי בטטה 330 גרם,True,Deli & Salads,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Rabbiuli Batalta 330"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290013906250,סלמי מהדרין קהילות 200 ג,True,Meat & Fish,False,,is_product;category,True,,"{""is_product"": false, ""category"": ""Beverages"", ""brand"": null, ""normalized_name_en"": ""kosher milk"", ""quantity"": 200, ""unit"": null}",hebrew_only|has_digits
+7290014002944,חליטת חמדת השקד 25ש*2.3ג,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 25,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290014204713,"ספריי לגוף 250 מ""ל",True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Seoul Juice 250ml"",
+  ""quantity"": 250,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290014355569,"חזה הודו מעושן כשל""פ400ג",True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Honeydew"",
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290014503144,"דלתון כנען גליל750מ""ל",True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Cantaloupe"",
+  ""quantity"": 750,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290015194471,מאגדת פאף בטעם בצל 8*15,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Apple Cinnamon Slice"",
+  ""quantity"": 8,
+  ""unit"": ""pcs""
+}",hebrew_only|has_digits
+7290015282581,חומוס אבו גוש+חריף 200 ג,True,Deli & Salads,False,,is_product;category,True,,"{""is_product"": false, ""category"": ""Fresh Produce"", ""brand"": null, ""normalized_name_en"": ""Shuca'ah Avraham Shafir 200 G"", ""quantity"": 200, ""unit"": null}",hebrew_only|has_digits
+7290015282697,כרוב אדום 200 גרם,True,Deli & Salads,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Caramel Orange 200g"",
+  ""quantity"": 200,
+  ""unit"": ""grams""
+}",hebrew_only|has_digits
+7290015599047,בלוק  לגירוד על פיצה,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290016150117,סלק אדום מבושל בואקום (ק,True,Fresh Produce,False,,is_product;category,True,,"{""is_product"": false, ""category"": ""Fresh Produce"", ""brand"": null, ""normalized_name_en"": """", ""quantity"": 1, ""unit"": null}",hebrew_only
+7290016276848,תבשיל איטריות בטעם עוף70,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Batshel Aviv Beer"",
+  ""quantity"": 70,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290016693898,יין פטי ורדו בראשית 750,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Pentecostal Bread"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290016995701,מחית בננה ותפוח אורגני,True,Baby,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": """", ""quantity"": 2, ""unit"": null}",hebrew_only
+7290017065618,פקורינו פרוס 34% 150גר,True,Dairy & Eggs,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Pesach"",
+  ""quantity"": 34,
+  ""unit"": null
+}
+```",hebrew_only|has_digits
+7290017079776,מחית סלט פירות 120 גרם,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Pesachim"",
+  ""quantity"": 120,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290017917184,"ד""ר פישר אולטרסול ג'ל אלוורה פורטה",True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Dr. Pishr Al-Tolusah G'lada Pharahta"",
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+7290017926391,אגרול במילוי ירקות 600 ג,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Arugula Salad"",
+  ""quantity"": 600,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290017932453,בסיס להכנת עוגת פאי,True,Bakery,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Pai"",
+  ""quantity"": 1,
+  ""unit"": null
+}
+```",hebrew_only
+7290018198148,ציפס קריספי1.25ק תפוגן,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Karishima 1.25kg Tofu"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290018249260,סוכר חום סוויטנגו 400 גר,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Chilled Sweet Potato Chips"",
+  ""quantity"": 400,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290018338964,מחית תפוח,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|short_name
+7290018338971,מחית שזיף אורגנית,True,Baby,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": """", ""quantity"": null, ""unit"": null}",hebrew_only
+7290018400531,תרמילי אפונה מתוקה בתרמיל,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Apple Cider Vinegar"",
+  ""quantity"": 10,
+  ""unit"": null
+}",hebrew_only
+7290018441480,סורבה פינה קולדה 500 מל,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Fruit and Vegetable Pack"",
+  ""quantity"": 500,
+  ""unit"": ""ml""
+}",hebrew_only|has_digits
+7290018441558,פיינט שוקולד אגוזים כשלפ,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Fruit and Vegetable Salad"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290018500392,חלה קלועה פיקוח אנג`ל,True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290018720585,בייגלה שמיניות+שומשום300,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Israeli Soda"",
+  ""quantity"": 300,
+  ""unit"": null
+}",hebrew_only|has_digits|short_name
+7290018755280,שלגון טוויסטר טרופי 56 ג,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Shelton's Toxic 56"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290018894217,בלקוני עוגות אישיות מיקס מקס קקאו 350 ג',True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Milkshake"",
+  ""quantity"": 350,
+  ""unit"": null
+}",hebrew_only|has_digits|long_name
+7290018921609,קרם החתלה קלנדולה 120גרם,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Crème de la Crème"",
+  ""quantity"": 120,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290018928394,"תערובת לאפיה ללג כשל""פ",True,Pantry & Cooking,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": null, ""quantity"": null, ""unit"": null}",hebrew_only
+7290019014850,"תרסיס דוחה מים 400 מ""ל",True,Household & Cleaning,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Watermelon"",
+  ""quantity"": 400,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290019014935,תבנית אלומיניום עבה רוסט,True,Household & Cleaning,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": null,
+  ""unit"": null
+}
+```",hebrew_only
+7290019056669,ספרינג תפוחים לייט 1.5 ל,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Tea Bag"",
+  ""quantity"": 1.5,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290019153931,פרוט&ווג תפוז גזר 1 ל,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Paratovuog Zev"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290019167129,טירמיסו פרווה 75 גרם,True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Tiramisu 75g"",
+  ""quantity"": 1,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290019603375,כמון מובחר שקית 80 גרם,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Calmon Brought to You"",
+  ""quantity"": 80,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290019603528,שוקו של מיה 800 גרם,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Shovels"",
+  ""quantity"": 800,
+  ""unit"": """"
+}",hebrew_only|has_digits
+7290019603849,חמוצמוצים שטוחים טעם תות,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""צורות מזון"",
+  ""quantity"": 10,
+  ""unit"": null
+}",hebrew_only
+7290019603856,חמוצמוצים שטוחים צבעוניי,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Champagne"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290019635147,חמאה איטלקית 100 גרם,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Heavenly Italian Bread 100g"",
+  ""quantity"": 100,
+  ""unit"": ""grams""
+}",hebrew_only|has_digits
+7290019790280,חלב נטול לקטז2% 1ל הגולן,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Chal nuclul tolu 2%"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290019865179,חליטת סנגריה 15 שקיקים,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Chlorine"",
+  ""quantity"": 15,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290019885061,ווייט פיש אושן 567 גרם,True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Five Sixty Seven Grams"",
+  ""quantity"": 567,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290020174468,צמד שימגי לבן חום,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Chilled Apple Cider"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290055090702,איגלושלוקי 60י 2.030 מל,True,Frozen,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 60,
+  ""unit"": null
+}
+```",hebrew_only|has_digits
+7290101112228,מאגדת גלידל פרי אננס 8יח,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Geladil Primalan 8kg"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290102393060,יוג.מולר מיקס גליליות170,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Baby"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Baby Midget Piccolo"",
+  ""quantity"": 170,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290103702311,טאצ ממחטות כיס מנטול 10,True,Household & Cleaning,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": ""Bat Shmaltas Cis Muntul 10"", ""quantity"": 10, ""unit"": null}",hebrew_only|has_digits
+7290104061417,חומוס עם טחינה אחלה 400ג,True,Deli & Salads,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Salad with fresh tomatoes"",
+  ""quantity"": 400,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290104721533,סלט פלפלים קלויים 400 גר,True,Pantry & Cooking,False,,is_product;category,True,,"{""is_product"": false, ""category"": ""Fresh Produce"", ""brand"": null, ""normalized_name_en"": ""Platelim Kuyumul 400 G"", ""quantity"": 400, ""unit"": ""G""}",hebrew_only|has_digits
+7290105474001,לה קט פטה בקר 100 גרם,True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Fruit and Vegetable Salad"",
+  ""quantity"": 100,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290105692511,עוגת הבית עוגת שיש כשר לפסח,True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Beer"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290105695321,עוגת הבית בראוניס פאדג' שוקולד,True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": ""Pesachim"",
+  ""normalized_name_en"": ""Beer"",
+  ""quantity"": 1,
+  ""unit"": """"
+}",hebrew_only
+7290106520905,סלט טורקי 400 גרם,True,Deli & Salads,False,,is_product;category,True,,"{""is_product"": false, ""category"": ""Fresh Produce"", ""brand"": null, ""normalized_name_en"": ""Turkki 400 g"", ""quantity"": 400, ""unit"": ""g""}",hebrew_only|has_digits
+7290107280075,תבניות אלומיניום לאפיהL,True,Household & Cleaning,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": null,
+  ""unit"": null
+}
+```",mixed_script
+7290107280655,אבקת כביסה בייבי,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Aqua"",
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+7290107649735,גלידה משפחתית 5 טעמים 2,True,Frozen,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": ""Baby"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Gladida Family 5 Tacos"",
+  ""quantity"": 5,
+  ""unit"": null
+}
+```",hebrew_only|has_digits
+7290107931465,פריכיות תחתית שוק.לבן70ג,True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Fresh Produce Bag"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290107970129,ליידי ספיד סטיק רול פרש,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Levi's Salad Dressing"",
+  ""quantity"": 10,
+  ""unit"": ""g""
+}",hebrew_only
+7290108351811,מרכך כביסה  floral touch,True,Household & Cleaning,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Floral Touch Floral Candles"",
+  ""quantity"": 1,
+  ""unit"": null
+}",mixed_script
+7290108353846,"כפפות ניטריל שחורות ללא אבקה מידה 80 יחידות, L",True,Household & Cleaning,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Cucumber"",
+  ""quantity"": 80,
+  ""unit"": ""L""
+}",mixed_script|has_digits|long_name
+7290108356175,כיף אל סבון אבטיח ומנטה,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Алкоголик и амфетамин"",
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+7290108356199,כיף אל סבון אפרסק ופלפל שחור,True,Personal Care & Hygiene,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""אפרסק"",
+  ""quantity"": null,
+  ""unit"": null
+}
+```",hebrew_only
+7290108359077,120 ממחטות אף בעלות 3 שכבות עשירות בלחות בקופסא,True,Household & Cleaning,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""120 Megagrams of Fresh Produce"",
+  ""quantity"": 3,
+  ""unit"": ""Chunks""
+}",hebrew_only|has_digits|long_name
+7290108359282,נייר טואלט 4 שכבות עבה ורך במיוחד,True,Household & Cleaning,False,,is_product;category,True,,"{""is_product"": false, ""category"": ""Fresh Produce"", ""brand"": null, ""normalized_name_en"": ""Four large packs of fresh produce"", ""quantity"": 4, ""unit"": null}",hebrew_only|has_digits
+7290108359794,נוזל לניקוי כלים בניחוח למון גראס,True,Household & Cleaning,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Water"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290108500677,כבד דג שיבוט בשמן הדג 120 גר וילי פוד,True,Meat & Fish,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Breadfruit Shredded Wheat Bread"",
+  ""quantity"": 120,
+  ""unit"": ""g""
+}",hebrew_only|has_digits|long_name
+7290108620320,יין אימפריאל סוביניון375,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 375,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290109640204,גוש בסגנון חלומי 18% 250,True,Dairy & Eggs,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": ""18%"", ""quantity"": 250, ""unit"": null}",hebrew_only|has_digits
+7290110563462,חלב נטול לקטוז 2% 1 ליטר,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Chalun Nuntul 2% 1 Litre"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290112357083,אפונה ירוקה 380 גרם,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Корзина с кукурузой и растительным маслом"",
+  ""quantity"": 380,
+  ""unit"": ""г""
+}",hebrew_only|has_digits
+7290112495280,ברנפלקס ריבועי קינמון400,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Banana Slice"",
+  ""quantity"": 400,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290112966766,טחינה בלאדי חציל עגבנ350,True,Deli & Salads,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Chilled Tuna with Cucumber, 350g"",
+  ""quantity"": 350,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290112968685,חומוס גרגרים בתטבילה400ג,True,Deli & Salads,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Güdsim Kibbutzat 400"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290113560109,משחה פרודונטקס ט.צמחי75מ,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Fruit Salad"",
+  ""quantity"": 75,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290115200027,פתי בר פינוקי שוקו 220ג,True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Beverages"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Pint Beer"",
+  ""quantity"": 220,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290116534725,2ב1 פינוק בייבי 700מ,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Bakery 2ב1 Poultry 700m"",
+  ""quantity"": 700,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290116534817,שיבולת שועל חמוציות וציה,True,Pantry & Cooking,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Apple Cinnamon Slice"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+7290117267202,גבינת שמנת עם שום  21%,True,Dairy & Eggs,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": """", ""quantity"": 21, ""unit"": null}",hebrew_only|has_digits
+7290117389102,קוקי שקיות לצלייה 5יח,True,Household & Cleaning,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Kokki kikiyot cheliya 5יח"",
+  ""quantity"": 5,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290117906422,אגוז קשיו קלוי ענק 150 גרם,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Aguz Shvay Klevye Nekhuyot 150 Grm"",
+  ""quantity"": 150,
+  ""unit"": ""Grm""
+}",hebrew_only|has_digits
+7290118422723,ערגליות מיניס  תות300גרם,True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 300,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290118425007,מקלוני ירקות בטטה גזר500,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Gazelle 500"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290119373710,חומוס40%מועשר+חריף250גר,True,Deli & Salads,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Sunflower 40% Soybean 250 Grams"",
+  ""quantity"": 1,
+  ""unit"": null
+}
+```",hebrew_only|has_digits|short_name
+7290119373970,קפסולות טנזניה 13,True,Beverages,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""peaches"",
+  ""quantity"": 13,
+  ""unit"": null
+}",hebrew_only|has_digits
+7290119375356,דנונה מולטי קולגן 200 גר,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Dunn's Molotokol Granola 200g"",
+  ""quantity"": 200,
+  ""unit"": ""grams""
+}",hebrew_only|has_digits
+7290122780376,סלט קולסלאו 225 גרם צבר,True,Deli & Salads,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Salad with Bitter Cucumber"",
+  ""quantity"": 225,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+7290122783483,חומוס ישראלי עם סחוג ירוק צבר,True,Deli & Salads,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Shabos Israel with Shrubbery Green Zucchini"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only
+72940976,סלט כרוב אדום במיונז 250 ג,True,Deli & Salads,False,,is_product;category,True,,"{""is_product"": false, ""category"": ""Fresh Produce"", ""brand"": null, ""normalized_name_en"": ""Salad"", ""quantity"": 250, ""unit"": null}",hebrew_only|has_digits
+72940983,חומוס אחלה 250 גרם,True,Deli & Salads,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Shawarma 250g"",
+  ""quantity"": 250,
+  ""unit"": ""grams""
+}",hebrew_only|has_digits
+73490130359,"קרם קרקר ""הדר"" 250 גרם",True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Karek Karkar 250 gram"",
+  ""quantity"": 250,
+  ""unit"": ""gram""
+}",hebrew_only|has_digits
+7509546688596,ליידי ספיד סטיק פחם 45 ג,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Levi's Cotton Shirt 45"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+7509546689616,קולגייט אופטיק ויט פחם75,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 75,
+  ""unit"": null
+}",hebrew_only|has_digits
+7613287821348,נתחי סויה דמויי עוף,True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Soy milk"",
+  ""quantity"": null,
+  ""unit"": null
+}",hebrew_only
+7804643270003,אוכמניות טריות 125 גרם,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Acrema Fresh Produce 125g"",
+  ""quantity"": 125,
+  ""unit"": ""grams""
+}",hebrew_only|has_digits
+8000380003761,וופל פטיסרי קוקוס100ג,True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Puzzle Pieces Kit"",
+  ""quantity"": 100,
+  ""unit"": null
+}",hebrew_only|has_digits
+8002267011753,"פולרטי חטיפי קרח 400מ""ל",True,Frozen,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Poltraje Chetif Chakreh 400mL"",
+  ""quantity"": 400,
+  ""unit"": ""ml""
+}",hebrew_only|has_digits
+8008660210038,מעדן תות שדה מנז אנד גאסר,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Garden Vegetable Basket"",
+  ""quantity"": 10,
+  ""unit"": """"
+}",hebrew_only
+8024985011204,סמוזי תפוח תות בננה 100ג,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Sweet Apple Fruits - 100g"",
+  ""quantity"": 100,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+8033413430708,לימונצלו וילה מאסה700מל,True,Beverages,False,,is_product;category,True,,"{""is_product"": false, ""category"": null, ""brand"": null, ""normalized_name_en"": ""Luminoso Vila"", ""quantity"": 700, ""unit"": null}",hebrew_only|has_digits
+8410376040135,בסקוויט מריה 600 גרם,True,Bakery,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""600g"",
+  ""quantity"": 1,
+  ""unit"": null
+}",hebrew_only|has_digits
+8445291028647,מחית מרק ירקות 190 גרם,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""190 gram apples"",
+  ""quantity"": 190,
+  ""unit"": null
+}",hebrew_only|has_digits
+8445291028920,מחית תפוח עץ ובננה190ג,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Apple Tree and Banana"",
+  ""quantity"": 190,
+  ""unit"": null
+}",hebrew_only|has_digits
+8700216732048,לנור כדוריות הבושם אוקיינוס 270 גרם,True,Household & Cleaning,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Norwegian Blueberries"",
+  ""quantity"": 1,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+87108538,מנטוס תות גליל 37.5 גר,True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Magen Tov 37.5 gram"",
+  ""quantity"": 37.5,
+  ""unit"": null
+}",hebrew_only|has_digits
+8717662470790,בצלי שלוט 350 גר`,True,Fresh Produce,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 350,
+  ""unit"": null
+}",hebrew_only|has_digits
+8718951159808,מברשת שיניים 360 לניקוי כל חלל הפה,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Birch Tree Seeds"",
+  ""quantity"": 360,
+  ""unit"": ""g""
+}",hebrew_only|has_digits
+8719200998032,מזולה בטעם חמאה 250 גרם,True,Dairy & Eggs,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Mushroom Pancake with Butter 250g"",
+  ""quantity"": 250,
+  ""unit"": ""grams""
+}",hebrew_only|has_digits
+8720181043093,דאו.אקס ספריי אפולו 150,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Baby"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Dove Acrylic Soap 150g"",
+  ""quantity"": 150,
+  ""unit"": null
+}",hebrew_only|has_digits
+8720181216268,תחליב רחצה בניחוח פיסטוק ומגנוליה 750 מ,True,Personal Care & Hygiene,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""750"",
+  ""quantity"": 1,
+  ""unit"": null
+}
+```",hebrew_only|has_digits
+8850006491621,מארז סבון מוצק פלמוליב נטורלס קמומיל לאיזון,True,Personal Care & Hygiene,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": ""Aravon"",
+  ""normalized_name_en"": ""Mushroom Salad with Feta Cheese"",
+  ""quantity"": 1,
+  ""unit"": ""g""
+}",hebrew_only
+9001616702822,זוג מוצצים סיליקון 6+ סגול וורוד,True,Baby,False,,is_product;category,True,,"```json
+{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Six-silver and orange fruit slices"",
+  ""quantity"": 6,
+  ""unit"": null
+}
+```",hebrew_only|has_digits
+9001616860881,מאמ מוצצים 0-2,True,Baby,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": null,
+  ""quantity"": 0,
+  ""unit"": null
+}",hebrew_only|has_digits
+9322969000039,"פריכ.תירס+דגנים150כשל""פ",True,Snacks & Sweets,False,,is_product;category,True,,"{
+  ""is_product"": false,
+  ""category"": null,
+  ""brand"": null,
+  ""normalized_name_en"": ""Paric.תירס + דגנים"",
+  ""quantity"": 150,
+  ""unit"": null
+}",hebrew_only|has_digits|short_name
+7290000692456,"אגקס חלונות 2*750 מ""ל",True,Household & Cleaning,,,parse,False,"json_decode_error:Expecting ',' delimiter","{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Aggex Chalons 2 * 750 מ""ל"",
+  ""quantity"": 2,
+  ""unit"": ""шт""
+}",hebrew_only|has_digits
+7290017079769,"מחית תפו""ע ובננה 120 גרם",True,Baby,,,parse,False,"json_decode_error:Expecting ',' delimiter","{
+  ""is_product"": false,
+  ""category"": ""Fresh Produce"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Hebrew: מלח תפו""ע בְּנֵנה 120 גרם"",
+  ""quantity"": 120,
+  ""unit"": ""grams""
+}",hebrew_only|has_digits
+7290105692535,עוגת שוקו שוקוציפס350גר,True,Bakery,,,parse,False,schema_validation_error:1,"{
+  ""is_product"": false,
+  ""category"": ""Grocery"",
+  ""brand"": null,
+  ""normalized_name_en"": ""Seventy-five dollars worth of cashback"",
+  ""quantity"": 350,
+  ""unit"": null
+}",hebrew_only|has_digits

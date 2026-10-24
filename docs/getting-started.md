@@ -326,6 +326,19 @@ uv run python -m src.product_classification.supercompare
 Output: `data/processed/supercompare_products.csv`. Resume is on by
 default. Details: **[docs/supercompare_labeling.md](supercompare_labeling.md)**.
 
+### Product name translation (optional)
+
+Writes English names into `grocery.products.item_name_en` from Hebrew
+`item_name` using a local Qwen model. Needs the optional transformers
+group and the local ETL database (`DB_*`):
+
+```bash
+uv sync --group transformers
+PYTHONPATH=. uv run --group transformers python -u scripts/translate_product_names.py --sample 100
+```
+
+Details: **[docs/product_name_translation.md](product_name_translation.md)**.
+
 ### Download, parse, and load PromoFull files
 
 ```bash

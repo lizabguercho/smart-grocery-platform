@@ -58,6 +58,12 @@ docs/README.md                     this map
         │                          Test mistakes of the winning Linear SVM
         ├── modeling_decisions.md  short conclusions (canonical: ADR 0006)
         ├── agent_platform.md      chat service over the analytical database
+        ├── product_name_translation.md
+        │                          Hebrew → English item_name_en (local Qwen)
+        ├── research/slm_benchmark_v1.md
+        │                          zero-shot SLM grocery-understanding benchmark
+        ├── research/slm_benchmark_v2_translation.md
+        │                          human gold + semantic translation eval
         ├── comparability_audit.md barcode/SKU like-for-like review
         ├── weekly_basket_coverage.md
         │                          illustrative weekly basket vs catalog coverage
@@ -88,6 +94,9 @@ than silently changing the original decision.
 | To understand the 12-class classifier experiments | [product_classifier_experiments.md](product_classifier_experiments.md) |
 | To see which model and features we kept | [ADR 0006](adr/0006-main-category-classifier.md) |
 | To ask the data questions in plain language | [agent_platform.md](agent_platform.md) |
+| To fill English product names from Hebrew | [product_name_translation.md](product_name_translation.md) |
+| To see the SLM grocery-understanding benchmark | [research/slm_benchmark_v1.md](research/slm_benchmark_v1.md) |
+| To see v2 translation gold / semantic eval | [research/slm_benchmark_v2_translation.md](research/slm_benchmark_v2_translation.md) |
 | To see which barcodes are not like-for-like | [comparability_audit.md](comparability_audit.md) |
 | To see which weekly-basket staples have like-for-like codes | [weekly_basket_coverage.md](weekly_basket_coverage.md) |
 | To see the comparable weekly-basket totals | [weekly_basket_results.md](weekly_basket_results.md) |
@@ -195,6 +204,28 @@ The chat service that makes the analytical layer answerable in plain language:
 The durable choices are [ADR 0007](adr/0007-agent-platform-chat-service.md).
 Related code: `src/agent_platform/`.
 
+### [product_name_translation.md](product_name_translation.md)
+
+Local batch job that writes English names into
+`grocery.products.item_name_en` from Hebrew `item_name` (never updated)
+using Qwen2.5-1.5B-Instruct. Covers `--sample` / `--new-only` /
+`--retry-failed`, quality flags, fee/voucher exclusions, and the
+optional `transformers` uv group. Related code:
+`src/product_translation/`, `scripts/translate_product_names.py`.
+
+### [research/slm_benchmark_v1.md](research/slm_benchmark_v1.md)
+
+Frozen zero-shot SLM grocery-understanding benchmark (Tier-1:
+`is_product` + SuperCompare category). Related code:
+`src/slm_benchmark/`. Decision log:
+[research/slm_benchmark_log.md](research/slm_benchmark_log.md).
+
+### [research/slm_benchmark_v2_translation.md](research/slm_benchmark_v2_translation.md)
+
+Same 249 `item_code`s with human-validated English / SKU gold and
+semantic translation re-evaluation of saved Qwen predictions.
+Candidates ≠ gold; LLM-as-judge and COMET deferred.
+
 ### [comparability_audit.md](comparability_audit.md)
 
 Read-only check of whether `item_code` is the same sellable SKU across
@@ -263,6 +294,9 @@ working data the markdown describes.
 | `data/processed/weekly_basket_fresh_matches.csv` | Pending per-chain fresh SKU matches (cucumbers, tomatoes, potatoes, bananas, chicken), ₪/kg |
 | `data/processed/weekly_basket_exceptions.csv` | Basket-only SKU exceptions (does not change the comparability audit) |
 | `data/processed/weekly_basket_comparison.csv` | 13-line comparable weekly basket (39 chain rows) for Tableau |
+| `data/processed/product_name_translations_sample.csv` | Latest Hebrew → English sample translation review |
+| `data/processed/translation_failed_retries.csv` | Latest quality-flagged translation retries |
+| `data/benchmarks/slm_grocery_understanding_v1.csv` | Frozen SLM grocery-understanding eval set (v1) |
 
 SQL that *is* in Git:
 
