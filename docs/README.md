@@ -58,6 +58,8 @@ docs/README.md                     this map
         │                          Test mistakes of the winning Linear SVM
         ├── modeling_decisions.md  short conclusions (canonical: ADR 0006)
         ├── agent_platform.md      chat service over the analytical database
+        ├── model_lifecycle.md     how every model is developed, versioned and handed over
+        ├── MODEL_STATUS.md        where each model stands now (generated)
         ├── comparability_audit.md barcode/SKU like-for-like review
         ├── weekly_basket_coverage.md
         │                          illustrative weekly basket vs catalog coverage
