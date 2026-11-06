@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Measurement Annotation</title>
+<style>
+:root{--bg:#f4f6fa;--panel:#fff;--ink:#1b2333;--mute:#5b6577;--line:#d9dfea;--blue:#1d4ed8;--blue-bg:#e8efff;
+--teal:#0f766e;--teal-bg:#dcf5f1;--amber:#92400e;--amber-bg:#fdf0d3;--red:#b91c1c;--red-bg:#fde4e4}
+@media(prefers-color-scheme:dark){:root{--bg:#10151f;--panel:#182030;--ink:#e8edf6;--mute:#9aa6bb;--line:#2b3649;
+--blue:#8fb2ff;--blue-bg:#1b2a52;--teal:#5eead4;--teal-bg:#12342f;--amber:#fcd34d;--amber-bg:#3a2e0e;--red:#fca5a5;--red-bg:#43191b}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
+:focus-visible{outline:3px solid var(--blue);outline-offset:1px}
+header{display:flex;align-items:center;gap:10px;padding:8px 16px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+h1{font-size:15px;margin:0}
+.pill{padding:2px 9px;border-radius:99px;font-size:12px;font-weight:600;white-space:nowrap}
+.saved{background:var(--teal-bg);color:var(--teal)}.draft{background:var(--blue-bg);color:var(--blue)}
+.needs_review{background:var(--amber-bg);color:var(--amber)}.unreviewed{background:var(--line);color:var(--mute)}
+.err{background:var(--red-bg);color:var(--red)}
+main{display:grid;grid-template-columns:270px 1fr;min-height:0}
+#queue{border-inline-end:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-height:0}
+#queue input{margin:8px;padding:6px 8px}
+#list{overflow:auto;flex:1}
+.row{display:flex;justify-content:space-between;gap:6px;padding:6px 10px;border:0;border-bottom:1px solid var(--line);background:none;color:inherit;width:100%;text-align:start;cursor:pointer}
+.row.cur{background:var(--blue-bg)}
+.row .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:rtl;text-align:right;flex:1}
+#work{overflow:auto;padding:12px 16px;display:flex;flex-direction:column;gap:10px;min-height:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+#title{font-size:26px;direction:rtl;text-align:right;unicode-bidi:plaintext;line-height:1.3;user-select:text;margin:4px 0}
+.meta{display:flex;gap:10px;align-items:center;color:var(--mute);font-size:12px;flex-wrap:wrap}
+bdi.id{direction:ltr;unicode-bidi:isolate;font-family:ui-monospace,monospace;background:var(--bg);padding:1px 6px;border-radius:4px}
+#raw{font-family:ui-monospace,monospace;direction:ltr;white-space:pre-wrap;word-break:break-all;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px 12px;margin-top:8px}
+label{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--mute)}
+input,select,textarea,button{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:5px 7px}
+input.he{direction:rtl;unicode-bidi:plaintext}
+button{cursor:pointer}button.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+@media(prefers-color-scheme:dark){button.primary{color:#0b1220}}
+.seg{display:flex;gap:8px;align-items:center}.seg button.on{background:var(--blue-bg);border-color:var(--blue);color:var(--blue);font-weight:700}
+.prev{display:flex;gap:18px;flex-wrap:wrap;background:var(--blue-bg);border-radius:8px;padding:6px 10px;margin-top:8px;font-size:13px}
+.prev b{font-variant-numeric:tabular-nums}
+.prev .tot{border-inline-start:2px dashed var(--mute);padding-inline-start:14px}
+footer{display:flex;gap:8px;align-items:center;padding:8px 16px;background:var(--panel);border-top:1px solid var(--line)}
+footer .sp{flex:1}
+details summary{cursor:pointer;color:var(--mute)}
+#msg{min-height:20px}
+kbd{border:1px solid var(--line);border-radius:4px;padding:0 4px;font-size:12px}
+.entry+.entry{border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Measurement annotation</h1>
+  <span id="progress" class="pill draft">–</span>
+  <span id="counts"></span>
+  <span id="auto" class="pill unreviewed">autosave idle</span>
+  <select id="splitSel" aria-label="Split"><option value="dev">Development</option><option value="test">Test (blind)</option></select>
+  <select id="filterSel" aria-label="Filter"><option value="">All states</option><option value="unreviewed">Unreviewed</option><option value="draft">Draft</option><option value="saved">Saved</option><option value="needs_review">Needs review</option></select>
+  <span class="sp" style="flex:1"></span>
+  <a href="/api/export.jsonl" download="gold.jsonl">Export gold log</a>
+</header>
+<main>
+  <aside id="queue"><input id="q" placeholder="Search title or ID" aria-label="Search"><div id="list"></div></aside>
+  <section id="work">
+    <div class="card">
+      <div class="meta"><span id="stateBadge" class="pill unreviewed"></span><bdi class="id" id="code"></bdi><span id="splitTag"></span>
+        <button id="copy" type="button">Copy title</button><label style="flex-direction:row;gap:4px;align-items:center"><input id="rawToggle" type="checkbox"> raw characters</label></div>
+      <div id="title" dir="rtl"></div>
+      <div id="raw" hidden></div>
+      <div class="meta" id="lockNote"></div>
+    </div>
+    <div class="card" id="annot">
+      <div class="seg"><strong>Does the title state a measurement?</strong>
+        <button id="yes" type="button" class="">Yes (Y)</button><button id="no" type="button">No (N)</button></div>
+      <div id="entries"></div>
+      <details id="more" hidden><summary>Additional measurements</summary><div id="extra"></div></details>
+      <button id="addEntry" type="button" hidden style="margin-top:8px">Add another measurement</button>
+    </div>
+    <details class="card"><summary>Notes</summary><textarea id="notes" rows="2" style="width:100%"></textarea></details>
+    <details class="card"><summary>Guideline help &amp; shortcuts</summary>
+      <p><b>Source facts</b> are copied as written. <b>Canonical</b> values are computed by the app. Leave a field empty when the title doesn't say. Never guess a unit, a count, or whether an amount is per item or for the whole package. Percentages, vintages, shade codes and dimensions are not measurements.</p>
+      <p><kbd>Y</kbd> measurement · <kbd>N</kbd> none · <kbd>Ctrl</kbd>+<kbd>Enter</kbd> save &amp; next · <kbd>Alt</kbd>+<kbd>←</kbd> back · <kbd>Alt</kbd>+<kbd>Z</kbd> undo · <kbd>F</kbd> flag. Shortcuts are off while typing.</p>
+    </details>
+    <div id="msg" role="status"></div>
+  </section>
+</main>
+<footer>
+  <button id="back" type="button">Back</button>
+  <button id="undo" type="button">Undo last edit</button>
+  <button id="flag" type="button">Flag for review (F)</button>
+  <span class="sp"></span>
+  <button id="save" type="button" class="primary">Save &amp; next</button>
+</footer>
+<script>
+const FIELDS=["source_text","source_amount","source_unit","package_count","counted_item","describes","other_description","measurement_role","amount_scope"];
+let items=[],cur=null,model=null,timer=null,loading=false;
+const $=id=>document.getElementById(id);
+const api=async(url,opt)=>{const r=await fetch(url,opt);const b=await r.json().catch(()=>({}));if(!r.ok)throw new Error(explain(b.detail)||r.statusText);return b};
+const FIELD_NAMES={source_amount:"Source amount (a single number, e.g. 560 or 1.5)",package_count:"Package count (a whole number)",other_description:"Other: describe",describes:"Describes"};
+function explain(d){if(!Array.isArray(d))return d;
+  return d.map(e=>{const f=e.loc.filter(x=>typeof x==="string"&&!["body","annotation","measurements"].includes(x)).pop();
+    const n=e.loc.find(x=>typeof x==="number");
+    return `${n>0?`Measurement ${n+1}: `:""}${FIELD_NAMES[f]||f||"Annotation"} – ${e.msg}`}).join("; ")}
+const blank=()=>({source_text:"",source_amount:"",source_unit:"",package_count:"",counted_item:"",describes:"",other_description:"",measurement_role:"",amount_scope:""});
+const clean=e=>{const o={};for(const k of FIELDS){let v=e[k];o[k]=(v===""||v==null)?null:v}
+  if(o.package_count!=null)o.package_count=Number(o.package_count);
+  if(o.describes!=="other")o.other_description=o.other_description||null;return o};
+const opts=(vals,labels)=>`<option value=""></option>`+vals.map((v,i)=>`<option value="${v}">${labels[i]}</option>`).join("");
+
+function entryHTML(i){return `<div class="entry" data-i="${i}"><div class="grid">
+<label>Source text (select in title, then click)<span style="display:flex;gap:4px"><input class="he" data-f="source_text" style="flex:1"><button type="button" data-use="${i}">Use selection</button></span></label>
+<label>Source amount<input data-f="source_amount" inputmode="decimal" dir="ltr"></label>
+<label>Source unit<input class="he" data-f="source_unit"></label>
+<label>Package count<input data-f="package_count" inputmode="numeric" dir="ltr"></label>
+<label>Counted item (Hebrew)<input class="he" data-f="counted_item"></label>
+<label>Describes<select data-f="describes">${opts(["mass","volume","count","other"],["Mass / weight","Volume","Count","Other"])}</select></label>
+<label>Role<select data-f="measurement_role">${opts(["contents","capacity"],["Contents (sold amount)","Capacity (container holds)"])}</select></label>
+<label>Amount scope<select data-f="amount_scope">${opts(["per_item","whole_package"],["Per item","Whole package"])}</select></label>
+<label class="oth" hidden>Other: describe<input data-f="other_description"></label>
+</div><div class="prev"><span><em>Source fact</em> as written: <b class="ps">–</b></span><span>Canonical: <b class="pc">–</b></span><span class="tot"><em>Derived total</em> (computed, read-only): <b class="pt">–</b></span></div>
+${i>0?`<button type="button" data-del="${i}" style="margin-top:6px">Remove</button>`:""}</div>`}
+
+function render(){
+  const present=model.present;
+  $("yes").className=present===true?"on":"";$("no").className=present===false?"on":"";
+  const ents=present?model.entries:[];
+  $("entries").innerHTML=ents.length?entryHTML(0):"";
+  $("extra").innerHTML=ents.slice(1).map((_,k)=>entryHTML(k+1)).join("");
+  $("more").hidden=ents.length<2;$("addEntry").hidden=!present;
+  document.querySelectorAll(".entry").forEach(el=>{const e=ents[+el.dataset.i];
+    el.querySelectorAll("[data-f]").forEach(inp=>{inp.value=e[inp.dataset.f]??"";});
+    el.querySelector(".oth").hidden=e.describes!=="other";preview(el,e)});
+}
+let UNITS=null;
+fetch("/units.json").then(r=>r.json()).then(u=>{UNITS=u;document.querySelectorAll(".entry").forEach((el,i)=>preview(el,model.entries[i]))});
+function convert(amount,unit){
+  if(!UNITS||!unit)return null;
+  const key=unit.replace(new RegExp(UNITS.quote_chars,"g"),"").trim().toLowerCase();
+  const spec=UNITS.aliases[key];if(!spec)return null;
+  const a=parseFloat(amount);
+  return {unit:spec.unit,family:spec.family,amount:isNaN(a)?null:+(a*parseFloat(spec.factor)).toFixed(6)}}
+function preview(el,e){
+  const w=s=>el.querySelector(s),c=convert(e.source_amount,e.source_unit);
+  w(".ps").textContent=[e.source_amount,e.source_unit].filter(x=>x!=="").join(" ")||"–";
+  w(".pc").textContent=c?`${c.amount??"?"} ${c.unit} (${c.family})`:"unresolved (no recognised unit)";
+  let total=null;
+  if(c&&c.amount!=null&&e.measurement_role==="contents"){
+    if(e.amount_scope==="whole_package")total=c.amount;
+    else if(e.amount_scope==="per_item"&&e.package_count)total=+(c.amount*Number(e.package_count)).toFixed(6)}
+  w(".pt").textContent=total!=null?`${total} ${c.unit}`:"–"}
+function payload(){return model.present==null?null:{has_measurement:!!model.present,measurements:model.present?model.entries.map(clean):[]}}
+async function persist(state,reason){
+  const body={state,annotation:payload(),notes:$("notes").value||null,reason:reason||null};
+  const row=await api(`/api/items/${encodeURIComponent(cur.item_code)}`,{method:"PUT",headers:{"content-type":"application/json"},body:JSON.stringify(body)});
+  Object.assign(cur,row);const b=$("stateBadge");b.textContent=cur.state.replace("_"," ");b.className="pill "+cur.state;return row}
+function schedule(){if(loading)return;$("auto").textContent="saving…";clearTimeout(timer);
+  timer=setTimeout(async()=>{if(cur.state==="saved"||model.present==null){$("auto").textContent="autosave idle";return}
+    try{await persist("draft");$("auto").textContent="draft saved";refreshList()}catch(e){$("auto").textContent="autosave failed"}},800)}
+function load(item){
+  clearTimeout(timer);loading=true;cur=item;
+  const a=item.annotation;
+  model={present:a?a.has_measurement:null,entries:a&&a.measurements.length?a.measurements.map(m=>({...blank(),...Object.fromEntries(FIELDS.map(k=>[k,m[k]??""]))})):[blank()]};
+  $("title").textContent=item.item_name;$("code").textContent=item.item_code;
+  $("raw").textContent=[...item.item_name].map(c=>c.codePointAt(0)<32||/\s/.test(c)?`<U+${c.codePointAt(0).toString(16).toUpperCase().padStart(4,"0")}>`:c).join("");
+  $("splitTag").textContent=item.split==="test"?"test split (blind)":"development split";
+  $("lockNote").textContent=item.split==="test"?"Rules and model predictions are locked until the frozen final evaluation is run.":"Blind mode: nothing is prefilled from rules or the model.";
+  $("notes").value=item.notes||"";
+  const b=$("stateBadge");b.textContent=item.state.replace("_"," ");b.className="pill "+item.state;
+  render();loading=false;$("msg").textContent="";highlight()}
+function highlight(){document.querySelectorAll(".row").forEach(r=>r.classList.toggle("cur",r.dataset.code===cur?.item_code))}
+function visible(){const q=$("q").value.trim(),f=$("filterSel").value;
+  return items.filter(i=>(!f||i.state===f)&&(!q||i.item_name.includes(q)||i.item_code.includes(q)))}
+function renderList(){const v=visible();$("list").innerHTML=v.map(i=>`<button class="row" data-code="${i.item_code}"><span class="pill ${i.state}">${i.state==="saved"?"✓ saved":i.state==="needs_review"?"! review":i.state==="draft"?"draft":"new"}</span><span class="t">${i.item_name.replace(/[<>&]/g,"")}</span></button>`).join("");highlight()}
+async function refreshList(){const split=$("splitSel").value;items=await api(`/api/items?split=${split}`);
+  if(cur){const f=items.find(i=>i.item_code===cur.item_code);if(f)f.annotation=f.annotation}
+  renderList();const c={};items.forEach(i=>c[i.state]=(c[i.state]||0)+1);
+  const done=c.saved||0;$("progress").textContent=`${done}/${items.length}`;
+  $("counts").textContent=`saved ${done} · draft ${c.draft||0} · review ${c.needs_review||0} · new ${c.unreviewed||0}`}
+function idx(){return items.findIndex(i=>i.item_code===cur.item_code)}
+function go(d){const i=idx()+d;if(items[i])load(items[i])}
+async function save(){
+  if(model.present==null){msg("Answer yes or no first.");return}
+  let reason=null;if(cur.state==="saved"){reason=prompt("This item is already saved. Reason for the correction?");if(!reason)return}
+  try{await persist("saved",reason);await refreshList();go(1)}catch(e){msg(e.message,true)}}
+function msg(t,bad){$("msg").textContent=t;$("msg").className=bad?"pill err":""}
+document.addEventListener("input",e=>{const f=e.target.dataset?.f;if(!f)return;
+  const el=e.target.closest(".entry"),ent=model.entries[+el.dataset.i];ent[f]=e.target.value;
+  if(f==="describes")el.querySelector(".oth").hidden=e.target.value!=="other";preview(el,ent);schedule()});
+document.addEventListener("click",e=>{const t=e.target;
+  if(t.dataset.use!==undefined){const s=String(getSelection()).trim();if(!s){msg("Select text in the title first.");return}
+    const el=t.closest(".entry");el.querySelector('[data-f="source_text"]').value=s;model.entries[+t.dataset.use].source_text=s;schedule()}
+  if(t.dataset.del!==undefined){model.entries.splice(+t.dataset.del,1);render();schedule()}
+  const row=t.closest(".row");if(row)load(items.find(i=>i.item_code===row.dataset.code))});
+$("yes").onclick=()=>{model.present=true;if(!model.entries.length)model.entries=[blank()];render();schedule()};
+$("no").onclick=()=>{model.present=false;render();schedule()};
+$("addEntry").onclick=()=>{model.entries.push(blank());render();$("more").open=true};
+$("save").onclick=save;$("back").onclick=()=>go(-1);
+$("flag").onclick=async()=>{try{await persist("needs_review");await refreshList();load(cur);msg("Flagged for review.")}catch(e){msg(e.message,true)}};
+$("undo").onclick=async()=>{try{const r=await api(`/api/items/${encodeURIComponent(cur.item_code)}/undo`,{method:"POST"});Object.assign(cur,r);load(cur);refreshList()}catch(e){msg(e.message,true)}};
+$("copy").onclick=()=>navigator.clipboard?.writeText(cur.item_name);
+$("rawToggle").onchange=e=>{$("raw").hidden=!e.target.checked};
+$("notes").oninput=schedule;$("q").oninput=renderList;$("filterSel").onchange=renderList;
+$("splitSel").onchange=async()=>{await refreshList();if(items[0])load(items[0])};
+document.addEventListener("keydown",e=>{
+  if(e.ctrlKey&&e.key==="Enter"){e.preventDefault();save();return}
+  if(e.altKey&&e.key==="ArrowLeft"){go(-1);return}
+  if(e.altKey&&e.key.toLowerCase()==="z"){$("undo").click();return}
+  if(/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)||e.ctrlKey||e.metaKey||e.altKey)return;
+  const k=e.key.toLowerCase();if(k==="y")$("yes").click();else if(k==="n")$("no").click();else if(k==="f")$("flag").click()});
+(async()=>{await refreshList();const first=items.find(i=>i.state!=="saved")||items[0];if(first)load(first);
+  else $("title").textContent="No items yet. Build the manifest first."})();
+</script>
+</body>
+</html>
