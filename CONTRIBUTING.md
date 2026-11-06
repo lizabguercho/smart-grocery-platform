@@ -80,6 +80,42 @@ time (`Chain`, `ExtractType`).
 Use a **dataclass** when the record has several fields and is not a
 fixed vocabulary.
 
+## Model lifecycle and status
+
+Every model (rules, prompted LLM, fine-tuned model, cascade) follows one
+lifecycle: baseline inference → error analysis → prompt/rule engineering →
+inference → … → fine-tuning → inference → … → frozen evaluation. The full
+process, stage definitions, versioning and honesty rules are in
+[docs/model_lifecycle.md](docs/model_lifecycle.md). Read it before changing a model.
+
+The documentation system has three layers, so that any conversation can be
+closed and any colleague can take over a model:
+
+| Layer | File | Edited by |
+|---|---|---|
+| How we work | `docs/model_lifecycle.md` | by hand, rarely |
+| What happened to one model | `docs/models/<model-id>/CHANGELOG.md` | by hand, on **every** model change |
+| Where every model stands now | `docs/MODEL_STATUS.md` | **generated**, never by hand |
+
+When you change a model (prompt, rules, weights, decoding, routing, fine-tuning):
+
+1. Make one change and choose the new version (`MINOR` for anything that can
+   alter predictions, `PATCH` otherwise).
+2. Run inference and the shared evaluation on the same development items.
+3. Add a new entry at the top of the model's `CHANGELOG.md` (format in the
+   lifecycle doc) and update its `Next step`.
+4. Run `PYTHONPATH=. uv run python scripts/build_model_status.py` and commit
+   the regenerated `docs/MODEL_STATUS.md` with the changelog.
+5. Commit the code and artifacts the entry mentions and write the commit hash in it.
+
+`scripts/build_model_status.py --check` fails when the status document is
+stale; run it before opening a pull request. Before you hand a model over or
+end a working session, go through the handover checklist in the lifecycle doc.
+
+Never read or tune on test data, never reuse a spent test set for a new claim,
+and never let a model's output become gold without a human confirming it and
+the provenance staying visible.
+
 ## Running the pipeline
 
 From Cursor, use **Run and Debug → ETL Pipeline** and pick the chain and
