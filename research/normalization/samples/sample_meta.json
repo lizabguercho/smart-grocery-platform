@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-10-31T15:57:27+00:00",
+  "seed": 20261027,
+  "postgres_setseed": 0.2026,
+  "population": "grocery.products, Hebrew letters in item_name, fee/voucher names excluded",
+  "excluded_previously_inspected": 100,
+  "previous_sample_sha256": "6f7890e32c3fe12f701fe9822ed66aa1dbffe263d1fccf8c786e0ddb5f54fd69",
+  "oversampled": 260,
+  "duplicates_dropped": 0,
+  "grouping_policy": "same item_code or identical name after whitespace/quote folding",
+  "split_rule": "drawn order is random; first 100 dev, next 100 test",
+  "dev_ids_sha256": "b8b5dcf6c76afa69ebaf479d7d5eafb48559721d70a1b1798e7cbe79b97da990",
+  "test_ids_sha256": "5695ced373281a7b880630d0aa2dc1ed1da7055cbeededc8ebf80c33430163e8"
+}
