@@ -92,9 +92,11 @@ def extract(title: str) -> RuleResult:
         )
 
     count: int | None = None
+    counted_item: str | None = None
     count_match = COUNT_UNITS.search(title) or COUNT_NOUNS.search(title)
     if count_match and free(count_match.start(), count_match.end()):
         count = int(count_match.group(1))
+        counted_item = count_match.group(2)
         consumed.append((count_match.start(), count_match.end()))
         spans.append((count_match.start(), count_match.end()))
         rule_ids.append(
@@ -130,6 +132,7 @@ def extract(title: str) -> RuleResult:
                 source_text=title[spans[-1][0] : spans[-1][1]],
                 describes=Describes.COUNT,
                 package_count=count,
+                counted_item=counted_item,
             )
         )
     elif not entries:

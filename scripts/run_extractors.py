@@ -163,7 +163,7 @@ def run_cascade(items, split: str, out: Path) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--system", choices=["rules", "qwen", "cascade"], required=True)
-    parser.add_argument("--split", choices=["dev", "test"], required=True)
+    parser.add_argument("--split", choices=["dev", "test", "test2"], required=True)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--batch-size", type=int, default=1)
     parser.add_argument("--backend", choices=["mlx", "torch"], default="mlx")

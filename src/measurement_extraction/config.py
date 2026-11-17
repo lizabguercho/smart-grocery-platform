@@ -5,8 +5,8 @@ from __future__ import annotations
 from pathlib import Path
 
 SCHEMA_VERSION = "measurement-schema-v1"
-GUIDELINE_VERSION = "guidelines-v1"
-UNITS_REGISTRY_VERSION = "units-v1"
+GUIDELINE_VERSION = "guidelines-v2.1"
+UNITS_REGISTRY_VERSION = "units-v2"
 
 SAMPLE_FILE = Path("research/samples_product.txt")
 NORMALIZATION_DIR = Path("research/normalization")

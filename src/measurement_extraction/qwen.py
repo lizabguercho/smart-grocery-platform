@@ -224,6 +224,9 @@ class BatchWorker:
                     future.set_exception(error)
 
 
+_HEBREW_INNER_QUOTE = re.compile('(?<=[א-ת])"(?=[א-ת])')
+
+
 def parse_output(
     raw: str, title: str, status: str = "ok"
 ) -> tuple[Annotation | None, str, list[str]]:
@@ -232,10 +235,18 @@ def parse_output(
     if status == "truncated":
         return None, "truncated", []
     match = re.search(r"\{.*\}", raw, re.DOTALL)
-    try:
-        data = json.loads(match.group(0)) if match else None
-    except json.JSONDecodeError:
-        data = None
+    data = None
+    if match:
+        text = match.group(0)
+        try:
+            data = json.loads(text)
+        except json.JSONDecodeError:
+            # Hebrew abbreviations carry a quote between two letters (the
+            # gershayim); the model sometimes leaves it unescaped.
+            try:
+                data = json.loads(_HEBREW_INNER_QUOTE.sub('\\"', text))
+            except json.JSONDecodeError:
+                data = None
     if not isinstance(data, dict):
         return None, "invalid_json", []
     try:

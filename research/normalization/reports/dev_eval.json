@@ -25,17 +25,18 @@
           "role": 1.0,
           "scope": 1.0,
           "package_count": 0.9722222222222222,
-          "counted_item": 0.6666666666666666
+          "counted_item": 0.9722222222222222
         },
         "joint_entries": {
-          "tp": 23,
-          "fp": 22,
-          "fn": 21,
-          "precision": 0.5111111111111111,
-          "recall": 0.5227272727272727,
-          "f1": 0.5168539325842696
+          "tp": 34,
+          "fp": 11,
+          "fn": 10,
+          "precision": 0.7555555555555555,
+          "recall": 0.7727272727272727,
+          "f1": 0.7640449438202247
         },
-        "exact_record": 70,
+        "exact_record": 81,
+        "total_accuracy_on_matched": 1.0,
         "false_measurement_on_none": 9,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
@@ -46,80 +47,122 @@
       "qwen": {
         "titles": 100,
         "presence": {
-          "tp": 35,
-          "fp": 2,
-          "fn": 9,
-          "precision": 0.9459459459459459,
-          "recall": 0.7954545454545454,
-          "f1": 0.8641975308641975
+          "tp": 40,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.9090909090909091,
+          "recall": 0.9090909090909091,
+          "f1": 0.9090909090909091
         },
-        "presence_failed_predictions": 3,
+        "presence_failed_predictions": 1,
         "gold_entries": 44,
-        "pred_entries": 39,
-        "matched_entries": 35,
+        "pred_entries": 48,
+        "matched_entries": 40,
         "field_accuracy_on_matched": {
           "unit": 1.0,
-          "amount": 0.5714285714285714,
-          "family": 0.8,
-          "role": 0.37142857142857144,
-          "scope": 0.4,
-          "package_count": 0.5714285714285714,
-          "counted_item": 0.8857142857142857
+          "amount": 0.575,
+          "family": 0.825,
+          "role": 0.8,
+          "scope": 0.5,
+          "package_count": 0.95,
+          "counted_item": 0.75
         },
         "joint_entries": {
-          "tp": 13,
-          "fp": 26,
-          "fn": 31,
-          "precision": 0.3333333333333333,
-          "recall": 0.29545454545454547,
-          "f1": 0.3132530120481928
+          "tp": 17,
+          "fp": 31,
+          "fn": 27,
+          "precision": 0.3541666666666667,
+          "recall": 0.38636363636363635,
+          "f1": 0.3695652173913044
         },
-        "exact_record": 67,
-        "false_measurement_on_none": 2,
+        "exact_record": 68,
+        "total_accuracy_on_matched": 1.0,
+        "false_measurement_on_none": 4,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
-        "family_macro_f1": 0.9095238095238095,
-        "role_macro_f1": 0.5416666666666666,
-        "scope_macro_f1": 0.5714285714285713
+        "family_macro_f1": 0.6852941176470588,
+        "role_macro_f1": 0.7994987468671679,
+        "scope_macro_f1": 0.4361393323657474
       },
       "cascade": {
         "titles": 100,
         "presence": {
-          "tp": 38,
-          "fp": 2,
-          "fn": 6,
-          "precision": 0.95,
-          "recall": 0.8636363636363636,
-          "f1": 0.9047619047619048
+          "tp": 40,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.9090909090909091,
+          "recall": 0.9090909090909091,
+          "f1": 0.9090909090909091
+        },
+        "presence_failed_predictions": 1,
+        "gold_entries": 44,
+        "pred_entries": 47,
+        "matched_entries": 40,
+        "field_accuracy_on_matched": {
+          "unit": 1.0,
+          "amount": 0.575,
+          "family": 0.825,
+          "role": 0.8,
+          "scope": 0.5,
+          "package_count": 0.95,
+          "counted_item": 0.75
+        },
+        "joint_entries": {
+          "tp": 17,
+          "fp": 30,
+          "fn": 27,
+          "precision": 0.3617021276595745,
+          "recall": 0.38636363636363635,
+          "f1": 0.37362637362637363
+        },
+        "exact_record": 69,
+        "total_accuracy_on_matched": 1.0,
+        "false_measurement_on_none": 4,
+        "unsupported_unit_completion": 0,
+        "unit_macro_f1": 1.0,
+        "family_macro_f1": 0.6852941176470588,
+        "role_macro_f1": 0.7994987468671679,
+        "scope_macro_f1": 0.4361393323657474
+      },
+      "gpt4o": {
+        "titles": 100,
+        "presence": {
+          "tp": 44,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9777777777777777,
+          "recall": 1.0,
+          "f1": 0.9887640449438202
         },
         "presence_failed_predictions": 0,
         "gold_entries": 44,
-        "pred_entries": 42,
-        "matched_entries": 38,
+        "pred_entries": 46,
+        "matched_entries": 44,
         "field_accuracy_on_matched": {
           "unit": 1.0,
-          "amount": 0.6052631578947368,
-          "family": 0.8157894736842105,
-          "role": 0.47368421052631576,
-          "scope": 0.47368421052631576,
-          "package_count": 0.6052631578947368,
-          "counted_item": 0.8947368421052632
+          "amount": 0.8409090909090909,
+          "family": 0.9772727272727273,
+          "role": 0.9772727272727273,
+          "scope": 1.0,
+          "package_count": 0.9545454545454546,
+          "counted_item": 0.9318181818181818
         },
         "joint_entries": {
-          "tp": 18,
-          "fp": 24,
-          "fn": 26,
-          "precision": 0.42857142857142855,
-          "recall": 0.4090909090909091,
-          "f1": 0.4186046511627907
+          "tp": 36,
+          "fp": 10,
+          "fn": 8,
+          "precision": 0.782608695652174,
+          "recall": 0.8181818181818182,
+          "f1": 0.8
         },
-        "exact_record": 72,
-        "false_measurement_on_none": 2,
+        "exact_record": 91,
+        "total_accuracy_on_matched": 0.9772727272727273,
+        "false_measurement_on_none": 1,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
-        "family_macro_f1": 0.9136904761904763,
-        "role_macro_f1": 0.6428571428571429,
-        "scope_macro_f1": 0.6428571428571429
+        "family_macro_f1": 0.9765765765765766,
+        "role_macro_f1": 0.9857142857142858,
+        "scope_macro_f1": 1.0
       }
     },
     "labeled from scratch": {
@@ -144,17 +187,18 @@
           "role": 1.0,
           "scope": 1.0,
           "package_count": 0.9545454545454546,
-          "counted_item": 0.6363636363636364
+          "counted_item": 1.0
         },
         "joint_entries": {
-          "tp": 13,
-          "fp": 18,
-          "fn": 16,
-          "precision": 0.41935483870967744,
-          "recall": 0.4482758620689655,
-          "f1": 0.4333333333333333
+          "tp": 21,
+          "fp": 10,
+          "fn": 8,
+          "precision": 0.6774193548387096,
+          "recall": 0.7241379310344828,
+          "f1": 0.7
         },
-        "exact_record": 31,
+        "exact_record": 39,
+        "total_accuracy_on_matched": 1.0,
         "false_measurement_on_none": 9,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
@@ -165,83 +209,125 @@
       "qwen": {
         "titles": 56,
         "presence": {
-          "tp": 21,
-          "fp": 2,
-          "fn": 8,
-          "precision": 0.9130434782608695,
-          "recall": 0.7241379310344828,
-          "f1": 0.8076923076923076
+          "tp": 25,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.8620689655172413,
+          "recall": 0.8620689655172413,
+          "f1": 0.8620689655172413
         },
-        "presence_failed_predictions": 2,
+        "presence_failed_predictions": 1,
         "gold_entries": 29,
-        "pred_entries": 25,
-        "matched_entries": 21,
+        "pred_entries": 33,
+        "matched_entries": 25,
         "field_accuracy_on_matched": {
           "unit": 1.0,
-          "amount": 0.5238095238095238,
-          "family": 0.6666666666666666,
-          "role": 0.23809523809523808,
-          "scope": 0.23809523809523808,
-          "package_count": 0.5238095238095238,
-          "counted_item": 0.9047619047619048
+          "amount": 0.52,
+          "family": 0.72,
+          "role": 0.68,
+          "scope": 0.4,
+          "package_count": 0.92,
+          "counted_item": 0.72
         },
         "joint_entries": {
-          "tp": 5,
-          "fp": 20,
-          "fn": 24,
-          "precision": 0.2,
-          "recall": 0.1724137931034483,
-          "f1": 0.1851851851851852
+          "tp": 7,
+          "fp": 26,
+          "fn": 22,
+          "precision": 0.21212121212121213,
+          "recall": 0.2413793103448276,
+          "f1": 0.22580645161290322
         },
-        "exact_record": 30,
-        "false_measurement_on_none": 2,
+        "exact_record": 29,
+        "total_accuracy_on_matched": 1.0,
+        "false_measurement_on_none": 4,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
-        "family_macro_f1": 0.8201058201058201,
-        "role_macro_f1": 0.3846153846153846,
-        "scope_macro_f1": 0.3846153846153846
+        "family_macro_f1": 0.6041666666666666,
+        "role_macro_f1": 0.6753246753246753,
+        "scope_macro_f1": 0.39285714285714285
       },
       "cascade": {
         "titles": 56,
         "presence": {
-          "tp": 23,
-          "fp": 2,
-          "fn": 6,
-          "precision": 0.92,
-          "recall": 0.7931034482758621,
-          "f1": 0.851851851851852
+          "tp": 25,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.8620689655172413,
+          "recall": 0.8620689655172413,
+          "f1": 0.8620689655172413
+        },
+        "presence_failed_predictions": 1,
+        "gold_entries": 29,
+        "pred_entries": 32,
+        "matched_entries": 25,
+        "field_accuracy_on_matched": {
+          "unit": 1.0,
+          "amount": 0.52,
+          "family": 0.72,
+          "role": 0.68,
+          "scope": 0.4,
+          "package_count": 0.92,
+          "counted_item": 0.72
+        },
+        "joint_entries": {
+          "tp": 7,
+          "fp": 25,
+          "fn": 22,
+          "precision": 0.21875,
+          "recall": 0.2413793103448276,
+          "f1": 0.22950819672131145
+        },
+        "exact_record": 30,
+        "total_accuracy_on_matched": 1.0,
+        "false_measurement_on_none": 4,
+        "unsupported_unit_completion": 0,
+        "unit_macro_f1": 1.0,
+        "family_macro_f1": 0.6041666666666666,
+        "role_macro_f1": 0.6753246753246753,
+        "scope_macro_f1": 0.39285714285714285
+      },
+      "gpt4o": {
+        "titles": 56,
+        "presence": {
+          "tp": 29,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9666666666666667,
+          "recall": 1.0,
+          "f1": 0.983050847457627
         },
         "presence_failed_predictions": 0,
         "gold_entries": 29,
-        "pred_entries": 27,
-        "matched_entries": 23,
+        "pred_entries": 31,
+        "matched_entries": 29,
         "field_accuracy_on_matched": {
           "unit": 1.0,
-          "amount": 0.5652173913043478,
-          "family": 0.6956521739130435,
-          "role": 0.34782608695652173,
-          "scope": 0.34782608695652173,
-          "package_count": 0.5652173913043478,
-          "counted_item": 0.9130434782608695
+          "amount": 0.7931034482758621,
+          "family": 0.9655172413793104,
+          "role": 0.9655172413793104,
+          "scope": 1.0,
+          "package_count": 0.9310344827586207,
+          "counted_item": 0.9310344827586207
         },
         "joint_entries": {
-          "tp": 8,
-          "fp": 19,
-          "fn": 21,
-          "precision": 0.2962962962962963,
-          "recall": 0.27586206896551724,
-          "f1": 0.2857142857142857
+          "tp": 22,
+          "fp": 9,
+          "fn": 7,
+          "precision": 0.7096774193548387,
+          "recall": 0.7586206896551724,
+          "f1": 0.7333333333333333
         },
-        "exact_record": 33,
-        "false_measurement_on_none": 2,
+        "exact_record": 48,
+        "total_accuracy_on_matched": 0.9655172413793104,
+        "false_measurement_on_none": 1,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
-        "family_macro_f1": 0.8201058201058201,
-        "role_macro_f1": 0.5161290322580645,
-        "scope_macro_f1": 0.5161290322580645
+        "family_macro_f1": 0.9740740740740741,
+        "role_macro_f1": 0.9666666666666667,
+        "scope_macro_f1": 1.0
       }
     },
-    "confirmed assistant drafts": {
+    "started from an assistant draft": {
       "rules": {
         "titles": 44,
         "presence": {
@@ -263,17 +349,18 @@
           "role": 1.0,
           "scope": 1.0,
           "package_count": 1.0,
-          "counted_item": 0.7142857142857143
+          "counted_item": 0.9285714285714286
         },
         "joint_entries": {
-          "tp": 10,
-          "fp": 4,
-          "fn": 5,
-          "precision": 0.7142857142857143,
-          "recall": 0.6666666666666666,
-          "f1": 0.689655172413793
+          "tp": 13,
+          "fp": 1,
+          "fn": 2,
+          "precision": 0.9285714285714286,
+          "recall": 0.8666666666666667,
+          "f1": 0.896551724137931
         },
-        "exact_record": 39,
+        "exact_record": 42,
+        "total_accuracy_on_matched": 1.0,
         "false_measurement_on_none": 0,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
@@ -284,41 +371,42 @@
       "qwen": {
         "titles": 44,
         "presence": {
-          "tp": 14,
+          "tp": 15,
           "fp": 0,
-          "fn": 1,
+          "fn": 0,
           "precision": 1.0,
-          "recall": 0.9333333333333333,
-          "f1": 0.9655172413793104
+          "recall": 1.0,
+          "f1": 1.0
         },
-        "presence_failed_predictions": 1,
+        "presence_failed_predictions": 0,
         "gold_entries": 15,
-        "pred_entries": 14,
-        "matched_entries": 14,
+        "pred_entries": 15,
+        "matched_entries": 15,
         "field_accuracy_on_matched": {
           "unit": 1.0,
-          "amount": 0.6428571428571429,
+          "amount": 0.6666666666666666,
           "family": 1.0,
-          "role": 0.5714285714285714,
-          "scope": 0.6428571428571429,
-          "package_count": 0.6428571428571429,
-          "counted_item": 0.8571428571428571
+          "role": 1.0,
+          "scope": 0.6666666666666666,
+          "package_count": 1.0,
+          "counted_item": 0.8
         },
         "joint_entries": {
-          "tp": 8,
-          "fp": 6,
-          "fn": 7,
-          "precision": 0.5714285714285714,
-          "recall": 0.5333333333333333,
-          "f1": 0.5517241379310344
+          "tp": 10,
+          "fp": 5,
+          "fn": 5,
+          "precision": 0.6666666666666666,
+          "recall": 0.6666666666666666,
+          "f1": 0.6666666666666666
         },
-        "exact_record": 37,
+        "exact_record": 39,
+        "total_accuracy_on_matched": 1.0,
         "false_measurement_on_none": 0,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
         "family_macro_f1": 1.0,
-        "role_macro_f1": 0.7272727272727274,
-        "scope_macro_f1": 0.782608695652174
+        "role_macro_f1": 1.0,
+        "scope_macro_f1": 0.8
       },
       "cascade": {
         "titles": 44,
@@ -338,10 +426,10 @@
           "unit": 1.0,
           "amount": 0.6666666666666666,
           "family": 1.0,
-          "role": 0.6666666666666666,
+          "role": 1.0,
           "scope": 0.6666666666666666,
-          "package_count": 0.6666666666666666,
-          "counted_item": 0.8666666666666667
+          "package_count": 1.0,
+          "counted_item": 0.8
         },
         "joint_entries": {
           "tp": 10,
@@ -352,12 +440,53 @@
           "f1": 0.6666666666666666
         },
         "exact_record": 39,
+        "total_accuracy_on_matched": 1.0,
         "false_measurement_on_none": 0,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
         "family_macro_f1": 1.0,
-        "role_macro_f1": 0.8,
+        "role_macro_f1": 1.0,
         "scope_macro_f1": 0.8
+      },
+      "gpt4o": {
+        "titles": 44,
+        "presence": {
+          "tp": 15,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "presence_failed_predictions": 0,
+        "gold_entries": 15,
+        "pred_entries": 15,
+        "matched_entries": 15,
+        "field_accuracy_on_matched": {
+          "unit": 1.0,
+          "amount": 0.9333333333333333,
+          "family": 1.0,
+          "role": 1.0,
+          "scope": 1.0,
+          "package_count": 1.0,
+          "counted_item": 0.9333333333333333
+        },
+        "joint_entries": {
+          "tp": 14,
+          "fp": 1,
+          "fn": 1,
+          "precision": 0.9333333333333333,
+          "recall": 0.9333333333333333,
+          "f1": 0.9333333333333333
+        },
+        "exact_record": 43,
+        "total_accuracy_on_matched": 1.0,
+        "false_measurement_on_none": 0,
+        "unsupported_unit_completion": 0,
+        "unit_macro_f1": 1.0,
+        "family_macro_f1": 1.0,
+        "role_macro_f1": 1.0,
+        "scope_macro_f1": 1.0
       }
     },
     "title exactly 24 chars (probably truncated)": {
@@ -382,17 +511,18 @@
           "role": 1.0,
           "scope": 1.0,
           "package_count": 0.8888888888888888,
-          "counted_item": 0.7777777777777778
+          "counted_item": 1.0
         },
         "joint_entries": {
-          "tp": 6,
-          "fp": 3,
-          "fn": 8,
-          "precision": 0.6666666666666666,
-          "recall": 0.42857142857142855,
-          "f1": 0.5217391304347826
+          "tp": 8,
+          "fp": 1,
+          "fn": 6,
+          "precision": 0.8888888888888888,
+          "recall": 0.5714285714285714,
+          "f1": 0.6956521739130435
         },
-        "exact_record": 18,
+        "exact_record": 20,
+        "total_accuracy_on_matched": 1.0,
         "false_measurement_on_none": 0,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
@@ -403,80 +533,122 @@
       "qwen": {
         "titles": 26,
         "presence": {
-          "tp": 13,
-          "fp": 0,
-          "fn": 1,
-          "precision": 1.0,
-          "recall": 0.9285714285714286,
-          "f1": 0.962962962962963
+          "tp": 12,
+          "fp": 1,
+          "fn": 2,
+          "precision": 0.9230769230769231,
+          "recall": 0.8571428571428571,
+          "f1": 0.888888888888889
         },
-        "presence_failed_predictions": 0,
+        "presence_failed_predictions": 1,
         "gold_entries": 14,
         "pred_entries": 15,
-        "matched_entries": 13,
+        "matched_entries": 12,
         "field_accuracy_on_matched": {
           "unit": 1.0,
-          "amount": 0.5384615384615384,
-          "family": 0.6153846153846154,
-          "role": 0.3076923076923077,
-          "scope": 0.3076923076923077,
-          "package_count": 0.5384615384615384,
-          "counted_item": 0.9230769230769231
+          "amount": 0.5,
+          "family": 0.5833333333333334,
+          "role": 0.5833333333333334,
+          "scope": 0.3333333333333333,
+          "package_count": 0.8333333333333334,
+          "counted_item": 0.75
         },
         "joint_entries": {
-          "tp": 4,
-          "fp": 11,
-          "fn": 10,
-          "precision": 0.26666666666666666,
-          "recall": 0.2857142857142857,
-          "f1": 0.2758620689655172
+          "tp": 3,
+          "fp": 12,
+          "fn": 11,
+          "precision": 0.2,
+          "recall": 0.21428571428571427,
+          "f1": 0.20689655172413796
         },
-        "exact_record": 16,
-        "false_measurement_on_none": 0,
+        "exact_record": 14,
+        "total_accuracy_on_matched": 1.0,
+        "false_measurement_on_none": 1,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
-        "family_macro_f1": 0.7333333333333334,
-        "role_macro_f1": 0.47058823529411764,
-        "scope_macro_f1": 0.47058823529411764
+        "family_macro_f1": 0.7171717171717171,
+        "role_macro_f1": 0.5804195804195804,
+        "scope_macro_f1": 0.3142857142857143
       },
       "cascade": {
         "titles": 26,
         "presence": {
-          "tp": 13,
+          "tp": 12,
+          "fp": 1,
+          "fn": 2,
+          "precision": 0.9230769230769231,
+          "recall": 0.8571428571428571,
+          "f1": 0.888888888888889
+        },
+        "presence_failed_predictions": 1,
+        "gold_entries": 14,
+        "pred_entries": 15,
+        "matched_entries": 12,
+        "field_accuracy_on_matched": {
+          "unit": 1.0,
+          "amount": 0.5,
+          "family": 0.5833333333333334,
+          "role": 0.5833333333333334,
+          "scope": 0.3333333333333333,
+          "package_count": 0.8333333333333334,
+          "counted_item": 0.75
+        },
+        "joint_entries": {
+          "tp": 3,
+          "fp": 12,
+          "fn": 11,
+          "precision": 0.2,
+          "recall": 0.21428571428571427,
+          "f1": 0.20689655172413796
+        },
+        "exact_record": 14,
+        "total_accuracy_on_matched": 1.0,
+        "false_measurement_on_none": 1,
+        "unsupported_unit_completion": 0,
+        "unit_macro_f1": 1.0,
+        "family_macro_f1": 0.7171717171717171,
+        "role_macro_f1": 0.5804195804195804,
+        "scope_macro_f1": 0.3142857142857143
+      },
+      "gpt4o": {
+        "titles": 26,
+        "presence": {
+          "tp": 14,
           "fp": 0,
-          "fn": 1,
+          "fn": 0,
           "precision": 1.0,
-          "recall": 0.9285714285714286,
-          "f1": 0.962962962962963
+          "recall": 1.0,
+          "f1": 1.0
         },
         "presence_failed_predictions": 0,
         "gold_entries": 14,
         "pred_entries": 15,
-        "matched_entries": 13,
+        "matched_entries": 14,
         "field_accuracy_on_matched": {
           "unit": 1.0,
-          "amount": 0.5384615384615384,
-          "family": 0.6153846153846154,
-          "role": 0.3076923076923077,
-          "scope": 0.3076923076923077,
-          "package_count": 0.5384615384615384,
-          "counted_item": 0.9230769230769231
+          "amount": 0.7142857142857143,
+          "family": 1.0,
+          "role": 1.0,
+          "scope": 1.0,
+          "package_count": 0.9285714285714286,
+          "counted_item": 0.8571428571428571
         },
         "joint_entries": {
-          "tp": 4,
-          "fp": 11,
-          "fn": 10,
-          "precision": 0.26666666666666666,
-          "recall": 0.2857142857142857,
-          "f1": 0.2758620689655172
+          "tp": 10,
+          "fp": 5,
+          "fn": 4,
+          "precision": 0.6666666666666666,
+          "recall": 0.7142857142857143,
+          "f1": 0.689655172413793
         },
-        "exact_record": 16,
+        "exact_record": 22,
+        "total_accuracy_on_matched": 1.0,
         "false_measurement_on_none": 0,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
-        "family_macro_f1": 0.7333333333333334,
-        "role_macro_f1": 0.47058823529411764,
-        "scope_macro_f1": 0.47058823529411764
+        "family_macro_f1": 1.0,
+        "role_macro_f1": 1.0,
+        "scope_macro_f1": 1.0
       }
     },
     "title not truncated": {
@@ -501,17 +673,18 @@
           "role": 1.0,
           "scope": 1.0,
           "package_count": 1.0,
-          "counted_item": 0.6296296296296297
+          "counted_item": 0.9629629629629629
         },
         "joint_entries": {
-          "tp": 17,
-          "fp": 19,
-          "fn": 13,
-          "precision": 0.4722222222222222,
-          "recall": 0.5666666666666667,
-          "f1": 0.5151515151515152
+          "tp": 26,
+          "fp": 10,
+          "fn": 4,
+          "precision": 0.7222222222222222,
+          "recall": 0.8666666666666667,
+          "f1": 0.7878787878787877
         },
-        "exact_record": 52,
+        "exact_record": 61,
+        "total_accuracy_on_matched": 1.0,
         "false_measurement_on_none": 9,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
@@ -522,80 +695,122 @@
       "qwen": {
         "titles": 74,
         "presence": {
-          "tp": 22,
-          "fp": 2,
-          "fn": 8,
-          "precision": 0.9166666666666666,
-          "recall": 0.7333333333333333,
-          "f1": 0.8148148148148148
+          "tp": 28,
+          "fp": 3,
+          "fn": 2,
+          "precision": 0.9032258064516129,
+          "recall": 0.9333333333333333,
+          "f1": 0.9180327868852459
         },
-        "presence_failed_predictions": 3,
+        "presence_failed_predictions": 0,
         "gold_entries": 30,
-        "pred_entries": 24,
-        "matched_entries": 22,
+        "pred_entries": 33,
+        "matched_entries": 28,
         "field_accuracy_on_matched": {
           "unit": 1.0,
-          "amount": 0.5909090909090909,
-          "family": 0.9090909090909091,
-          "role": 0.4090909090909091,
-          "scope": 0.45454545454545453,
-          "package_count": 0.5909090909090909,
-          "counted_item": 0.8636363636363636
+          "amount": 0.6071428571428571,
+          "family": 0.9285714285714286,
+          "role": 0.8928571428571429,
+          "scope": 0.5714285714285714,
+          "package_count": 1.0,
+          "counted_item": 0.75
         },
         "joint_entries": {
-          "tp": 9,
-          "fp": 15,
-          "fn": 21,
-          "precision": 0.375,
-          "recall": 0.3,
-          "f1": 0.33333333333333326
+          "tp": 14,
+          "fp": 19,
+          "fn": 16,
+          "precision": 0.42424242424242425,
+          "recall": 0.4666666666666667,
+          "f1": 0.4444444444444445
         },
-        "exact_record": 51,
-        "false_measurement_on_none": 2,
+        "exact_record": 54,
+        "total_accuracy_on_matched": 1.0,
+        "false_measurement_on_none": 3,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
-        "family_macro_f1": 0.9629629629629629,
-        "role_macro_f1": 0.5806451612903226,
-        "scope_macro_f1": 0.6249999999999999
+        "family_macro_f1": 0.726842105263158,
+        "role_macro_f1": 0.8916129032258064,
+        "scope_macro_f1": 0.483974358974359
       },
       "cascade": {
         "titles": 74,
         "presence": {
-          "tp": 25,
-          "fp": 2,
-          "fn": 5,
-          "precision": 0.9259259259259259,
-          "recall": 0.8333333333333334,
-          "f1": 0.8771929824561403
+          "tp": 28,
+          "fp": 3,
+          "fn": 2,
+          "precision": 0.9032258064516129,
+          "recall": 0.9333333333333333,
+          "f1": 0.9180327868852459
         },
         "presence_failed_predictions": 0,
         "gold_entries": 30,
-        "pred_entries": 27,
-        "matched_entries": 25,
+        "pred_entries": 32,
+        "matched_entries": 28,
         "field_accuracy_on_matched": {
           "unit": 1.0,
-          "amount": 0.64,
-          "family": 0.92,
-          "role": 0.56,
-          "scope": 0.56,
-          "package_count": 0.64,
-          "counted_item": 0.88
+          "amount": 0.6071428571428571,
+          "family": 0.9285714285714286,
+          "role": 0.8928571428571429,
+          "scope": 0.5714285714285714,
+          "package_count": 1.0,
+          "counted_item": 0.75
         },
         "joint_entries": {
           "tp": 14,
-          "fp": 13,
+          "fp": 18,
           "fn": 16,
-          "precision": 0.5185185185185185,
+          "precision": 0.4375,
           "recall": 0.4666666666666667,
-          "f1": 0.4912280701754386
+          "f1": 0.45161290322580644
         },
-        "exact_record": 56,
-        "false_measurement_on_none": 2,
+        "exact_record": 55,
+        "total_accuracy_on_matched": 1.0,
+        "false_measurement_on_none": 3,
         "unsupported_unit_completion": 0,
         "unit_macro_f1": 1.0,
-        "family_macro_f1": 0.9666666666666667,
-        "role_macro_f1": 0.717948717948718,
-        "scope_macro_f1": 0.717948717948718
+        "family_macro_f1": 0.726842105263158,
+        "role_macro_f1": 0.8916129032258064,
+        "scope_macro_f1": 0.483974358974359
+      },
+      "gpt4o": {
+        "titles": 74,
+        "presence": {
+          "tp": 30,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.967741935483871,
+          "recall": 1.0,
+          "f1": 0.9836065573770492
+        },
+        "presence_failed_predictions": 0,
+        "gold_entries": 30,
+        "pred_entries": 31,
+        "matched_entries": 30,
+        "field_accuracy_on_matched": {
+          "unit": 1.0,
+          "amount": 0.9,
+          "family": 0.9666666666666667,
+          "role": 0.9666666666666667,
+          "scope": 1.0,
+          "package_count": 0.9666666666666667,
+          "counted_item": 0.9666666666666667
+        },
+        "joint_entries": {
+          "tp": 26,
+          "fp": 5,
+          "fn": 4,
+          "precision": 0.8387096774193549,
+          "recall": 0.8666666666666667,
+          "f1": 0.8524590163934426
+        },
+        "exact_record": 69,
+        "total_accuracy_on_matched": 0.9666666666666667,
+        "false_measurement_on_none": 1,
+        "unsupported_unit_completion": 0,
+        "unit_macro_f1": 1.0,
+        "family_macro_f1": 0.9407407407407407,
+        "role_macro_f1": 0.9814814814814815,
+        "scope_macro_f1": 1.0
       }
     }
   }

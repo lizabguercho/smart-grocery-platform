@@ -1,0 +1,29 @@
+{
+  "created_at": "2026-11-14T18:32:51+00:00",
+  "purpose": "new independent test set, drawn after the freeze recorded in FROZEN.md",
+  "postgres_setseed": 0.2027,
+  "shuffle_seed": 20271114,
+  "quotas": {
+    "random": 60,
+    "multipack": 15,
+    "count_plus_amount": 15,
+    "capacity": 10
+  },
+  "drawn_per_stratum": {
+    "random": 60,
+    "multipack": 15,
+    "count_plus_amount": 15,
+    "capacity": 10
+  },
+  "shortfall": {},
+  "patterns": {
+    "random": "\\d",
+    "multipack": "[0-9]+\\s*[*xX×]\\s*[0-9]+\\s*(גר|גרם|מ.?ל|מיליליטר|ליטר|ל|ק.?ג|קילו)",
+    "count_plus_amount": "[0-9]+\\s*(יח|יחידות|שקיות|בקבוקים|קפסולות|כוסות|מגבונים|חבילות|קופסאות).*[0-9]+\\s*(גר|גרם|מ.?ל|מיליליטר|ליטר|ל|ק.?ג|קילו)|[0-9]+\\s*(גר|גרם|מ.?ל|מיליליטר|ליטר|ל|ק.?ג|קילו).*[0-9]+\\s*(יח|יחידות|שקיות|בקבוקים|קפסולות|כוסות|מגבונים|חבילות|קופסאות)",
+    "capacity": "(^|\\s)(דלי|מיכל|קנקן|תרמוס|סיר|פח|כד)(\\s|$).*[0-9]"
+  },
+  "excluded": "original inspected 100, dev 100, retired test 100 (by code and folded name)",
+  "grouping_policy": "same item_code or identical name after whitespace/quote folding",
+  "ids_sha256": "25f786e3f2512cacd393f9066854a016acfa3db47a433ac24b06ef7d5528ec2b",
+  "guidelines": "guidelines-v2"
+}

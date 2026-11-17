@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 
 from src.measurement_extraction.schema import Annotation, Measurement
-from src.measurement_extraction.units import apply_canonical
+from src.measurement_extraction.units import apply_canonical, derived_total
 
 # Singular/abbreviation equivalences built from the dev annotations.
 COUNTED_ITEM_MAP = {
@@ -46,6 +46,7 @@ class Canon:
     counted_item: str | None
     span: tuple[int, int] | None
     raw_amount: Decimal | None
+    total: Decimal | None = None  # derived total contents in g or mL, never typed
 
 
 def canon(entry: Measurement, title: str) -> Canon:
@@ -64,7 +65,17 @@ def canon(entry: Measurement, title: str) -> Canon:
         counted_item=item,
         span=(at, at + len(entry.source_text)) if at >= 0 else None,
         raw_amount=_num(entry.source_amount),
+        total=_num(derived_total(entry)),
     )
+
+
+def same_item(a: str | None, b: str | None) -> bool:
+    """counted_item is free text: equal when empty on both sides or they share a word."""
+
+    if not a or not b:
+        return a == b
+    words = lambda t: {COUNTED_ITEM_MAP.get(w, w) for w in t.split()}
+    return bool(words(a) & words(b))
 
 
 def _link(g: Canon, p: Canon) -> int:
@@ -117,7 +128,10 @@ def score_title(title: str, gold: Annotation, pred: Annotation | None) -> TitleS
     pairs, unsupported = [], 0
     for i, j in match(g, p):
         row = {f: getattr(g[i], f) == getattr(p[j], f) for f in FIELDS}
+        row["counted_item"] = same_item(g[i].counted_item, p[j].counted_item)
         row["joint"] = all(row.values())
+        # Reported separately so earlier joint scores stay comparable.
+        row["total"] = g[i].total == p[j].total
         row["gold"] = {f: getattr(g[i], f) for f in ("unit", "family", "role", "scope")}
         row["pred"] = {f: getattr(p[j], f) for f in ("unit", "family", "role", "scope")}
         unsupported += g[i].unit is None and p[j].unit is not None
@@ -183,6 +197,9 @@ def summarize(scores: list[TitleScore]) -> dict:
         },
         "joint_entries": prf(joint, n_pred - joint, n_gold - joint),
         "exact_record": sum(s.exact for s in scores),
+        "total_accuracy_on_matched": (
+            sum(r["total"] for r in pairs) / matched if matched else None
+        ),
         "false_measurement_on_none": fp,
         "unsupported_unit_completion": sum(s.unsupported_unit for s in scores),
     }

@@ -130,3 +130,31 @@ def test_counted_item_equivalence_and_bootstrap() -> None:
     assert score_title("תה 20 שקיות", a, b).exact
     low, high = bootstrap_ci([1.0, 0.0] * 10)
     assert 0.2 < low < 0.5 < high < 0.8
+
+
+def test_total_is_derived_and_null_without_scope():
+    from decimal import Decimal
+
+    from src.measurement_extraction.evaluation import canon
+    from src.measurement_extraction.schema import Measurement
+
+    base = {
+        "source_text": "2 x 500 g",
+        "source_amount": Decimal(500),
+        "source_unit": "g",
+        "measurement_role": "contents",
+        "package_count": 2,
+    }
+    per_item = canon(Measurement(**base, amount_scope="per_item"), "2 x 500 g")
+    unstated = canon(Measurement(**base), "2 x 500 g")
+    assert per_item.total == Decimal(1000)
+    assert unstated.total is None
+
+
+def test_counted_item_matches_on_shared_word():
+    from src.measurement_extraction.evaluation import same_item
+
+    assert same_item("קפסולות קפה", "קפסולות")
+    assert same_item(None, None)
+    assert not same_item("סבון", None)
+    assert not same_item("כוסות", "צלחות")

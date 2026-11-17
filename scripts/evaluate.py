@@ -24,7 +24,7 @@ from src.measurement_extraction.config import (
 from src.measurement_extraction.evaluation import bootstrap_ci, score_title, summarize
 from src.measurement_extraction.schema import Annotation
 
-SYSTEMS = ("rules", "qwen", "cascade")
+SYSTEMS = ("rules", "qwen", "cascade", "gpt4o")
 TRUNCATED_LENGTH = 24
 
 
@@ -64,14 +64,24 @@ def main() -> int:
         if c in titles and r["state"] == "saved" and r["annotation"]
     }
     pending = [c for c in titles if c not in gold]
-    preds = {s: load_predictions(s, args.split) for s in SYSTEMS}
+    systems = [
+        s for s in SYSTEMS if (PREDICTIONS_DIR / f"{s}_{args.split}.jsonl").exists()
+    ]
+    preds = {s: load_predictions(s, args.split) for s in systems}
 
+    strata_of: dict[str, str] = {}
+    strata_file = SAMPLES_DIR / f"{args.split}_strata.csv"
+    if strata_file.exists():
+        with strata_file.open(encoding="utf-8", newline="") as handle:
+            strata_of = {r["item_code"]: r["stratum"] for r in csv.DictReader(handle)}
     strata = {
         "all": lambda c: True,
         "labeled from scratch": lambda c: first[c].get("annotator", "human") == "human",
-        "confirmed assistant drafts": lambda c: (
+        "started from an assistant draft": lambda c: (
             first[c].get("annotator") == "claude-draft"
         ),
+        "random part (population)": lambda c: strata_of.get(c) == "random",
+        "targeted part (stress)": lambda c: strata_of.get(c, "random") != "random",
         "title exactly 24 chars (probably truncated)": lambda c: (
             len(titles[c].strip()) == TRUNCATED_LENGTH
         ),
@@ -84,10 +94,10 @@ def main() -> int:
         "strata": {},
     }
     lines = [
-        f"# {args.split.upper()} evaluation (development numbers, not test results)\n",
+        f"# {args.split.upper()} evaluation (scores on this split; see FROZEN.md for how to read them)\n",
         f"Scored titles: {len(gold)}; pending/unscorable: {len(pending)}. Same titles for every system.\n",
     ]
-    per_title: dict[str, dict[str, bool]] = {s: {} for s in SYSTEMS}
+    per_title: dict[str, dict[str, bool]] = {s: {} for s in systems}
     for name, keep in strata.items():
         codes = [c for c in gold if keep(c)]
         if not codes:
@@ -98,7 +108,7 @@ def main() -> int:
             "| system | presence P / R / F1 | failed | joint entry P / R | exact title | false meas. on none | unit invented | unit F1 | role F1 | scope F1 |",
             "|---|---|---|---|---|---|---|---|---|---|",
         ]
-        for system in SYSTEMS:
+        for system in systems:
             scores = [
                 score_title(titles[c], gold[c], preds[system].get(c)) for c in codes
             ]
