@@ -60,6 +60,8 @@ docs/README.md                     this map
         ├── agent_platform.md      chat service over the analytical database
         ├── model_lifecycle.md     how every model is developed, versioned and handed over
         ├── MODEL_STATUS.md        where each model stands now (generated)
+        ├── PROMPT_STATUS.md       where each prompt stands: category, model, review verdict (generated)
+        ├── prompts/               per-prompt review history (REVIEWS.md), by category
         ├── comparability_audit.md barcode/SKU like-for-like review
         ├── weekly_basket_coverage.md
         │                          illustrative weekly basket vs catalog coverage

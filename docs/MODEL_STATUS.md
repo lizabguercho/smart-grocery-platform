@@ -6,8 +6,8 @@ Where each model stands in the lifecycle described in [model_lifecycle.md](model
 
 | Model | Version | Stage | Owner | Depends on | Next step | Updated | Changelog |
 |---|---|---|---|---|---|---|---|
-| `measurement-cascade` | 0.1.0 | **error-analysis** | samguercho | measurement-rules 0.1.0, measurement-qwen 0.1.0 | Wait for rules and qwen v0.2.0, then re-derive the routing whitelist from dev, report support and errors per whitelist rule, and freeze it before any test evaluation. | 2026-11-01 | [1 entry](models/measurement-cascade/CHANGELOG.md) |
-| `measurement-qwen` | 0.1.0 | **error-analysis** | samguercho | – | Prompt engineering v0.2.0: counts go in package_count/counted_item (never amount/unit); count-only entries have no role or scope. Re-run all 200 titles, re-score on the same 100 dev items. | 2026-11-01 | [1 entry](models/measurement-qwen/CHANGELOG.md) |
-| `measurement-rules` | 0.1.0 | **error-analysis** | samguercho | – | Rule engineering v0.2.0: fill counted_item from the matched noun, then re-score on the same 100 dev titles (decide the bare-trailing-number rule against guidelines v1 first). | 2026-11-01 | [1 entry](models/measurement-rules/CHANGELOG.md) |
+| `measurement-cascade` | 0.2.1 | **error-analysis** | samguercho | measurement-rules 0.2.0, measurement-qwen 0.2.0 | Freeze the whitelist with a per-rule support table after rules 0.3.0 and the Qwen scope fix; compare against the gpt-4o reference. | 2026-11-18 | [3 entries](models/measurement-cascade/CHANGELOG.md) |
+| `measurement-qwen` | 0.2.0 | **error-analysis** | samguercho | – | Fix the count-only scope regression (prompt sentence plus post-parse rule), then build the 200-title dev set (dev + test2), label a separate training set, and fine-tune; a fresh 100-title test set is drawn after systems freeze. | 2026-11-14 | [2 entries](models/measurement-qwen/CHANGELOG.md) |
+| `measurement-rules` | 0.2.1 | **error-analysis** | samguercho | – | Rules 0.3.0: N*M multi-packs, count+amount scope rule (guidelines v2.1), trailing-number policy; verify on the merged 200-title dev set. | 2026-11-18 | [3 entries](models/measurement-rules/CHANGELOG.md) |
 
 Stages, in the normal order: `baseline-inference` → `error-analysis` → `prompt-engineering` → `inference` → `fine-tuning` → `frozen-evaluation` → `released` → `monitoring`.

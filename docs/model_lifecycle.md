@@ -67,6 +67,16 @@ error-analysis → prompt-engineering → inference → … → frozen-evaluatio
    for prompt decisions, and never on test labels.
 8. **Cascades depend on versions.** A cascade names the exact versions of its
    components; it is re-evaluated whenever a component changes.
+9. **Prompts carry no data.** No title, number pattern or noun taken from
+   development or test data appears in a prompt, as an example or as an
+   illustration. Instructions may be specific to the task and its expected
+   values (units, field meanings, null policy), never to individual items.
+   Illustrative placeholders (`<N> <unit>`) are allowed. Judge the prompt by
+   a hash stored with every run; a prompt line added after reading
+   predictions is noted in the changelog.
+10. **Dev is a budget.** Every prompt round read against the same dev items
+    spends some of their independence. After about two rounds, extend gold
+    or hold out part of dev before iterating again.
 
 ## Versioning
 
@@ -126,6 +136,7 @@ refuses malformed changelogs.
 
 ## Handover checklist (closing a conversation or changing owner)
 
+- If the model is prompted: the prompt has a current entry in [PROMPT_STATUS.md](PROMPT_STATUS.md) (`/prompt-review`), and the row is not "changed since review".
 - The newest changelog entry is complete and its commit exists.
 - `Next step` in the header states the single next action and who does it.
 - `docs/MODEL_STATUS.md` is regenerated (`build_model_status.py --check` passes).
@@ -139,3 +150,6 @@ Existing models not yet tracked here: the 12-class product classifier (Linear
 SVM, ADR 0006) and the Hebrew→English name translator (`src/product_translation`).
 Add a changelog for each when it is next touched, starting from its current
 state as the first entry.
+
+## Worked example: a test set that became development data (measurement, 2026-11)
+The second test sample was scored once, then read for error analysis and used to write new rules, a prompt and guidelines. By rule 6 it stopped being a test set and joined dev. The only independent number from it is the first scoring recorded in `research/normalization/FROZEN.md`. Plan a fresh test sample before the next claim, and record latency and cost per 1,000 titles beside accuracy when a hosted model is compared with a local one.

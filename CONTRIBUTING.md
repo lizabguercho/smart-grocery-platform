@@ -112,6 +112,40 @@ When you change a model (prompt, rules, weights, decoding, routing, fine-tuning)
 stale; run it before opening a pull request. Before you hand a model over or
 end a working session, go through the handover checklist in the lifecycle doc.
 
+Prompt rules: no real titles, nouns or number patterns from dev or test data
+in a prompt (placeholders only); task-specific instructions are fine; a
+prompt change is a new `measurement-qwen` MINOR version with a new prompt
+hash. Keep the previous predictions file (`*_v<version>.jsonl`) before
+re-running, and do not regenerate test predictions until freeze. Qwen runs
+need `--group mlx` (see `research/normalization/research_log.md`).
+
+## Prompts
+
+Where every prompt stands: [docs/PROMPT_STATUS.md](docs/PROMPT_STATUS.md)
+(**generated**, never by hand). Read it first: it lists the category, the model
+the prompt runs on, the recommended actions (independent, not a ranking), validity,
+the constraint load, six dimension statuses, measured consistency if any, and whether the prompt changed since it was reviewed. The "Needs
+attention" list at the top says which prompts to improve and the next step.
+
+| Layer | File | Edited by |
+|---|---|---|
+| Review history, comments, next step | `docs/prompts/<category>/<prompt-id>/REVIEWS.md` | the `/prompt-review` skill and people, newest entry first |
+| Table of all prompts | `docs/PROMPT_STATUS.md` | generated |
+
+- Categories follow where the prompt sits in the pipeline: `preprocessing`,
+  `classification`, `agentic`, `evaluation`. The folder is the category.
+- Before changing a prompt, run `/prompt-review <path-to-prompt>` (skill in
+  `.claude/skills/prompt-review/`). It reports load, coherence, ambiguity,
+  structure, efficiency and leakage with line-referenced fixes and records an
+  entry. Its actions (SPLIT, MOVE-TO-CODE, FIX-COHERENCE, CLARIFY, REORDER, TRIM) are guidance, not an
+  evaluation: dev and test scores remain the evidence, and a review finding that
+  error analysis contradicts is overruled in the Notes.
+- A new prompt gets a `REVIEWS.md` (copy an existing one) in the same pull request.
+- After editing a prompt, the status row shows `changed since review`. Run
+  `scripts/build_prompt_status.py` and re-review before trusting the row.
+  `scripts/build_prompt_status.py --check` fails when the status is stale; run it
+  before opening a pull request.
+
 Never read or tune on test data, never reuse a spent test set for a new claim,
 and never let a model's output become gold without a human confirming it and
 the provenance staying visible.

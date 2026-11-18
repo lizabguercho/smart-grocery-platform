@@ -1,4 +1,4 @@
-# DEV evaluation (development numbers, not test results)
+# DEV evaluation (scores on this split; see FROZEN.md for how to read them)
 
 Scored titles: 100; pending/unscorable: 0. Same titles for every system.
 
@@ -7,46 +7,51 @@ Scored titles: 100; pending/unscorable: 0. Same titles for every system.
 
 | system | presence P / R / F1 | failed | joint entry P / R | exact title | false meas. on none | unit invented | unit F1 | role F1 | scope F1 |
 |---|---|---|---|---|---|---|---|---|---|
-| rules | 80% / 82% / 81% | 0 | 51% / 52% | 70/100 (61%-79%) | 9 | 0 | 100% | 100% | 100% |
-| qwen | 95% / 80% / 86% | 3 | 33% / 30% | 67/100 (58%-76%) | 2 | 0 | 100% | 54% | 57% |
-| cascade | 95% / 86% / 90% | 0 | 43% / 41% | 72/100 (63%-81%) | 2 | 0 | 100% | 64% | 64% |
+| rules | 80% / 82% / 81% | 0 | 76% / 77% | 81/100 (73%-88%) | 9 | 0 | 100% | 100% | 100% |
+| qwen | 91% / 91% / 91% | 1 | 35% / 39% | 68/100 (59%-77%) | 4 | 0 | 100% | 80% | 44% |
+| cascade | 91% / 91% / 91% | 1 | 36% / 39% | 69/100 (60%-78%) | 4 | 0 | 100% | 80% | 44% |
+| gpt4o | 98% / 100% / 99% | 0 | 78% / 82% | 91/100 (85%-96%) | 1 | 0 | 100% | 99% | 100% |
 
 ## labeled from scratch (n=56)
 
 | system | presence P / R / F1 | failed | joint entry P / R | exact title | false meas. on none | unit invented | unit F1 | role F1 | scope F1 |
 |---|---|---|---|---|---|---|---|---|---|
-| rules | 71% / 76% / 73% | 0 | 42% / 45% | 31/56 (41%-68%) | 9 | 0 | 100% | 100% | 100% |
-| qwen | 91% / 72% / 81% | 2 | 20% / 17% | 30/56 (41%-66%) | 2 | 0 | 100% | 38% | 38% |
-| cascade | 92% / 79% / 85% | 0 | 30% / 28% | 33/56 (46%-71%) | 2 | 0 | 100% | 52% | 52% |
+| rules | 71% / 76% / 73% | 0 | 68% / 72% | 39/56 (57%-80%) | 9 | 0 | 100% | 100% | 100% |
+| qwen | 86% / 86% / 86% | 1 | 21% / 24% | 29/56 (39%-64%) | 4 | 0 | 100% | 68% | 39% |
+| cascade | 86% / 86% / 86% | 1 | 22% / 24% | 30/56 (41%-66%) | 4 | 0 | 100% | 68% | 39% |
+| gpt4o | 97% / 100% / 98% | 0 | 71% / 76% | 48/56 (75%-93%) | 1 | 0 | 100% | 97% | 100% |
 
-## confirmed assistant drafts (n=44)
+## started from an assistant draft (n=44)
 
 | system | presence P / R / F1 | failed | joint entry P / R | exact title | false meas. on none | unit invented | unit F1 | role F1 | scope F1 |
 |---|---|---|---|---|---|---|---|---|---|
-| rules | 100% / 93% / 97% | 0 | 71% / 67% | 39/44 (77%-98%) | 0 | 0 | 100% | 100% | 100% |
-| qwen | 100% / 93% / 97% | 1 | 57% / 53% | 37/44 (73%-93%) | 0 | 0 | 100% | 73% | 78% |
-| cascade | 100% / 100% / 100% | 0 | 67% / 67% | 39/44 (77%-98%) | 0 | 0 | 100% | 80% | 80% |
+| rules | 100% / 93% / 97% | 0 | 93% / 87% | 42/44 (89%-100%) | 0 | 0 | 100% | 100% | 100% |
+| qwen | 100% / 100% / 100% | 0 | 67% / 67% | 39/44 (77%-98%) | 0 | 0 | 100% | 100% | 80% |
+| cascade | 100% / 100% / 100% | 0 | 67% / 67% | 39/44 (77%-98%) | 0 | 0 | 100% | 100% | 80% |
+| gpt4o | 100% / 100% / 100% | 0 | 93% / 93% | 43/44 (93%-100%) | 0 | 0 | 100% | 100% | 100% |
 
 ## title exactly 24 chars (probably truncated) (n=26)
 
 | system | presence P / R / F1 | failed | joint entry P / R | exact title | false meas. on none | unit invented | unit F1 | role F1 | scope F1 |
 |---|---|---|---|---|---|---|---|---|---|
-| rules | 100% / 64% / 78% | 0 | 67% / 43% | 18/26 (50%-85%) | 0 | 0 | 100% | 100% | 100% |
-| qwen | 100% / 93% / 96% | 0 | 27% / 29% | 16/26 (42%-81%) | 0 | 0 | 100% | 47% | 47% |
-| cascade | 100% / 93% / 96% | 0 | 27% / 29% | 16/26 (42%-81%) | 0 | 0 | 100% | 47% | 47% |
+| rules | 100% / 64% / 78% | 0 | 89% / 57% | 20/26 (58%-92%) | 0 | 0 | 100% | 100% | 100% |
+| qwen | 92% / 86% / 89% | 1 | 20% / 21% | 14/26 (35%-73%) | 1 | 0 | 100% | 58% | 31% |
+| cascade | 92% / 86% / 89% | 1 | 20% / 21% | 14/26 (35%-73%) | 1 | 0 | 100% | 58% | 31% |
+| gpt4o | 100% / 100% / 100% | 0 | 67% / 71% | 22/26 (69%-96%) | 0 | 0 | 100% | 100% | 100% |
 
 ## title not truncated (n=74)
 
 | system | presence P / R / F1 | failed | joint entry P / R | exact title | false meas. on none | unit invented | unit F1 | role F1 | scope F1 |
 |---|---|---|---|---|---|---|---|---|---|
-| rules | 75% / 90% / 82% | 0 | 47% / 57% | 52/74 (59%-80%) | 9 | 0 | 100% | 100% | 100% |
-| qwen | 92% / 73% / 81% | 3 | 38% / 30% | 51/74 (58%-78%) | 2 | 0 | 100% | 58% | 62% |
-| cascade | 93% / 83% / 88% | 0 | 52% / 47% | 56/74 (66%-85%) | 2 | 0 | 100% | 72% | 72% |
+| rules | 75% / 90% / 82% | 0 | 72% / 87% | 61/74 (74%-91%) | 9 | 0 | 100% | 100% | 100% |
+| qwen | 90% / 93% / 92% | 0 | 42% / 47% | 54/74 (64%-82%) | 3 | 0 | 100% | 89% | 48% |
+| cascade | 90% / 93% / 92% | 0 | 44% / 47% | 55/74 (65%-84%) | 3 | 0 | 100% | 89% | 48% |
+| gpt4o | 97% / 100% / 98% | 0 | 84% / 87% | 69/74 (88%-99%) | 1 | 0 | 100% | 98% | 100% |
 
 ## Paired exact-title outcomes (all scored titles)
 
 | pair | both correct | first only | second only | both wrong |
 |---|---|---|---|---|
-| rules vs qwen | 59 | 11 | 8 | 22 |
-| rules vs cascade | 64 | 6 | 8 | 22 |
-| qwen vs cascade | 67 | 0 | 5 | 28 |
+| rules vs qwen | 61 | 20 | 7 | 12 |
+| rules vs cascade | 62 | 19 | 7 | 12 |
+| qwen vs cascade | 68 | 0 | 1 | 31 |

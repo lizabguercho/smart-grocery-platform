@@ -23,7 +23,7 @@ from src.measurement_extraction.schema import Annotation, WorkflowState
 from src.measurement_extraction.units import registry_json
 
 PAGE = Path(__file__).parent / "static" / "annotate.html"
-SPLITS = ("dev", "test")
+SPLITS = ("dev", "test", "test2")
 
 
 class SaveRequest(BaseModel):

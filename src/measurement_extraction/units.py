@@ -51,6 +51,7 @@ _ALIASES: dict[str, UnitSpec] = {
     "מיליגרם": _MG,
     "mg": _MG,
     "ליטר": _L,
+    "ליט": _L,
     "ל": _L,
     "l": _L,
     "lt": _L,

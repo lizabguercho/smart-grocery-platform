@@ -7,7 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Measurement extraction: rewrote the zero-shot Qwen prompt (measurement-qwen
+  0.2.0, no examples), re-scored the cascade, documented the approach review
+  and prompt/dev-set rules (`research/normalization/research_log.md`,
+  `docs/model_lifecycle.md`)
+- Measurement extraction: second test sample (test2, 100 titles, human-labelled
+  under guidelines v2.1), first independent scoring, then error analysis;
+  measurement-qwen 0.3.0/0.4.0 (experimental: multi-pack and count+amount
+  rules, JSON repair), `units-v2` (alias `ליט`), lenient `counted_item`
+  scoring; test2 is now development data (`research/normalization/FROZEN.md`)
+
 ### Added
+
+- Added a gpt-4o reference run for the measurement task
+  (`scripts/run_gpt4o.py`, results in `research/normalization/research_log.md`)
+  and random/targeted strata in `scripts/evaluate.py`
+
+- Added a prompt registry: `/prompt-review` skill, `docs/prompts/**/REVIEWS.md`
+  review history and a generated `docs/PROMPT_STATUS.md` (category, model,
+  verdict, drift since review), with `scripts/build_prompt_status.py --check`
 
 - Added a conservative Tableau extract of 5,676 audit-valid three-chain
   products (`data/processed/tableau_verified_three_chains.csv`); the

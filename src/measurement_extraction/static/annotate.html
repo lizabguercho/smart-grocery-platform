@@ -57,7 +57,7 @@ kbd{border:1px solid var(--line);border-radius:4px;padding:0 4px;font-size:12px}
   <span id="progress" class="pill draft">–</span>
   <span id="counts"></span>
   <span id="auto" class="pill unreviewed">autosave idle</span>
-  <select id="splitSel" aria-label="Split"><option value="dev">Development</option><option value="test">Test (blind)</option></select>
+  <select id="splitSel" aria-label="Split"><option value="dev">Development</option><option value="test">Old test (retired, blind)</option><option value="test2">Test 2 (new, blind, guidelines v2)</option></select>
   <select id="filterSel" aria-label="Filter"><option value="">All states</option><option value="unreviewed">Unreviewed</option><option value="draft">Draft</option><option value="saved">Saved</option><option value="needs_review">Needs review</option></select>
   <span class="sp" style="flex:1"></span>
   <a href="/api/export.jsonl" download="gold.jsonl">Export gold log</a>
@@ -165,8 +165,8 @@ function load(item){
   model={present:a?a.has_measurement:null,entries:a&&a.measurements.length?a.measurements.map(m=>({...blank(),...Object.fromEntries(FIELDS.map(k=>[k,m[k]??""]))})):[blank()]};
   $("title").textContent=item.item_name;$("code").textContent=item.item_code;
   $("raw").textContent=[...item.item_name].map(c=>c.codePointAt(0)<32||/\s/.test(c)?`<U+${c.codePointAt(0).toString(16).toUpperCase().padStart(4,"0")}>`:c).join("");
-  $("splitTag").textContent=item.split==="test"?"test split (blind)":"development split";
-  $("lockNote").textContent=item.split==="test"?"Rules and model predictions are locked until the frozen final evaluation is run.":"Blind mode: nothing is prefilled from rules or the model.";
+  $("splitTag").textContent=item.split.startsWith("test")?"test split (blind)":"development split";
+  $("lockNote").textContent=item.split.startsWith("test")?"Rules and model predictions are locked until the frozen final evaluation is run.":"Blind mode: nothing is prefilled from rules or the model.";
   $("notes").value=item.notes||"";
   const b=$("stateBadge");b.textContent=item.state.replace("_"," ");b.className="pill "+item.state;
   render();loading=false;$("msg").textContent="";highlight()}
